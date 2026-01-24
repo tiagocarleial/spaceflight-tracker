@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import LaunchCard from './LaunchCard';
 import LaunchFilters, { FilterState } from './LaunchFilters';
+import CalendarModal from './CalendarModal';
 import { Launch } from '@/types/launch';
 import { fetchUpcomingLaunches } from '@/lib/api';
 
@@ -79,6 +80,7 @@ export default function LaunchesContainer({
     search: '',
   });
   const [hasFiltersChanged, setHasFiltersChanged] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   // Periodically filter and re-sort launches
   useEffect(() => {
@@ -167,6 +169,29 @@ export default function LaunchesContainer({
     }
   };
 
+  const handleSelectLaunch = useCallback((launchId: string) => {
+    // Fechar modal (já acontece no handler do modal)
+    setIsCalendarOpen(false);
+
+    // Aguardar um frame para garantir que modal fechou
+    requestAnimationFrame(() => {
+      const element = document.getElementById(`launch-${launchId}`);
+      if (element) {
+        // Scroll suave até o elemento
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center', // Centraliza na tela
+        });
+
+        // Adicionar highlight temporário
+        element.classList.add('ring-4', 'ring-blue-500', 'ring-opacity-50');
+        setTimeout(() => {
+          element.classList.remove('ring-4', 'ring-blue-500', 'ring-opacity-50');
+        }, 2000);
+      }
+    });
+  }, []);
+
   return (
     <>
       {/* Filters */}
@@ -203,24 +228,35 @@ export default function LaunchesContainer({
               <h2 className="text-2xl font-bold text-white">Up Next</h2>
             </div>
 
-            {/* Inline Stats */}
-            <div className="flex flex-wrap gap-2">
-              <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
-                <span className="text-green-400 font-bold text-sm">{stats.confirmed}</span>
-                <span className="text-gray-400 text-xs">Confirmed</span>
+            <div className="flex items-center gap-4 flex-1">
+              {/* Inline Stats */}
+              <div className="flex flex-wrap gap-2">
+                <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
+                  <span className="text-green-400 font-bold text-sm">{stats.confirmed}</span>
+                  <span className="text-gray-400 text-xs">Confirmed</span>
+                </div>
+                <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
+                  <span className="text-yellow-400 font-bold text-sm">{stats.tbd}</span>
+                  <span className="text-gray-400 text-xs">TBD</span>
+                </div>
+                <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
+                  <span className="text-purple-400 font-bold text-sm">{stats.operators}</span>
+                  <span className="text-gray-400 text-xs">Operators</span>
+                </div>
+                <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
+                  <span className="text-blue-400 font-bold text-sm">{stats.total}</span>
+                  <span className="text-gray-400 text-xs">Upcoming</span>
+                </div>
               </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
-                <span className="text-yellow-400 font-bold text-sm">{stats.tbd}</span>
-                <span className="text-gray-400 text-xs">TBD</span>
-              </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
-                <span className="text-purple-400 font-bold text-sm">{stats.operators}</span>
-                <span className="text-gray-400 text-xs">Operators</span>
-              </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded px-3 py-1 flex items-center gap-2">
-                <span className="text-blue-400 font-bold text-sm">{stats.total}</span>
-                <span className="text-gray-400 text-xs">Upcoming</span>
-              </div>
+
+              {/* Calendar Icon Button */}
+              <button
+                onClick={() => setIsCalendarOpen(true)}
+                className="ml-auto p-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
+                aria-label="Open calendar"
+              >
+                <i className="fa-regular fa-calendar text-blue-400 text-xl"></i>
+              </button>
             </div>
           </div>
 
@@ -273,6 +309,14 @@ export default function LaunchesContainer({
           )}
         </>
       )}
+
+      {/* Calendar Modal */}
+      <CalendarModal
+        isOpen={isCalendarOpen}
+        onClose={() => setIsCalendarOpen(false)}
+        launches={launches}
+        onSelectLaunch={handleSelectLaunch}
+      />
     </>
   );
 }

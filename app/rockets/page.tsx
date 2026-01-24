@@ -17,27 +17,28 @@ export default function RocketsPage() {
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
       <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 py-4 md:py-6">
+          <div className="flex items-center justify-between gap-4">
             <Link href="/">
               <div className="cursor-pointer">
-                <h1 className="text-3xl font-bold text-white mb-1 flex items-center gap-3">
+                <h1 className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
                   <i className="fa-solid fa-rocket text-white"></i>
-                  Spaceflight Tracker
+                  <span className="hidden sm:inline">Spaceflight Tracker</span>
+                  <span className="sm:hidden">SpaceFlight</span>
                 </h1>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-400 text-xs md:text-sm hidden sm:block">
                   Keep up to date with upcoming space launches
                 </p>
               </div>
             </Link>
-            <div className="flex gap-4">
+            <div className="flex gap-2 md:gap-4">
               <Link href="/launches">
-                <button className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg font-medium transition-colors">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
                   Launches
                 </button>
               </Link>
               <Link href="/rockets">
-                <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm md:text-base font-medium transition-colors">
                   Rockets
                 </button>
               </Link>

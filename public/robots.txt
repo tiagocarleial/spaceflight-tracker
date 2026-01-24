@@ -1,0 +1,21 @@
+# Spaceflight Tracker - Robots.txt
+User-agent: *
+Allow: /
+Allow: /launches
+Allow: /rockets
+Allow: /launches/*
+Allow: /rockets/*
+
+# Disallow admin or private pages (if any in the future)
+# Disallow: /admin
+# Disallow: /api
+
+# Sitemap location
+Sitemap: https://spaceflight-tracker.vercel.app/sitemap.xml
+
+# Crawl-delay for specific bots (optional)
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0

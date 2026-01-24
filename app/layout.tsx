@@ -13,8 +13,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spaceflight Tracker",
-  description: "Keep up to date with upcoming space launches around the world",
+  title: {
+    default: "Spaceflight Tracker - Real-Time Space Launch Schedule",
+    template: "%s | Spaceflight Tracker",
+  },
+  description: "Track upcoming space launches in real-time from SpaceX, NASA, Blue Origin, ISRO, CNSA and more. View live countdowns, rocket specifications, and launch locations worldwide.",
+  keywords: ["space launches", "rocket launches", "SpaceX", "NASA", "Blue Origin", "ISRO", "CNSA", "launch schedule", "space news", "rocket tracker", "launch countdown"],
+  authors: [{ name: "Spaceflight Tracker" }],
+  creator: "Spaceflight Tracker",
+  publisher: "Spaceflight Tracker",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://spaceflight-tracker.vercel.app",
+    title: "Spaceflight Tracker - Real-Time Space Launch Schedule",
+    description: "Track upcoming space launches in real-time from SpaceX, NASA, Blue Origin, ISRO, CNSA and more. View live countdowns, rocket specifications, and launch locations worldwide.",
+    siteName: "Spaceflight Tracker",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spaceflight Tracker - Real-Time Space Launch Schedule",
+    description: "Track upcoming space launches in real-time from SpaceX, NASA, Blue Origin, ISRO, CNSA and more.",
+    creator: "@spaceflighttracker",
+  },
   icons: {
     icon: [
       {
@@ -22,6 +54,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+  manifest: "/manifest.json",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#1f2937",
 };
 
 export default function RootLayout({

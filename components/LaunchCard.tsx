@@ -18,6 +18,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
     // Fallback: map rocket name to ID
     const rocketNameMap: Record<string, string> = {
       'Falcon 9': 'falcon9',
+      'Falcon Heavy': 'falconheavy',
+      'Starship': 'starship',
       'Long March 2C': 'longmarch2c',
       'Long March 3B/E': 'longmarch3be',
       'Long March 7': 'longmarch7',
@@ -25,6 +27,11 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
       'Ceres-1S': 'ceres1s',
       'Ceres-2': 'ceres2',
       'New Shepard': 'newshepard',
+      'New Glenn': 'newglenn',
+      'Space Launch System': 'sls',
+      'SLS': 'sls',
+      'PSLV': 'pslv',
+      'PSLV-DL': 'pslv',
       'Spectrum': 'spectrum',
       'GSLV Mk-2': 'gslvmk2',
       'GSLV Mk II': 'gslvmk2',
@@ -36,6 +43,31 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
       'Electron': 'electron',
       'Smart Dragon 3': 'smartdragon3',
       'Vulcan VC4S': 'vulcanvc4s',
+      'Ariane 6': 'ariane6',
+      'Ariane 64': 'ariane6',
+      'Firefly Alpha': 'fireflyalpha',
+      'Kairos': 'kairos',
+      'Kinetica-2': 'kinetica2',
+      'Kinetica': 'kinetica2',
+      'Proton-M': 'protonm',
+      'Proton M': 'protonm',
+      'Soyuz 2.1': 'soyuz21',
+      'Soyuz 2': 'soyuz21',
+      'Soyuz-5': 'soyuz5',
+      'Soyuz 5': 'soyuz5',
+      'Vikram-1': 'vikram1',
+      'Vikram': 'vikram1',
+      'Neutron': 'neutron',
+      'Gaganyaan': 'gaganyaan',
+      'Atlas V': 'atlasvn22',
+      'Atlas V N22': 'atlasvn22',
+      'Minotaur IV': 'minotauriv',
+      'Minotaur 4': 'minotauriv',
+      'Pegasus XL': 'pegasusxl',
+      'Tianlong-3': 'tianlong3',
+      'Tianlong 3': 'tianlong3',
+      'Vega-C': 'vegac',
+      'Vega C': 'vegac',
     };
 
     for (const [name, id] of Object.entries(rocketNameMap)) {
@@ -90,7 +122,12 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
     }
   };
 
-  const isFalcon9 = launch.rocket.includes('Falcon 9');
+  const isFalcon9 = launch.rocket.includes('Falcon 9') && !launch.rocket.includes('Falcon Heavy');
+  const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
+  const isStarship = launch.rocket.includes('Starship');
+  const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
+  const isPSLV = launch.rocket.includes('PSLV');
+  const isNewGlenn = launch.rocket.includes('New Glenn');
   const isLongMarch2C = launch.rocket.includes('Long March 2C');
   const isLongMarch3BE = launch.rocket.includes('Long March 3B/E');
   const isLongMarch7 = launch.rocket.includes('Long March 7');
@@ -104,29 +141,66 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isElectron = launch.rocket.includes('Electron');
   const isSmartDragon3 = launch.rocket.includes('Smart Dragon 3');
   const isVulcanVC4S = launch.rocket.includes('Vulcan VC4S');
+  const isAriane6 = launch.rocket.includes('Ariane 6') || launch.rocket.includes('Ariane 64');
+  const isFireflyAlpha = launch.rocket.includes('Firefly Alpha');
+  const isKairos = launch.rocket.includes('Kairos') || launch.rocket.includes('Kii-based');
+  const isKinetica2 = launch.rocket.includes('Kinetica');
+  const isProtonM = launch.rocket.includes('Proton');
+  const isSoyuz21 = launch.rocket.includes('Soyuz 2');
+  const isSoyuz5 = launch.rocket.includes('Soyuz-5') || launch.rocket.includes('Soyuz 5');
+  const isVikram1 = launch.rocket.includes('Vikram');
+  const isNeutron = launch.rocket.includes('Neutron');
+  const isGaganyaan = launch.rocket.includes('Gaganyaan');
+  const isAtlasV = launch.rocket.includes('Atlas V');
+  const isMinotaurIV = launch.rocket.includes('Minotaur IV') || launch.rocket.includes('Minotaur 4');
+  const isPegasusXL = launch.rocket.includes('Pegasus XL');
+  const isTianlong3 = launch.rocket.includes('Tianlong-3') || launch.rocket.includes('Tianlong 3');
+  const isVegaC = launch.rocket.includes('Vega-C') || launch.rocket.includes('Vega C');
 
   const getRocketImage = () => {
-    if (isFalcon9) return '/falcon9.png';
-    if (isLongMarch2C) return '/longMarch2c.png';
-    if (isLongMarch3BE) return '/LongMarch3be.png';
-    if (isLongMarch7) return '/longMarch7.png';
-    if (isLongMarch12) return '/longMarch12.png';
-    if (isCeres1S) return '/ceres1s.png';
-    if (isCeres2) return '/ceres2.png';
-    if (isNewShepard) return '/newShepard.png';
-    if (isSpectrum) return '/spectrum.png';
-    if (isGSLVMk2) return '/GSLVMk-2.png';
-    if (isGSLVMk3) return '/GSLVMk-3.png';
-    if (isElectron) return '/electron.png';
-    if (isSmartDragon3) return '/smartDragon3.png';
-    if (isVulcanVC4S) return '/vulcanVC4S.png';
+    if (isFalcon9) return '/images/falcon9.png';
+    if (isFalconHeavy) return '/images/falconHeavy.png';
+    if (isStarship) return '/images/starship.png';
+    if (isSLS) return '/images/slsBlock1.png';
+    if (isPSLV) return '/images/pslv.png';
+    if (isNewGlenn) return '/images/newGlenn.png';
+    if (isLongMarch2C) return '/images/longMarch2c.png';
+    if (isLongMarch3BE) return '/images/LongMarch3be.png';
+    if (isLongMarch7) return '/images/longMarch7.png';
+    if (isLongMarch12) return '/images/longMarch12.png';
+    if (isCeres1S) return '/images/ceres1s.png';
+    if (isCeres2) return '/images/ceres2.png';
+    if (isNewShepard) return '/images/newShepard.png';
+    if (isSpectrum) return '/images/spectrum.png';
+    if (isGSLVMk2) return '/images/GSLVMk-2.png';
+    if (isGSLVMk3) return '/images/GSLVMk-3.png';
+    if (isElectron) return '/images/electron.png';
+    if (isSmartDragon3) return '/images/smartDragon3.png';
+    if (isVulcanVC4S) return '/images/vulcanVC4S.png';
+    if (isAriane6) return '/images/ariane64.png';
+    if (isFireflyAlpha) return '/images/fireflyAlpha.png';
+    if (isKairos) return '/images/kairos.png';
+    if (isKinetica2) return '/images/kinetica2.png';
+    if (isProtonM) return '/images/protonMBlokDM03.png';
+    if (isSoyuz21) return '/images/soyuz21.png';
+    if (isSoyuz5) return '/images/soyuz5.png';
+    if (isVikram1) return '/images/vikram1.png';
+    if (isNeutron) return '/images/neutron.png';
+    if (isGaganyaan) return '/images/gaganyaan.png';
+    if (isAtlasV) return '/images/atlasVN22.png';
+    if (isMinotaurIV) return '/images/minotaurIV.png';
+    if (isPegasusXL) return '/images/pegasusXL.png';
+    if (isTianlong3) return '/images/tianlong3.png';
+    if (isVegaC) return '/images/vegaC.png';
     return null;
   };
 
   const rocketImage = getRocketImage();
 
   return (
-    <div className="group relative bg-gray-800/50 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-all hover:shadow-lg hover:shadow-blue-500/10 flex flex-col h-full overflow-hidden">
+    <div
+      id={`launch-${launch.id}`}
+      className="group relative bg-gray-800/50 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-all hover:shadow-lg hover:shadow-blue-500/10 flex flex-col h-full overflow-hidden">
       {/* Background Image for Rockets */}
       {rocketImage && (
         <>
