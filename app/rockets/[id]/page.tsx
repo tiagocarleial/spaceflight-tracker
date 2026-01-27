@@ -3,9 +3,50 @@ import { mockLaunches } from '@/data/mockLaunches';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 interface RocketDetailPageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: RocketDetailPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const rocket = mockRockets.find(r => r.id === id);
+
+  if (!rocket) {
+    return {
+      title: 'Rocket Not Found',
+    };
+  }
+
+  return {
+    title: `${rocket.fullName} - Specifications & Details`,
+    description: `${rocket.description} View detailed specifications, payload capacity, dimensions, and launch history of ${rocket.fullName} by ${rocket.operator}.`,
+    keywords: [rocket.name, rocket.fullName, rocket.operator, 'rocket specifications', 'space launch vehicle'],
+    alternates: {
+      canonical: `https://spaceflight-tracker.vercel.app/rockets/${id}`,
+    },
+    openGraph: {
+      title: `${rocket.fullName} - Specifications & Details`,
+      description: rocket.description,
+      url: `https://spaceflight-tracker.vercel.app/rockets/${id}`,
+      type: 'website',
+      images: [
+        {
+          url: rocket.image,
+          width: 1200,
+          height: 630,
+          alt: rocket.fullName,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${rocket.fullName} - Specifications & Details`,
+      description: rocket.description,
+      images: [rocket.image],
+    },
+  };
 }
 
 export default async function RocketDetailPage({ params }: RocketDetailPageProps) {
@@ -21,19 +62,39 @@ export default async function RocketDetailPage({ params }: RocketDetailPageProps
     launch => launch.rocketId === id || launch.rocket.includes(rocket.name)
   );
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": rocket.fullName,
+    "description": rocket.description,
+    "brand": {
+      "@type": "Organization",
+      "name": rocket.operator
+    },
+    "image": rocket.image,
+    "offers": {
+      "@type": "Offer",
+      "availability": rocket.status === 'Active' ? "https://schema.org/InStock" : "https://schema.org/PreOrder"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Header */}
       <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4 md:py-6">
           <div className="flex items-center justify-between gap-4">
             <Link href="/">
               <div className="cursor-pointer">
-                <h1 className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
+                <div className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
                   <i className="fa-solid fa-rocket text-white"></i>
                   <span className="hidden sm:inline">Spaceflight Tracker</span>
                   <span className="sm:hidden">SpaceFlight</span>
-                </h1>
+                </div>
                 <p className="text-gray-400 text-xs md:text-sm hidden sm:block">
                   Keep up to date with upcoming space launches
                 </p>
@@ -71,6 +132,8 @@ export default async function RocketDetailPage({ params }: RocketDetailPageProps
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${rocket.image})` }}
+              role="img"
+              aria-label={`${rocket.fullName} - ${rocket.operator}`}
             />
           </div>
 

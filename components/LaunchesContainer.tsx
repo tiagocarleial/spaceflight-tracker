@@ -225,7 +225,7 @@ export default function LaunchesContainer({
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <div className="flex items-center gap-3">
               <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
-              <h2 className="text-2xl font-bold text-white">Up Next</h2>
+              <h1 className="text-2xl font-bold text-white">Upcoming Space Launches</h1>
             </div>
 
             <div className="flex items-center gap-4 flex-1">

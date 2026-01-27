@@ -3,9 +3,47 @@ import { mockRockets } from '@/data/mockRockets';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import LaunchDetailClient from './LaunchDetailClient';
+import { Metadata } from 'next';
 
 interface LaunchDetailPageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: LaunchDetailPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const launch = mockLaunches.find(l => l.id === id);
+
+  if (!launch) {
+    return {
+      title: 'Launch Not Found',
+    };
+  }
+
+  const launchDate = new Date(launch.launchDate).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  });
+
+  return {
+    title: `${launch.name} - Launch Details & Live Stream`,
+    description: `${launch.description} Launch date: ${launchDate} from ${launch.location}. Rocket: ${launch.rocket} by ${launch.operator}.`,
+    keywords: [launch.name, launch.rocket, launch.operator, 'space launch', 'rocket launch', launch.location],
+    alternates: {
+      canonical: `https://spaceflight-tracker.vercel.app/launches/${id}`,
+    },
+    openGraph: {
+      title: `${launch.name} - Launch Details`,
+      description: launch.description,
+      url: `https://spaceflight-tracker.vercel.app/launches/${id}`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${launch.name} - Launch Details`,
+      description: launch.description,
+    },
+  };
 }
 
 export default async function LaunchDetailPage({ params }: LaunchDetailPageProps) {
@@ -29,11 +67,11 @@ export default async function LaunchDetailPage({ params }: LaunchDetailPageProps
           <div className="flex items-center justify-between gap-4">
             <Link href="/">
               <div className="cursor-pointer">
-                <h1 className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
+                <div className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
                   <i className="fa-solid fa-rocket text-white"></i>
                   <span className="hidden sm:inline">Spaceflight Tracker</span>
                   <span className="sm:hidden">SpaceFlight</span>
-                </h1>
+                </div>
                 <p className="text-gray-400 text-xs md:text-sm hidden sm:block">
                   Keep up to date with upcoming space launches
                 </p>

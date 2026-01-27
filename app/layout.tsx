@@ -88,6 +88,36 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8079361631746336"
           crossOrigin="anonymous"
         ></script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Spaceflight Tracker",
+              "url": "https://spaceflight-tracker.vercel.app",
+              "description": "Track upcoming space launches in real-time from SpaceX, NASA, Blue Origin, ISRO, CNSA and more.",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://spaceflight-tracker.vercel.app/launches?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Spaceflight Tracker",
+              "url": "https://spaceflight-tracker.vercel.app",
+              "logo": "https://spaceflight-tracker.vercel.app/icon-512.png",
+              "sameAs": []
+            })
+          }}
+        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"

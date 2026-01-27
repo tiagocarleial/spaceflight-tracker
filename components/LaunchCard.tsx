@@ -207,6 +207,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
           <div
             className="absolute inset-0 bg-cover bg-center opacity-90 transition-opacity group-hover:opacity-100"
             style={{ backgroundImage: `url(${rocketImage})` }}
+            role="img"
+            aria-label={`${launch.rocket} rocket`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/85 via-gray-900/50 to-gray-900/30" />
         </>

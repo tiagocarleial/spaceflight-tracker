@@ -2,6 +2,27 @@ import LaunchesContainer from '@/components/LaunchesContainer';
 import { fetchUpcomingLaunches, fetchLaunchProviders } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Upcoming Space Launches - Real-Time Launch Schedule',
+  description: 'View all upcoming space launches from SpaceX, NASA, Blue Origin, ISRO, CNSA and more. Track launch dates, times, and mission details in real-time with live countdowns.',
+  keywords: ['space launches', 'upcoming launches', 'SpaceX launch', 'NASA launch', 'rocket launch schedule', 'space mission tracker'],
+  alternates: {
+    canonical: 'https://spaceflight-tracker.vercel.app/launches',
+  },
+  openGraph: {
+    title: 'Upcoming Space Launches - Real-Time Launch Schedule',
+    description: 'Track all upcoming space launches from major space agencies worldwide. Live countdowns and mission details.',
+    url: 'https://spaceflight-tracker.vercel.app/launches',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Upcoming Space Launches - Real-Time Launch Schedule',
+    description: 'Track all upcoming space launches from major space agencies worldwide.',
+  },
+};
 
 export default async function LaunchesPage() {
   // Try to fetch real data, fallback to mock data if API fails
@@ -31,11 +52,11 @@ export default async function LaunchesPage() {
           <div className="flex items-center justify-between gap-4">
             <Link href="/">
               <div className="cursor-pointer">
-                <h1 className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
+                <div className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
                   <i className="fa-solid fa-rocket text-white"></i>
                   <span className="hidden sm:inline">Spaceflight Tracker</span>
                   <span className="sm:hidden">SpaceFlight</span>
-                </h1>
+                </div>
                 <p className="text-gray-400 text-xs md:text-sm hidden sm:block">
                   Keep up to date with upcoming space launches
                 </p>

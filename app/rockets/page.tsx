@@ -1,6 +1,27 @@
 import RocketCard from '@/components/RocketCard';
 import { mockRockets } from '@/data/mockRockets';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Space Rockets Database - Specifications & Details',
+  description: 'Explore detailed specifications of rockets from SpaceX, NASA, Blue Origin, ISRO, CNSA and more. View payload capacity, dimensions, reusability, and technical details of all major launch vehicles.',
+  keywords: ['space rockets', 'rocket specifications', 'Falcon 9', 'Starship', 'SLS', 'rocket database', 'launch vehicles', 'rocket technology'],
+  alternates: {
+    canonical: 'https://spaceflight-tracker.vercel.app/rockets',
+  },
+  openGraph: {
+    title: 'Space Rockets Database - Specifications & Details',
+    description: 'Complete database of space rockets with detailed specifications, payload capacity, and technical information.',
+    url: 'https://spaceflight-tracker.vercel.app/rockets',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Space Rockets Database - Specifications & Details',
+    description: 'Complete database of space rockets with detailed specifications and technical information.',
+  },
+};
 
 export default function RocketsPage() {
   const rockets = mockRockets;
@@ -21,11 +42,11 @@ export default function RocketsPage() {
           <div className="flex items-center justify-between gap-4">
             <Link href="/">
               <div className="cursor-pointer">
-                <h1 className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
+                <div className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
                   <i className="fa-solid fa-rocket text-white"></i>
                   <span className="hidden sm:inline">Spaceflight Tracker</span>
                   <span className="sm:hidden">SpaceFlight</span>
-                </h1>
+                </div>
                 <p className="text-gray-400 text-xs md:text-sm hidden sm:block">
                   Keep up to date with upcoming space launches
                 </p>
@@ -53,7 +74,7 @@ export default function RocketsPage() {
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <div className="flex items-center gap-3">
             <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
-            <h2 className="text-2xl font-bold text-white">Rockets</h2>
+            <h1 className="text-2xl font-bold text-white">Space Rockets Database</h1>
           </div>
 
           {/* Inline Stats */}
