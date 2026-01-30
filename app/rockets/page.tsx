@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description: 'Explore detailed specifications of rockets from SpaceX, NASA, Blue Origin, ISRO, CNSA and more. View payload capacity, dimensions, reusability, and technical details of all major launch vehicles.',
   keywords: ['space rockets', 'rocket specifications', 'Falcon 9', 'Starship', 'SLS', 'rocket database', 'launch vehicles', 'rocket technology'],
   alternates: {
-    canonical: 'https://spaceflight-tracker.vercel.app/rockets',
+    canonical: 'https://www.spaceflight-tracker.com/rockets',
   },
   openGraph: {
     title: 'Space Rockets Database - Specifications & Details',
     description: 'Complete database of space rockets with detailed specifications, payload capacity, and technical information.',
-    url: 'https://spaceflight-tracker.vercel.app/rockets',
+    url: 'https://www.spaceflight-tracker.com/rockets',
     type: 'website',
   },
   twitter: {
@@ -61,6 +61,11 @@ export default function RocketsPage() {
               <Link href="/rockets">
                 <button className="px-3 py-2 md:px-4 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm md:text-base font-medium transition-colors">
                   Rockets
+                </button>
+              </Link>
+              <Link href="/iss">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                  ISS Live
                 </button>
               </Link>
             </div>

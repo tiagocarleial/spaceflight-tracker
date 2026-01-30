@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   description: 'View all upcoming space launches from SpaceX, NASA, Blue Origin, ISRO, CNSA and more. Track launch dates, times, and mission details in real-time with live countdowns.',
   keywords: ['space launches', 'upcoming launches', 'SpaceX launch', 'NASA launch', 'rocket launch schedule', 'space mission tracker'],
   alternates: {
-    canonical: 'https://spaceflight-tracker.vercel.app/launches',
+    canonical: 'https://www.spaceflight-tracker.com/launches',
   },
   openGraph: {
     title: 'Upcoming Space Launches - Real-Time Launch Schedule',
     description: 'Track all upcoming space launches from major space agencies worldwide. Live countdowns and mission details.',
-    url: 'https://spaceflight-tracker.vercel.app/launches',
+    url: 'https://www.spaceflight-tracker.com/launches',
     type: 'website',
   },
   twitter: {
@@ -71,6 +71,11 @@ export default async function LaunchesPage() {
               <Link href="/rockets">
                 <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
                   Rockets
+                </button>
+              </Link>
+              <Link href="/iss">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                  ISS Live
                 </button>
               </Link>
             </div>

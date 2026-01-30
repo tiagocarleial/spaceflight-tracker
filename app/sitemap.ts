@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://spaceflight-tracker.vercel.app';
+  const baseUrl = 'https://www.spaceflight-tracker.com';
 
   // Static pages
   const staticPages = [
@@ -22,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/iss`,
+      lastModified: new Date(),
+      changeFrequency: 'hourly' as const,
+      priority: 0.9,
     },
   ];
 

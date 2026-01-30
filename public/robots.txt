@@ -3,6 +3,7 @@ User-agent: *
 Allow: /
 Allow: /launches
 Allow: /rockets
+Allow: /iss
 Allow: /launches/*
 Allow: /rockets/*
 
@@ -11,7 +12,7 @@ Allow: /rockets/*
 # Disallow: /api
 
 # Sitemap location
-Sitemap: https://spaceflight-tracker.vercel.app/sitemap.xml
+Sitemap: https://www.spaceflight-tracker.com/sitemap.xml
 
 # Crawl-delay for specific bots (optional)
 User-agent: Googlebot

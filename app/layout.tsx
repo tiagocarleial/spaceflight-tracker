@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://spaceflight-tracker.vercel.app",
+    url: "https://www.spaceflight-tracker.com",
     title: "Spaceflight Tracker - Real-Time Space Launch Schedule",
     description: "Track upcoming space launches in real-time from SpaceX, NASA, Blue Origin, ISRO, CNSA and more. View live countdowns, rocket specifications, and launch locations worldwide.",
     siteName: "Spaceflight Tracker",
@@ -70,9 +70,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQJPYRCWZ5"></script>
+    <html lang="en" suppressHydrationWarning>
+      <head suppressHydrationWarning>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQJPYRCWZ5" suppressHydrationWarning></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -82,11 +82,13 @@ export default function RootLayout({
               gtag('config', 'G-WQJPYRCWZ5');
             `,
           }}
+          suppressHydrationWarning
         />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8079361631746336"
           crossOrigin="anonymous"
+          suppressHydrationWarning
         ></script>
         <script
           type="application/ld+json"
@@ -95,15 +97,16 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Spaceflight Tracker",
-              "url": "https://spaceflight-tracker.vercel.app",
+              "url": "https://www.spaceflight-tracker.com",
               "description": "Track upcoming space launches in real-time from SpaceX, NASA, Blue Origin, ISRO, CNSA and more.",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://spaceflight-tracker.vercel.app/launches?q={search_term_string}",
+                "target": "https://www.spaceflight-tracker.com/launches?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
           }}
+          suppressHydrationWarning
         />
         <script
           type="application/ld+json"
@@ -112,11 +115,12 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Spaceflight Tracker",
-              "url": "https://spaceflight-tracker.vercel.app",
-              "logo": "https://spaceflight-tracker.vercel.app/icon-512.png",
+              "url": "https://www.spaceflight-tracker.com",
+              "logo": "https://www.spaceflight-tracker.com/icon-512.png",
               "sameAs": []
             })
           }}
+          suppressHydrationWarning
         />
         <link
           rel="stylesheet"
@@ -124,10 +128,12 @@ export default function RootLayout({
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
+          suppressHydrationWarning
         />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         {children}
       </body>

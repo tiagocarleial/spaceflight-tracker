@@ -30,12 +30,12 @@ export async function generateMetadata({ params }: LaunchDetailPageProps): Promi
     description: `${launch.description} Launch date: ${launchDate} from ${launch.location}. Rocket: ${launch.rocket} by ${launch.operator}.`,
     keywords: [launch.name, launch.rocket, launch.operator, 'space launch', 'rocket launch', launch.location],
     alternates: {
-      canonical: `https://spaceflight-tracker.vercel.app/launches/${id}`,
+      canonical: `https://www.spaceflight-tracker.com/launches/${id}`,
     },
     openGraph: {
       title: `${launch.name} - Launch Details`,
       description: launch.description,
-      url: `https://spaceflight-tracker.vercel.app/launches/${id}`,
+      url: `https://www.spaceflight-tracker.com/launches/${id}`,
       type: 'website',
     },
     twitter: {
@@ -86,6 +86,11 @@ export default async function LaunchDetailPage({ params }: LaunchDetailPageProps
               <Link href="/rockets">
                 <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
                   Rockets
+                </button>
+              </Link>
+              <Link href="/iss">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                  ISS Live
                 </button>
               </Link>
             </div>

@@ -24,12 +24,12 @@ export async function generateMetadata({ params }: RocketDetailPageProps): Promi
     description: `${rocket.description} View detailed specifications, payload capacity, dimensions, and launch history of ${rocket.fullName} by ${rocket.operator}.`,
     keywords: [rocket.name, rocket.fullName, rocket.operator, 'rocket specifications', 'space launch vehicle'],
     alternates: {
-      canonical: `https://spaceflight-tracker.vercel.app/rockets/${id}`,
+      canonical: `https://www.spaceflight-tracker.com/rockets/${id}`,
     },
     openGraph: {
       title: `${rocket.fullName} - Specifications & Details`,
       description: rocket.description,
-      url: `https://spaceflight-tracker.vercel.app/rockets/${id}`,
+      url: `https://www.spaceflight-tracker.com/rockets/${id}`,
       type: 'website',
       images: [
         {
@@ -109,6 +109,11 @@ export default async function RocketDetailPage({ params }: RocketDetailPageProps
               <Link href="/rockets">
                 <button className="px-3 py-2 md:px-4 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm md:text-base font-medium transition-colors">
                   Rockets
+                </button>
+              </Link>
+              <Link href="/iss">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                  ISS Live
                 </button>
               </Link>
             </div>
