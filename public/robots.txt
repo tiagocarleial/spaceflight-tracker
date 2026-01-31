@@ -4,6 +4,8 @@ Allow: /
 Allow: /launches
 Allow: /rockets
 Allow: /iss
+Allow: /asteroids
+Allow: /events
 Allow: /launches/*
 Allow: /rockets/*
 

@@ -116,6 +116,16 @@ export default async function RocketDetailPage({ params }: RocketDetailPageProps
                   ISS Live
                 </button>
               </Link>
+              <Link href="/asteroids">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                  Asteroids
+                </button>
+              </Link>
+              <Link href="/events">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                  Events
+                </button>
+              </Link>
             </div>
           </div>
         </div>
