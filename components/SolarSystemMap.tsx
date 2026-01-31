@@ -289,10 +289,10 @@ export default function SolarSystemMap({ asteroid }: SolarSystemMapProps) {
           <text x="15" y="143" fill="white" fontSize="12">
             Earth: 12,742 km (diameter)
           </text>
-          <text x="15" y="163" fill="white" fontSize="11" fill="#888">
+          <text x="15" y="163" fill="#888" fontSize="11">
             1 AU = 149,597,871 km
           </text>
-          <text x="15" y="180" fill="white" fontSize="11" fill="#888">
+          <text x="15" y="180" fill="#888" fontSize="11">
             *Sizes scaled for visibility
           </text>
         </g>
