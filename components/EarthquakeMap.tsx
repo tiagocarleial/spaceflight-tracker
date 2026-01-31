@@ -64,6 +64,7 @@ export default function EarthquakeMap() {
   const [showTsunamiOnly, setShowTsunamiOnly] = useState(false);
   const [isListHovered, setIsListHovered] = useState(false);
   const [highlightedEarthquake, setHighlightedEarthquake] = useState<ProcessedEarthquake | null>(null);
+  const [timeUpdateTrigger, setTimeUpdateTrigger] = useState(0);
 
   // Fetch earthquake data
   useEffect(() => {
@@ -83,6 +84,14 @@ export default function EarthquakeMap() {
 
     fetchData();
     const interval = setInterval(fetchData, 300000); // Refresh every 5 minutes
+    return () => clearInterval(interval);
+  }, []);
+
+  // Update time display every minute
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeUpdateTrigger(prev => prev + 1);
+    }, 60000); // Update every minute
     return () => clearInterval(interval);
   }, []);
 
@@ -121,7 +130,7 @@ export default function EarthquakeMap() {
       deepestTime: getTimeAgo(deepestEarthquake.time),
       criticalAlerts,
     };
-  }, [filteredEarthquakes]);
+  }, [filteredEarthquakes, timeUpdateTrigger]);
 
   // Clear all filters
   const clearFilters = () => {
