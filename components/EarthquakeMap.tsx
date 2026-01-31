@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo, useRef } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -14,6 +14,12 @@ L.Icon.Default.mergeOptions({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
+
+// Check if earthquake is a critical alert (magnitude >= 6.7 and occurred within last hour)
+function isCriticalAlert(earthquake: ProcessedEarthquake): boolean {
+  const oneHourAgo = Date.now() - (60 * 60 * 1000);
+  return earthquake.magnitude >= 6.7 && earthquake.time >= oneHourAgo;
+}
 
 export default function EarthquakeMap() {
   const [earthquakes, setEarthquakes] = useState<ProcessedEarthquake[]>([]);
@@ -66,13 +72,17 @@ export default function EarthquakeMap() {
         total: 0,
         strongest: 0,
         deepest: 0,
+        criticalAlerts: 0,
       };
     }
+
+    const criticalAlerts = filteredEarthquakes.filter(eq => isCriticalAlert(eq)).length;
 
     return {
       total: filteredEarthquakes.length,
       strongest: Math.max(...filteredEarthquakes.map(e => e.magnitude)),
       deepest: Math.max(...filteredEarthquakes.map(e => e.depth)),
+      criticalAlerts,
     };
   }, [filteredEarthquakes]);
 
@@ -134,6 +144,23 @@ export default function EarthquakeMap() {
 
   return (
     <div className="relative h-full w-full">
+      {/* CSS for blinking animation */}
+      <style jsx>{`
+        @keyframes earthquake-pulse {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.4;
+            transform: scale(1.3);
+          }
+        }
+        .earthquake-alert-ring {
+          animation: earthquake-pulse 1.5s ease-in-out infinite;
+        }
+      `}</style>
+
       <MapContainer
         center={[20, 0]}
         zoom={2}
@@ -147,48 +174,74 @@ export default function EarthquakeMap() {
         />
 
         {/* Earthquake Markers */}
-        {filteredEarthquakes.map((earthquake) => (
-          <CircleMarker
-            key={earthquake.id}
-            center={earthquake.coordinates}
-            radius={getMarkerSize(earthquake.magnitude)}
-            pathOptions={{
-              color: getMagnitudeColor(earthquake.magnitude),
-              fillColor: getMagnitudeColor(earthquake.magnitude),
-              fillOpacity: 0.7,
-              weight: 2,
-            }}
-          >
-            <Popup>
-              <div className="text-sm min-w-[200px]">
-                <h3 className="font-bold text-lg mb-2">M {earthquake.magnitude.toFixed(1)}</h3>
-                <p className="mb-1">
-                  <strong>Location:</strong> {earthquake.place}
-                </p>
-                <p className="mb-1">
-                  <strong>Time:</strong> {earthquake.timeFormatted}
-                </p>
-                <p className="mb-1">
-                  <strong>Depth:</strong> {earthquake.depthKm}
-                </p>
-                <p className="mb-1">
-                  <strong>Region:</strong> {earthquake.continent}
-                </p>
-                {earthquake.tsunami && (
-                  <p className="text-yellow-600 font-bold mt-2">⚠️ Tsunami Warning</p>
-                )}
-                <a
-                  href={earthquake.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 underline hover:text-blue-600 block mt-2"
-                >
-                  View on USGS →
-                </a>
-              </div>
-            </Popup>
-          </CircleMarker>
-        ))}
+        {filteredEarthquakes.map((earthquake) => {
+          const isAlert = isCriticalAlert(earthquake);
+
+          return (
+            <React.Fragment key={earthquake.id}>
+              {/* Blinking outer ring for critical alerts */}
+              {isAlert && (
+                <CircleMarker
+                  center={earthquake.coordinates}
+                  radius={getMarkerSize(earthquake.magnitude) * 1.8}
+                  pathOptions={{
+                    color: '#ff0000',
+                    fillColor: '#ff0000',
+                    fillOpacity: 0.3,
+                    weight: 3,
+                    className: 'earthquake-alert-ring',
+                  }}
+                />
+              )}
+
+              {/* Main marker */}
+              <CircleMarker
+                center={earthquake.coordinates}
+                radius={getMarkerSize(earthquake.magnitude)}
+                pathOptions={{
+                  color: getMagnitudeColor(earthquake.magnitude),
+                  fillColor: getMagnitudeColor(earthquake.magnitude),
+                  fillOpacity: 0.7,
+                  weight: 2,
+                }}
+              >
+                <Popup>
+                  <div className="text-sm min-w-[200px]">
+                    {isAlert && (
+                      <div className="bg-red-600 text-white px-3 py-2 rounded mb-2 font-bold text-center">
+                        🚨 CRITICAL ALERT - STRONG EARTHQUAKE
+                      </div>
+                    )}
+                    <h3 className="font-bold text-lg mb-2">M {earthquake.magnitude.toFixed(1)}</h3>
+                    <p className="mb-1">
+                      <strong>Location:</strong> {earthquake.place}
+                    </p>
+                    <p className="mb-1">
+                      <strong>Time:</strong> {earthquake.timeFormatted}
+                    </p>
+                    <p className="mb-1">
+                      <strong>Depth:</strong> {earthquake.depthKm}
+                    </p>
+                    <p className="mb-1">
+                      <strong>Region:</strong> {earthquake.continent}
+                    </p>
+                    {earthquake.tsunami && (
+                      <p className="text-yellow-600 font-bold mt-2">⚠️ Tsunami Warning</p>
+                    )}
+                    <a
+                      href={earthquake.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 underline hover:text-blue-600 block mt-2"
+                    >
+                      View on USGS →
+                    </a>
+                  </div>
+                </Popup>
+              </CircleMarker>
+            </React.Fragment>
+          );
+        })}
       </MapContainer>
 
       {/* Info Panel (Left) */}
@@ -196,6 +249,13 @@ export default function EarthquakeMap() {
         <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
           🌍 Earthquake Monitor
         </h2>
+
+        {/* Critical Alert Banner */}
+        {stats.criticalAlerts > 0 && (
+          <div className="bg-red-600 text-white px-3 py-2 rounded mb-3 font-bold text-center text-sm animate-pulse">
+            🚨 {stats.criticalAlerts} CRITICAL ALERT{stats.criticalAlerts > 1 ? 'S' : ''} (M6.7+)
+          </div>
+        )}
 
         {/* Statistics */}
         <div className="space-y-2 text-sm">
