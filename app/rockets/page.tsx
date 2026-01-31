@@ -37,7 +37,7 @@ export default function RocketsPage() {
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur sticky top-0 z-10">
+      <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 md:py-6">
           <div className="flex items-center justify-between gap-4">
             <Link href="/">

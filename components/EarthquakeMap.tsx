@@ -21,6 +21,37 @@ function isCriticalAlert(earthquake: ProcessedEarthquake): boolean {
   return earthquake.magnitude >= 6.7 && earthquake.time >= oneHourAgo;
 }
 
+// Calculate time ago for an earthquake
+function getTimeAgo(timestamp: number): string {
+  const now = Date.now();
+  const diff = now - timestamp;
+
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+  if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+  return `${days} day${days > 1 ? 's' : ''} ago`;
+}
+
+// Component to control map view when earthquake is selected
+function MapController({ selectedEarthquake }: { selectedEarthquake: ProcessedEarthquake | null }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (selectedEarthquake) {
+      map.flyTo(selectedEarthquake.coordinates, 8, {
+        duration: 1.5,
+        easeLinearity: 0.5
+      });
+    }
+  }, [selectedEarthquake, map]);
+
+  return null;
+}
+
 export default function EarthquakeMap() {
   const [earthquakes, setEarthquakes] = useState<ProcessedEarthquake[]>([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +62,8 @@ export default function EarthquakeMap() {
   const [maxDepth, setMaxDepth] = useState(1000);
   const [selectedContinents, setSelectedContinents] = useState<Continent[]>([]);
   const [showTsunamiOnly, setShowTsunamiOnly] = useState(false);
-  const [showList, setShowList] = useState(false);
+  const [isListHovered, setIsListHovered] = useState(false);
+  const [highlightedEarthquake, setHighlightedEarthquake] = useState<ProcessedEarthquake | null>(null);
 
   // Fetch earthquake data
   useEffect(() => {
@@ -72,16 +104,21 @@ export default function EarthquakeMap() {
         total: 0,
         strongest: 0,
         deepest: 0,
+        deepestTime: '',
         criticalAlerts: 0,
       };
     }
 
     const criticalAlerts = filteredEarthquakes.filter(eq => isCriticalAlert(eq)).length;
+    const deepestEarthquake = filteredEarthquakes.reduce((prev, current) =>
+      (current.depth > prev.depth) ? current : prev
+    );
 
     return {
       total: filteredEarthquakes.length,
       strongest: Math.max(...filteredEarthquakes.map(e => e.magnitude)),
       deepest: Math.max(...filteredEarthquakes.map(e => e.depth)),
+      deepestTime: getTimeAgo(deepestEarthquake.time),
       criticalAlerts,
     };
   }, [filteredEarthquakes]);
@@ -101,6 +138,15 @@ export default function EarthquakeMap() {
     } else {
       setSelectedContinents([...selectedContinents, continent]);
     }
+  };
+
+  // Highlight earthquake on map when clicked from list
+  const handleEarthquakeClick = (earthquake: ProcessedEarthquake) => {
+    setHighlightedEarthquake(earthquake);
+    // Clear highlight after 3 seconds
+    setTimeout(() => {
+      setHighlightedEarthquake(null);
+    }, 3000);
   };
 
   // Get text color class for magnitude
@@ -159,6 +205,27 @@ export default function EarthquakeMap() {
         .earthquake-alert-ring {
           animation: earthquake-pulse 1.5s ease-in-out infinite;
         }
+        @keyframes earthquake-highlight {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          25% {
+            opacity: 0.3;
+            transform: scale(2);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          75% {
+            opacity: 0.3;
+            transform: scale(2);
+          }
+        }
+        .earthquake-highlight {
+          animation: earthquake-highlight 1.5s ease-in-out 2;
+        }
       `}</style>
 
       <MapContainer
@@ -173,9 +240,13 @@ export default function EarthquakeMap() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        {/* Map Controller for auto-zoom on earthquake selection */}
+        <MapController selectedEarthquake={highlightedEarthquake} />
+
         {/* Earthquake Markers */}
         {filteredEarthquakes.map((earthquake) => {
           const isAlert = isCriticalAlert(earthquake);
+          const isHighlighted = highlightedEarthquake?.id === earthquake.id;
 
           return (
             <React.Fragment key={earthquake.id}>
@@ -190,6 +261,21 @@ export default function EarthquakeMap() {
                     fillOpacity: 0.3,
                     weight: 3,
                     className: 'earthquake-alert-ring',
+                  }}
+                />
+              )}
+
+              {/* Highlight ring when clicked from list */}
+              {isHighlighted && (
+                <CircleMarker
+                  center={earthquake.coordinates}
+                  radius={getMarkerSize(earthquake.magnitude) * 2.5}
+                  pathOptions={{
+                    color: '#00ffff',
+                    fillColor: '#00ffff',
+                    fillOpacity: 0.4,
+                    weight: 4,
+                    className: 'earthquake-highlight',
                   }}
                 />
               )}
@@ -245,7 +331,7 @@ export default function EarthquakeMap() {
       </MapContainer>
 
       {/* Info Panel (Left) */}
-      <div className="absolute top-4 left-4 bg-gray-900/90 backdrop-blur-sm text-white p-4 rounded-lg shadow-lg z-[1000] max-w-sm">
+      <div className="absolute top-20 left-4 bg-gray-900/90 backdrop-blur-sm text-white p-4 rounded-lg shadow-lg z-[1000] max-w-sm">
         <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
           🌍 Earthquake Monitor
         </h2>
@@ -273,6 +359,12 @@ export default function EarthquakeMap() {
             <span className="text-gray-400">Deepest:</span>
             <span className="font-semibold">{stats.deepest.toFixed(0)} km</span>
           </div>
+          {stats.deepestTime && (
+            <div className="flex justify-between">
+              <span className="text-gray-400"></span>
+              <span className="font-semibold text-xs text-gray-500">{stats.deepestTime}</span>
+            </div>
+          )}
         </div>
 
         {/* Magnitude Legend */}
@@ -401,22 +493,23 @@ export default function EarthquakeMap() {
         </button>
       </div>
 
-      {/* List View (Bottom, Collapsible) */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm border-t border-gray-700 z-[1000]">
+      {/* List View (Bottom, Hover to Show) */}
+      <div
+        className="absolute bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm border-t border-gray-700 z-[1000] transition-all duration-300"
+        onMouseEnter={() => setIsListHovered(true)}
+        onMouseLeave={() => setIsListHovered(false)}
+      >
         <div className="p-4">
           <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg font-bold text-white">
               Recent Earthquakes ({filteredEarthquakes.length})
             </h3>
-            <button
-              onClick={() => setShowList(!showList)}
-              className="text-blue-400 hover:text-blue-300 transition-colors"
-            >
-              {showList ? 'Hide' : 'Show'} List
-            </button>
+            <span className="text-xs text-gray-400">
+              {isListHovered ? '▲ Hover to view' : '▼ Hover to view'}
+            </span>
           </div>
 
-          {showList && (
+          {isListHovered && (
             <div className="space-y-2 max-h-56 overflow-y-auto">
               {filteredEarthquakes.length === 0 ? (
                 <div className="text-center py-8">
@@ -436,7 +529,8 @@ export default function EarthquakeMap() {
                   .map((eq) => (
                     <div
                       key={eq.id}
-                      className="bg-gray-800 p-3 rounded-lg hover:bg-gray-750 cursor-pointer transition-colors"
+                      onClick={() => handleEarthquakeClick(eq)}
+                      className="bg-gray-800 p-3 rounded-lg hover:bg-gray-700 cursor-pointer transition-colors"
                     >
                       <div className="flex justify-between items-start">
                         <div>
