@@ -41,6 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/earthquakes`,
+      lastModified: new Date(),
+      changeFrequency: 'always' as const,
+      priority: 0.8,
+    },
   ];
 
   // Rocket detail pages

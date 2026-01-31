@@ -1,28 +1,28 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import ISSMapClient from '@/components/ISSMapClient';
+import EarthquakeMapClient from '@/components/EarthquakeMapClient';
 
 export const metadata: Metadata = {
-  title: 'ISS Live - International Space Station Real-Time Tracking',
-  description: 'Track the International Space Station (ISS) in real-time. See current position, altitude, velocity, and crew members. Live orbital tracking map updated every 5 seconds.',
-  keywords: ['ISS tracking', 'International Space Station', 'ISS live', 'space station tracker', 'ISS position', 'ISS location', 'satellite tracking'],
+  title: 'Earthquake Monitor - Real-Time Global Earthquake Tracking',
+  description: 'Track earthquakes worldwide in real-time. Live data from USGS showing magnitude, depth, location, and impact for all seismic events in the last 24 hours.',
+  keywords: ['earthquake tracker', 'seismic activity', 'USGS earthquakes', 'real-time earthquakes', 'earthquake map', 'global earthquakes', 'earthquake monitoring', 'seismology'],
   alternates: {
-    canonical: 'https://www.spaceflight-tracker.com/iss',
+    canonical: 'https://www.spaceflight-tracker.com/earthquakes',
   },
   openGraph: {
-    title: 'ISS Live - International Space Station Real-Time Tracking',
-    description: 'Track the International Space Station in real-time with live position updates, orbital path, and crew information.',
-    url: 'https://www.spaceflight-tracker.com/iss',
+    title: 'Earthquake Monitor - Real-Time Global Earthquake Tracking',
+    description: 'Track earthquakes worldwide with live USGS data showing magnitude, depth, and location for all seismic events.',
+    url: 'https://www.spaceflight-tracker.com/earthquakes',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ISS Live - Track the International Space Station',
-    description: 'Real-time ISS tracking with live position, velocity, and crew data.',
+    title: 'Earthquake Monitor - Real-Time Earthquake Tracking',
+    description: 'Track global earthquakes with live USGS data showing magnitude, depth, and location.',
   },
 };
 
-export default function ISSPage() {
+export default function EarthquakesPage() {
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Fixed Navigation Header */}
@@ -50,7 +50,7 @@ export default function ISSPage() {
                 </button>
               </Link>
               <Link href="/iss">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm md:text-base font-medium transition-colors">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
                   ISS Live
                 </button>
               </Link>
@@ -65,7 +65,7 @@ export default function ISSPage() {
                 </button>
               </Link>
               <Link href="/earthquakes">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm md:text-base font-medium transition-colors">
                   Earthquakes
                 </button>
               </Link>
@@ -76,7 +76,7 @@ export default function ISSPage() {
 
       {/* Fullscreen Map */}
       <div className="h-screen w-full pt-[60px]">
-        <ISSMapClient />
+        <EarthquakeMapClient />
       </div>
     </div>
   );
