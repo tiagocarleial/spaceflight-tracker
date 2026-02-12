@@ -128,6 +128,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   };
 
   const isFalcon9 = launch.rocket.includes('Falcon 9') && !launch.rocket.includes('Falcon Heavy');
+  const isCrew12 = isFalcon9 && launch.name.includes('Crew-12');
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
@@ -292,13 +293,13 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
         ) : (
           <>
             {rocketId ? (
-              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isFalcon9 ? '' : 'flex-1'}>
-                <button className={`${isAriane6 || isFalcon9 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
+              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isCrew12 ? '' : 'flex-1'}>
+                <button className={`${isAriane6 || isCrew12 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
                   Details
                 </button>
               </Link>
             ) : (
-              <button className={`${isAriane6 || isFalcon9 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
+              <button className={`${isAriane6 || isCrew12 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
                 Details
               </button>
             )}
@@ -310,7 +311,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
                 ▶ Watch Now
               </button>
             )}
-            {isFalcon9 && (
+            {isCrew12 && (
               <button
                 onClick={() => setVideoModalId(FALCON9_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
