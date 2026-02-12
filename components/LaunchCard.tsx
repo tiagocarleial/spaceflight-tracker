@@ -10,10 +10,11 @@ interface LaunchCardProps {
 }
 
 const ARIANE6_YOUTUBE_ID = '4semT-bMKP0';
+const FALCON9_YOUTUBE_ID = 'DbtmyKl3nRg';
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
   const timeLeft = useCountdown(launch.launchDate);
-  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [videoModalId, setVideoModalId] = useState<string | null>(null);
 
   // Map rocket name to ID for routing
   const getRocketId = (): string | null => {
@@ -291,19 +292,27 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
         ) : (
           <>
             {rocketId ? (
-              <Link href={`/rockets/${rocketId}`} className={isAriane6 ? '' : 'flex-1'}>
-                <button className={`${isAriane6 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
+              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isFalcon9 ? '' : 'flex-1'}>
+                <button className={`${isAriane6 || isFalcon9 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
                   Details
                 </button>
               </Link>
             ) : (
-              <button className={`${isAriane6 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
+              <button className={`${isAriane6 || isFalcon9 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
                 Details
               </button>
             )}
             {isAriane6 && (
               <button
-                onClick={() => setShowVideoModal(true)}
+                onClick={() => setVideoModalId(ARIANE6_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isFalcon9 && (
+              <button
+                onClick={() => setVideoModalId(FALCON9_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
@@ -323,17 +332,17 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
       </div>
 
       {/* YouTube Modal */}
-      {showVideoModal && (
+      {videoModalId && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-          onClick={() => setShowVideoModal(false)}
+          onClick={() => setVideoModalId(null)}
         >
           <div
             className="relative w-full max-w-3xl mx-4"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setShowVideoModal(false)}
+              onClick={() => setVideoModalId(null)}
               className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-gray-300 transition-colors"
               aria-label="Close video"
             >
@@ -342,8 +351,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute inset-0 w-full h-full rounded-lg"
-                src={`https://www.youtube.com/embed/${ARIANE6_YOUTUBE_ID}?autoplay=1`}
-                title="Ariane 6 Launch"
+                src={`https://www.youtube.com/embed/${videoModalId}?autoplay=1`}
+                title="Launch Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
