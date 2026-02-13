@@ -2,7 +2,33 @@ import { Launch } from '@/types/launch';
 
 export const mockLaunches: Launch[] = [
   {
+    id: '0',
+    name: 'Starlink Group 17-13',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Cape Canaveral SFS, Florida, USA',
+    launchDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days from now
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband network.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/spacex'
+  },
+  {
     id: '1',
+    name: 'Starlink Group 6-103',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Cape Canaveral SFS, Florida, USA',
+    launchDate: new Date(Date.now() + 4 * 24 * 60 * 60 * 1000).toISOString(), // 4 days from now
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband network.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/spacex'
+  },
+  {
+    id: '1b',
     name: 'Starlink Group 6-98',
     rocket: 'Falcon 9 Block 5',
     rocketId: 'falcon9',

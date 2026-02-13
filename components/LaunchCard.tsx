@@ -11,6 +11,8 @@ interface LaunchCardProps {
 
 const ARIANE6_YOUTUBE_ID = '4semT-bMKP0';
 const FALCON9_YOUTUBE_ID = 'DbtmyKl3nRg';
+const STARLINK_1713_YOUTUBE_ID = 'BqY16cVb91A';
+const STARLINK_6103_YOUTUBE_ID = 'cAXyUENc_ms';
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
   const timeLeft = useCountdown(launch.launchDate);
@@ -129,6 +131,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   const isFalcon9 = launch.rocket.includes('Falcon 9') && !launch.rocket.includes('Falcon Heavy');
   const isCrew12 = isFalcon9 && launch.name.includes('Crew-12');
+  const isStarlink1713 = isFalcon9 && launch.name.includes('Starlink Group 17-13');
+  const isStarlink6103 = isFalcon9 && launch.name.includes('Starlink Group 6-103');
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
@@ -293,13 +297,13 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
         ) : (
           <>
             {rocketId ? (
-              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isCrew12 ? '' : 'flex-1'}>
-                <button className={`${isAriane6 || isCrew12 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
+              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 ? '' : 'flex-1'}>
+                <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
                   Details
                 </button>
               </Link>
             ) : (
-              <button className={`${isAriane6 || isCrew12 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
+              <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
                 Details
               </button>
             )}
@@ -314,6 +318,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isCrew12 && (
               <button
                 onClick={() => setVideoModalId(FALCON9_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1713 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1713_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink6103 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_6103_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
