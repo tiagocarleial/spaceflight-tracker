@@ -1,4 +1,5 @@
 import LaunchesContainer from '@/components/LaunchesContainer';
+import EzoicAd from '@/components/EzoicAd';
 import { fetchUpcomingLaunches, fetchLaunchProviders } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Link from 'next/link';
@@ -124,6 +125,11 @@ export default async function LaunchesPage() {
           />
         </section>
       </main>
+
+      {/* Ezoic - Above Footer */}
+      <div className="container mx-auto px-4 pb-8">
+        <EzoicAd id={104} />
+      </div>
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import EzoicRouteRefresh from "@/components/EzoicRouteRefresh";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,6 +73,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head suppressHydrationWarning>
+        {/* Ezoic - Privacy Scripts (must load first) */}
+        <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js" suppressHydrationWarning></script>
+        <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js" suppressHydrationWarning></script>
+        {/* Ezoic - Header Script */}
+        <script async src="//www.ezojs.com/ezoic/sa.min.js" suppressHydrationWarning></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.ezstandalone = window.ezstandalone || {};
+              ezstandalone.cmd = ezstandalone.cmd || [];
+            `,
+          }}
+          suppressHydrationWarning
+        />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQJPYRCWZ5" suppressHydrationWarning></script>
         <script
           dangerouslySetInnerHTML={{
@@ -135,6 +150,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <EzoicRouteRefresh />
         {children}
       </body>
     </html>

@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/ads.txt",
+        destination: "https://srv.adstxtmanager.com/19390/spaceflight-tracker.com",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
