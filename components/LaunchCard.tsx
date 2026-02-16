@@ -13,6 +13,8 @@ const ARIANE6_YOUTUBE_ID = '4semT-bMKP0';
 const FALCON9_YOUTUBE_ID = 'DbtmyKl3nRg';
 const STARLINK_1713_YOUTUBE_ID = 'BqY16cVb91A';
 const STARLINK_6103_YOUTUBE_ID = 'cAXyUENc_ms';
+const STARLINK_1036_YOUTUBE_ID = '5C-ojFRB7BY';
+const STARLINK_6104_YOUTUBE_ID = 'ybbp7LwLNRA';
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
   const timeLeft = useCountdown(launch.launchDate);
@@ -133,6 +135,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isCrew12 = isFalcon9 && launch.name.includes('Crew-12');
   const isStarlink1713 = isFalcon9 && launch.name.includes('Starlink Group 17-13');
   const isStarlink6103 = isFalcon9 && launch.name.includes('Starlink Group 6-103');
+  const isStarlink1036 = isFalcon9 && launch.name.includes('Starlink Group 10-36');
+  const isStarlink6104 = isFalcon9 && launch.name.includes('Starlink Group 6-104');
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
@@ -334,6 +338,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isStarlink6103 && (
               <button
                 onClick={() => setVideoModalId(STARLINK_6103_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1036 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1036_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink6104 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_6104_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
