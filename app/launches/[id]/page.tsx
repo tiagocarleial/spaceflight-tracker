@@ -124,9 +124,15 @@ export default async function LaunchDetailPage({ params }: LaunchDetailPageProps
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">
         <div className="container mx-auto px-4 py-8">
-          <p className="text-gray-500 text-sm text-center">
-            © 2026 - Spaceflight Tracker
-          </p>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-500 text-sm">
+              © 2026 - Spaceflight Tracker
+            </p>
+            <div className="flex gap-6 text-sm">
+              <Link href="/about" className="text-gray-500 hover:text-gray-300 transition-colors">About</Link>
+              <Link href="/privacy" className="text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</Link>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

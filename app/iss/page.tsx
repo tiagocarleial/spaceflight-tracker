@@ -69,6 +69,11 @@ export default function ISSPage() {
                   Earthquakes
                 </button>
               </Link>
+              <Link href="/blog">
+                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
+                  Blog
+                </button>
+              </Link>
             </div>
           </div>
         </div>

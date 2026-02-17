@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import LaunchCard from './LaunchCard';
 import LaunchFilters, { FilterState } from './LaunchFilters';
 import CalendarModal from './CalendarModal';
 import { Launch } from '@/types/launch';
 import { fetchUpcomingLaunches } from '@/lib/api';
-import EzoicAd from './EzoicAd';
 
 interface LaunchesContainerProps {
   initialLaunches: Launch[];
@@ -133,19 +132,7 @@ export default function LaunchesContainer({
     loadLaunches();
   }, [filters.agency, filters.status, filters.search]);
 
-  // Refresh ads after filter-driven content replacement
-  const prevLoadingRef = useRef(false);
-  useEffect(() => {
-    if (prevLoadingRef.current && !loading && window.ezstandalone) {
-      window.ezstandalone.cmd.push(() => {
-        window.ezstandalone!.destroyPlaceholders(101, 102, 103);
-        window.ezstandalone!.showAds(101, 102, 103);
-      });
-    }
-    prevLoadingRef.current = loading;
-  }, [loading]);
-
-  const handleFilterChange = (newFilters: FilterState) => {
+const handleFilterChange = (newFilters: FilterState) => {
     setFilters(newFilters);
   };
 
@@ -175,12 +162,6 @@ export default function LaunchesContainer({
       setLaunches(prev => sortLaunchesByStatus(filterRecentLaunches([...prev, ...data.launches])));
       setCount(data.count);
 
-      if (window.ezstandalone) {
-        window.ezstandalone.cmd.push(() => {
-          window.ezstandalone!.destroyPlaceholders(102, 103);
-          window.ezstandalone!.showAds(102, 103);
-        });
-      }
     } catch (err) {
       setError('Failed to load more launches. Please try again.');
       console.error(err);
@@ -280,11 +261,6 @@ export default function LaunchesContainer({
             </div>
           </div>
 
-          {/* Ezoic - Top Banner */}
-          <div className="my-4">
-            <EzoicAd id={101} />
-          </div>
-
           {launches.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-400 text-lg">No launches found matching your filters.</p>
@@ -301,18 +277,6 @@ export default function LaunchesContainer({
                 {launches.map((launch, index) => (
                   <LaunchCard key={launch.id} launch={launch} />
                 ))}
-              </div>
-
-              {/* Ezoic - In-feed after 6 cards */}
-              {launches.length > 6 && (
-                <div className="my-4">
-                  <EzoicAd id={102} />
-                </div>
-              )}
-
-              {/* Ezoic - Before Load More */}
-              <div className="mt-6">
-                <EzoicAd id={103} />
               </div>
 
               {/* Load More Section */}
