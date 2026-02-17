@@ -63,7 +63,7 @@ Reply with ONLY the image prompt, no quotes, no explanations.`,
       model: 'black-forest-labs/FLUX.1-schnell',
       inputs: imagePrompt,
       parameters: { width: 1024, height: 576 },
-    });
+    }) as Blob;
 
     const buffer = Buffer.from(await imageBlob.arrayBuffer());
     const base64 = buffer.toString('base64');
