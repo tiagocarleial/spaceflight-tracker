@@ -235,6 +235,19 @@ export const mockLaunches: Launch[] = [
     recovery: 'N/A'
   },
   {
+    id: '19',
+    name: 'Starlink Group 17-25',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Cape Canaveral SFS, Florida, USA',
+    launchDate: '2026-02-21T00:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=RMZdxpWNcq4'
+  },
+  {
     id: '18',
     name: 'Tianlong-3 Inaugural Flight',
     rocket: 'Tianlong-3',
