@@ -303,13 +303,13 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
         ) : (
           <>
             {rocketId ? (
-              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1725 ? '' : 'flex-1'}>
-                <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1725 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
+              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 ? '' : 'flex-1'}>
+                <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
                   Details
                 </button>
               </Link>
             ) : (
-              <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1725 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
+              <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
                 Details
               </button>
             )}
