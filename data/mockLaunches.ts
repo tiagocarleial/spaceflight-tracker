@@ -248,6 +248,32 @@ export const mockLaunches: Launch[] = [
     livestream: 'https://www.youtube.com/watch?v=RMZdxpWNcq4'
   },
   {
+    id: '20',
+    name: 'Starlink Group 17-26',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Cape Canaveral SFS, Florida, USA',
+    launchDate: '2026-02-25T00:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=haOQTDezHZo'
+  },
+  {
+    id: '21',
+    name: 'HASTE | That\'s Not A Knife (DART AE)',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Vandenberg SFB SLC-4E, CA, USA',
+    launchDate: '2026-02-26T00:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch the HASTE mission with the DART Accelerated Evolution payload for planetary defense testing.',
+    recovery: 'RTLS - LZ-4',
+    livestream: 'https://www.youtube.com/watch?v=UP45i7BSxBk'
+  },
+  {
     id: '18',
     name: 'Tianlong-3 Inaugural Flight',
     rocket: 'Tianlong-3',
