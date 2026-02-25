@@ -142,7 +142,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink6104 = isFalcon9 && launch.name.includes('Starlink Group 6-104');
   const isStarlink1725 = isFalcon9 && launch.name.includes('Starlink Group 17-25');
   const isStarlink1726 = isFalcon9 && launch.name.includes('Starlink Group 17-26');
-  const isHASTE = isFalcon9 && launch.name.includes('HASTE');
+  const isHASTE = launch.name.includes('HASTE');
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');

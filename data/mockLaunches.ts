@@ -263,14 +263,14 @@ export const mockLaunches: Launch[] = [
   {
     id: '21',
     name: 'HASTE | That\'s Not A Knife (DART AE)',
-    rocket: 'Falcon 9 Block 5',
-    rocketId: 'falcon9',
-    operator: 'SpaceX',
-    location: 'Vandenberg SFB SLC-4E, CA, USA',
+    rocket: 'Electron',
+    rocketId: 'electron',
+    operator: 'Rocket Lab',
+    location: 'Rocket Lab LC-1, Mahia Peninsula, NZ',
     launchDate: '2026-02-26T00:00:00.000Z',
     status: 'Go',
-    description: 'SpaceX will launch the HASTE mission with the DART Accelerated Evolution payload for planetary defense testing.',
-    recovery: 'RTLS - LZ-4',
+    description: 'Rocket Lab will launch the HASTE mission with the DART Accelerated Evolution payload for planetary defense testing.',
+    recovery: 'Ocean Splashdown',
     livestream: 'https://www.youtube.com/watch?v=UP45i7BSxBk'
   },
   {
