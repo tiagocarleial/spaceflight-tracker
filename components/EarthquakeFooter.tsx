@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { getEarthquakes } from '@/lib/earthquake-api';
-import type { Earthquake } from '@/types/earthquake';
+import type { ProcessedEarthquake } from '@/types/earthquake';
 
 export default function EarthquakeFooter() {
-  const [earthquakes, setEarthquakes] = useState<Earthquake[]>([]);
+  const [earthquakes, setEarthquakes] = useState<ProcessedEarthquake[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
