@@ -18,6 +18,8 @@ const STARLINK_6104_YOUTUBE_ID = 'ybbp7LwLNRA';
 const STARLINK_1725_YOUTUBE_ID = 'RMZdxpWNcq4';
 const STARLINK_1726_YOUTUBE_ID = 'haOQTDezHZo';
 const HASTE_DART_YOUTUBE_ID = 'UP45i7BSxBk';
+const STARLINK_6108_YOUTUBE_ID = 'kySMar3NiVI';
+const FIREFLY_ALPHA_STAIRWAY_YOUTUBE_ID= '8oRLF-jL0QE';
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
   const timeLeft = useCountdown(launch.launchDate);
@@ -142,7 +144,10 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink6104 = isFalcon9 && launch.name.includes('Starlink Group 6-104');
   const isStarlink1725 = isFalcon9 && launch.name.includes('Starlink Group 17-25');
   const isStarlink1726 = isFalcon9 && launch.name.includes('Starlink Group 17-26');
+  const isStarlink6108= isFalcon9 && launch.name.includes('Starlink Group 6-108');
   const isHASTE = launch.name.includes('HASTE');
+  const isFIREFLY = launch.name.toUpperCase().includes('STAIRWAY TO SEVEN');
+
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
@@ -176,6 +181,10 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isPegasusXL = launch.rocket.includes('Pegasus XL');
   const isTianlong3 = launch.rocket.includes('Tianlong-3') || launch.rocket.includes('Tianlong 3');
   const isVegaC = launch.rocket.includes('Vega-C') || launch.rocket.includes('Vega C');
+
+  // Check if this launch has a Watch Now button
+  const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 ||
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -307,13 +316,13 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
         ) : (
           <>
             {rocketId ? (
-              <Link href={`/rockets/${rocketId}`} className={isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1726 || isHASTE ? '' : 'flex-1'}>
-                <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1726 || isHASTE ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
+              <Link href={`/rockets/${rocketId}`} className={hasWatchNow ? 'flex-1' : 'flex-1'}>
+                <button className={`${hasWatchNow ? 'w-full' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors`}>
                   Details
                 </button>
               </Link>
             ) : (
-              <button className={`${isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1726 || isHASTE ? '' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
+              <button className={`${hasWatchNow ? 'flex-1' : 'w-full'} bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded transition-colors opacity-50 cursor-not-allowed`}>
                 Details
               </button>
             )}
@@ -389,6 +398,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
                 ▶ Watch Now
               </button>
             )}
+            {isStarlink6108 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_6108_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isFIREFLY && (
+              <button
+                onClick={() => setVideoModalId(FIREFLY_ALPHA_STAIRWAY_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
             {launch.livestream && (
               <button
                 onClick={() => window.open(launch.livestream, '_blank')}
@@ -397,6 +422,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
                 Watch Live
               </button>
             )}
+            
           </>
         )}
       </div>

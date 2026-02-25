@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import Link from 'next/link';
+import Navigation from '@/components/Navigation';
 import { getAstronomyEvents } from '@/lib/astronomy-events-api';
 import AstronomyEventCard from '@/components/AstronomyEventCard';
 
@@ -33,61 +33,7 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-950 to-black">
       {/* Navigation */}
-      <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 backdrop-blur-sm bg-opacity-90">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
-              <i className="fa-solid fa-rocket text-xl"></i>
-              <span className="font-bold text-lg">Spaceflight Tracker</span>
-            </Link>
-
-            <div className="flex items-center gap-4">
-              <Link
-                href="/launches"
-                className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                Launches
-              </Link>
-              <Link
-                href="/rockets"
-                className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                Rockets
-              </Link>
-              <Link
-                href="/iss"
-                className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                ISS Live
-              </Link>
-              <Link
-                href="/asteroids"
-                className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                Asteroids
-              </Link>
-              <Link
-                href="/events"
-                className="text-white px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition-colors font-semibold"
-              >
-                Events
-              </Link>
-              <Link
-                href="/earthquakes"
-                className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                Earthquakes
-              </Link>
-              <Link
-                href="/blog"
-                className="text-gray-300 hover:text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                Blog
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation currentPage="events" variant="standard" />
 
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-purple-900 via-blue-900 to-indigo-900 py-16 px-4">

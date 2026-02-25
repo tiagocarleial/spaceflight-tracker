@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Navigation from '@/components/Navigation';
 import Link from 'next/link';
 import AsteroidCard from '@/components/AsteroidCard';
 import { getNearEarthAsteroids } from '@/lib/nasa-api';
@@ -37,61 +38,7 @@ export default async function AsteroidsPage() {
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 md:py-6">
-          <div className="flex items-center justify-between gap-4">
-            <Link href="/">
-              <div className="cursor-pointer">
-                <div className="text-xl md:text-3xl font-bold text-white mb-1 flex items-center gap-2 md:gap-3">
-                  <i className="fa-solid fa-rocket text-white"></i>
-                  <span className="hidden sm:inline">Spaceflight Tracker</span>
-                  <span className="sm:hidden">SpaceFlight</span>
-                </div>
-                <p className="text-gray-400 text-xs md:text-sm hidden sm:block">
-                  Keep up to date with upcoming space launches
-                </p>
-              </div>
-            </Link>
-            <div className="flex gap-2 md:gap-4">
-              <Link href="/launches">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
-                  Launches
-                </button>
-              </Link>
-              <Link href="/rockets">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
-                  Rockets
-                </button>
-              </Link>
-              <Link href="/iss">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
-                  ISS Live
-                </button>
-              </Link>
-              <Link href="/asteroids">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm md:text-base font-medium transition-colors">
-                  Asteroids
-                </button>
-              </Link>
-              <Link href="/events">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
-                  Events
-                </button>
-              </Link>
-              <Link href="/earthquakes">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
-                  Earthquakes
-                </button>
-              </Link>
-              <Link href="/blog">
-                <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm md:text-base font-medium transition-colors">
-                  Blog
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navigation currentPage="asteroids" variant="standard" />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">

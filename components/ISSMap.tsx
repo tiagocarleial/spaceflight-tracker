@@ -104,14 +104,56 @@ export default function ISSMap() {
   const currentPosition: [number, number] = [issPosition.latitude, issPosition.longitude];
 
   return (
-    <div className="relative h-screen w-full">
-      <MapContainer
-        center={currentPosition}
-        zoom={3}
-        className="h-full w-full"
-        zoomControl={true}
-        attributionControl={true}
-      >
+    <div className="relative h-screen w-full flex flex-col">
+      {/* Mobile Info Bar - Horizontal at top */}
+      <div className="md:hidden bg-gray-900/95 backdrop-blur-sm text-white p-3 border-b border-gray-800 overflow-x-auto">
+        <div className="flex items-center gap-4 min-w-max">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🛰️</span>
+            <span className="font-bold">ISS Live</span>
+          </div>
+          <div className="h-6 w-px bg-gray-700"></div>
+          <div className="flex gap-3 text-xs">
+            <div>
+              <span className="text-gray-400">Alt:</span>
+              <span className="ml-1 font-semibold">{issPosition.altitude.toFixed(0)}km</span>
+            </div>
+            <div>
+              <span className="text-gray-400">Vel:</span>
+              <span className="ml-1 font-semibold">{issPosition.velocity.toFixed(0)}km/h</span>
+            </div>
+            <div>
+              <span className="text-gray-400">Lat:</span>
+              <span className="ml-1 font-semibold">{issPosition.latitude.toFixed(2)}°</span>
+            </div>
+            <div>
+              <span className="text-gray-400">Lng:</span>
+              <span className="ml-1 font-semibold">{issPosition.longitude.toFixed(2)}°</span>
+            </div>
+          </div>
+          <div className="h-6 w-px bg-gray-700"></div>
+          <button
+            onClick={() => setFollow(!follow)}
+            className={`px-3 py-1 rounded text-xs font-medium ${
+              follow
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-700 text-gray-300'
+            }`}
+          >
+            {follow ? '📍 Following' : '🔓 Free'}
+          </button>
+        </div>
+      </div>
+
+      {/* Map Container */}
+      <div className="flex-1 relative">
+        <MapContainer
+          center={currentPosition}
+          zoom={3}
+          className="h-full w-full"
+          zoomControl={true}
+          attributionControl={true}
+        >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -223,75 +265,76 @@ export default function ISSMap() {
         </Marker>
       </MapContainer>
 
-      {/* Info Panel */}
-      <div className="absolute top-4 left-4 bg-gray-900/90 backdrop-blur-sm text-white p-4 rounded-lg shadow-lg z-[1000] max-w-xs">
-        <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-          🛰️ ISS Live Tracking
-        </h2>
+        {/* Desktop Info Panel - Only visible on desktop */}
+        <div className="hidden md:block absolute top-4 left-4 bg-gray-900/90 backdrop-blur-sm text-white p-4 rounded-lg shadow-lg z-[1000] max-w-xs">
+          <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+            🛰️ ISS Live Tracking
+          </h2>
 
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-400">Altitude:</span>
-            <span className="font-semibold">{issPosition.altitude.toFixed(2)} km</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">Velocity:</span>
-            <span className="font-semibold">{issPosition.velocity.toFixed(2)} km/h</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">Latitude:</span>
-            <span className="font-semibold">{issPosition.latitude.toFixed(4)}°</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">Longitude:</span>
-            <span className="font-semibold">{issPosition.longitude.toFixed(4)}°</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">Visibility:</span>
-            <span className="font-semibold capitalize">{issPosition.visibility}</span>
-          </div>
-        </div>
-
-        <div className="mt-4 pt-4 border-t border-gray-700">
-          <h3 className="font-semibold mb-2 text-sm">Orbital Path:</h3>
-          <div className="space-y-1 text-xs">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-0.5 bg-blue-500 opacity-60" style={{ borderTop: '2px dashed' }}></div>
-              <span className="text-gray-400">Past orbit</span>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-gray-400">Altitude:</span>
+              <span className="font-semibold">{issPosition.altitude.toFixed(2)} km</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-1 bg-red-500 opacity-70 rounded"></div>
-              <span className="text-gray-400">Future path (2h)</span>
+            <div className="flex justify-between">
+              <span className="text-gray-400">Velocity:</span>
+              <span className="font-semibold">{issPosition.velocity.toFixed(2)} km/h</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">Latitude:</span>
+              <span className="font-semibold">{issPosition.latitude.toFixed(4)}°</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">Longitude:</span>
+              <span className="font-semibold">{issPosition.longitude.toFixed(4)}°</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">Visibility:</span>
+              <span className="font-semibold capitalize">{issPosition.visibility}</span>
             </div>
           </div>
-        </div>
 
-        {astronauts.length > 0 && (
           <div className="mt-4 pt-4 border-t border-gray-700">
-            <h3 className="font-semibold mb-2">👨‍🚀 Crew on Board ({astronauts.length})</h3>
-            <ul className="text-sm space-y-1">
-              {astronauts.map((astronaut, idx) => (
-                <li key={idx} className="text-gray-300">• {astronaut.name}</li>
-              ))}
-            </ul>
+            <h3 className="font-semibold mb-2 text-sm">Orbital Path:</h3>
+            <div className="space-y-1 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-0.5 bg-blue-500 opacity-60" style={{ borderTop: '2px dashed' }}></div>
+                <span className="text-gray-400">Past orbit</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-1 bg-red-500 opacity-70 rounded"></div>
+                <span className="text-gray-400">Future path (2h)</span>
+              </div>
+            </div>
           </div>
-        )}
 
-        <div className="mt-4 pt-4 border-t border-gray-700">
-          <button
-            onClick={() => setFollow(!follow)}
-            className={`w-full py-2 px-4 rounded transition-colors ${
-              follow
-                ? 'bg-blue-600 hover:bg-blue-700'
-                : 'bg-gray-700 hover:bg-gray-600'
-            }`}
-          >
-            {follow ? '📍 Following ISS' : '🔓 Free Camera'}
-          </button>
-        </div>
+          {astronauts.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-gray-700">
+              <h3 className="font-semibold mb-2">👨‍🚀 Crew on Board ({astronauts.length})</h3>
+              <ul className="text-sm space-y-1">
+                {astronauts.map((astronaut, idx) => (
+                  <li key={idx} className="text-gray-300">• {astronaut.name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-        <div className="mt-2 text-xs text-gray-500 text-center">
-          Updated every 5 seconds
+          <div className="mt-4 pt-4 border-t border-gray-700">
+            <button
+              onClick={() => setFollow(!follow)}
+              className={`w-full py-2 px-4 rounded transition-colors ${
+                follow
+                  ? 'bg-blue-600 hover:bg-blue-700'
+                  : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+            >
+              {follow ? '📍 Following ISS' : '🔓 Free Camera'}
+            </button>
+          </div>
+
+          <div className="mt-2 text-xs text-gray-500 text-center">
+            Updated every 5 seconds
+          </div>
         </div>
       </div>
     </div>
