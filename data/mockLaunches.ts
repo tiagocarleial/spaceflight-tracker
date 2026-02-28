@@ -144,7 +144,7 @@ export const mockLaunches: Launch[] = [
     rocketId: 'kairos',
     operator: 'Space One',
     location: 'Kii Space Port, Kushimoto, Japan',
-    launchDate: '2026-02-28T00:00:00.000Z',
+    launchDate: new Date(Date.now() + 60 * 60 * 1000).toISOString(), // 1 hour from now
     status: 'Go',
     description: 'Third launch attempt of the Kairos solid-fuel rocket carrying a small satellite payload. Space One aims to demonstrate reliable commercial launch services for small satellites.',
     recovery: 'N/A',
