@@ -20,6 +20,7 @@ const STARLINK_1726_YOUTUBE_ID = 'haOQTDezHZo';
 const HASTE_DART_YOUTUBE_ID = 'UP45i7BSxBk';
 const STARLINK_6108_YOUTUBE_ID = 'kySMar3NiVI';
 const FIREFLY_ALPHA_STAIRWAY_YOUTUBE_ID= '8oRLF-jL0QE';
+const KAIROS_FLIGHT3_YOUTUBE_ID = 'IWe6W4qNm-o';
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
   const timeLeft = useCountdown(launch.launchDate);
@@ -147,6 +148,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink6108= isFalcon9 && launch.name.includes('Starlink Group 6-108');
   const isHASTE = launch.name.includes('HASTE');
   const isFIREFLY = launch.name.toUpperCase().includes('STAIRWAY TO SEVEN');
+  const isKairosFlight3 = launch.name.includes('KAIROS') && launch.name.includes('Flight 3');
 
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
@@ -184,7 +186,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -414,7 +416,15 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
                 ▶ Watch Now
               </button>
             )}
-            {launch.livestream && (
+            {isKairosFlight3 && (
+              <button
+                onClick={() => setVideoModalId(KAIROS_FLIGHT3_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {launch.livestream && !hasWatchNow && (
               <button
                 onClick={() => window.open(launch.livestream, '_blank')}
                 className="bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
