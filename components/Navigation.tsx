@@ -26,20 +26,41 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/blog', label: 'Blog', icon: 'fa-newspaper', id: 'blog' },
 ];
 
+const LEARN_ITEMS = [
+  { href: '/articles', label: 'Articles', icon: 'fa-graduation-cap' },
+  { href: '/faq', label: 'FAQ', icon: 'fa-circle-question' },
+  { href: '/glossary', label: 'Glossary', icon: 'fa-book' },
+];
+
 export default function Navigation({ currentPage, variant = 'standard', className = '' }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLearnDropdownOpen, setIsLearnDropdownOpen] = useState(false);
 
   // Close menu on ESC key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
+      if (e.key === 'Escape') {
+        if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+        if (isLearnDropdownOpen) setIsLearnDropdownOpen(false);
+      }
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (isLearnDropdownOpen) {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.learn-dropdown')) {
+          setIsLearnDropdownOpen(false);
+        }
       }
     };
 
     document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isMobileMenuOpen]);
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMobileMenuOpen, isLearnDropdownOpen]);
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
@@ -73,7 +94,7 @@ export default function Navigation({ currentPage, variant = 'standard', classNam
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-2 md:gap-4 flex-wrap">
+          <nav className="hidden md:flex gap-2 md:gap-4 flex-wrap items-center">
             {NAV_ITEMS.map((item) => (
               <Link key={item.id} href={item.href}>
                 <button className={getButtonClasses(item.id)}>
@@ -82,6 +103,34 @@ export default function Navigation({ currentPage, variant = 'standard', classNam
                 </button>
               </Link>
             ))}
+
+            {/* Learn Dropdown */}
+            <div className="relative learn-dropdown">
+              <button
+                onClick={() => setIsLearnDropdownOpen(!isLearnDropdownOpen)}
+                className="px-3 py-2 md:px-4 md:py-2 rounded-lg transition-colors text-sm md:text-base font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white flex items-center gap-2"
+              >
+                <i className="fa-solid fa-graduation-cap"></i>
+                Learn
+                <i className={`fa-solid fa-chevron-down text-xs transition-transform ${isLearnDropdownOpen ? 'rotate-180' : ''}`}></i>
+              </button>
+
+              {isLearnDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50 learn-dropdown">
+                  {LEARN_ITEMS.map((item, idx) => (
+                    <Link key={idx} href={item.href}>
+                      <button
+                        onClick={() => setIsLearnDropdownOpen(false)}
+                        className="w-full text-left px-4 py-3 hover:bg-gray-700 text-gray-300 hover:text-white transition-colors flex items-center gap-3 first:rounded-t-lg last:rounded-b-lg"
+                      >
+                        <i className={`fa-solid ${item.icon} w-5`}></i>
+                        {item.label}
+                      </button>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Mobile Hamburger Button */}
@@ -116,6 +165,21 @@ export default function Navigation({ currentPage, variant = 'standard', classNam
                   </button>
                 </Link>
               ))}
+
+              {/* Learn Section in Mobile Menu */}
+              <div className="mt-4 pt-4 border-t border-gray-700">
+                <div className="px-4 py-2 text-gray-500 text-sm font-semibold uppercase tracking-wide">
+                  Learn
+                </div>
+                {LEARN_ITEMS.map((item, idx) => (
+                  <Link key={idx} href={item.href} onClick={handleLinkClick}>
+                    <button className="w-full text-left px-4 py-3 rounded-lg transition-colors flex items-center gap-3 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white mb-2">
+                      <i className={`fa-solid ${item.icon} text-lg w-6`}></i>
+                      <span className="font-medium">{item.label}</span>
+                    </button>
+                  </Link>
+                ))}
+              </div>
 
               {/* Footer Links in Mobile Menu */}
               <div className="mt-4 pt-4 border-t border-gray-700">
