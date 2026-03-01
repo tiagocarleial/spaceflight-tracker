@@ -53,38 +53,41 @@ export default async function LaunchesPage() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         {/* Intro Section */}
-        <section className="mb-12 max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-white mb-4">Space Launch Schedule</h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Track upcoming rocket launches from space agencies around the world in real-time. Every launch represents a mission
-              to deploy satellites, resupply the International Space Station, send probes to explore other planets, or advance
-              humanity's presence in space. Stay updated with live countdowns, mission details, and direct links to livestreams.
-            </p>
-          </div>
+        <section className="mb-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            {/* Left Column */}
+            <div>
+              <h1 className="text-3xl font-bold text-white mb-3">Space Launch Schedule</h1>
+              <p className="text-base text-gray-300 leading-relaxed">
+                Track upcoming rocket launches from space agencies around the world in real-time. Every launch represents a mission
+                to deploy satellites, resupply the International Space Station, send probes to explore other planets, or advance
+                humanity's presence in space. Stay updated with live countdowns, mission details, and direct links to livestreams.
+              </p>
+            </div>
 
-          {/* How to Use Guide */}
-          <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-6 mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-              <i className="fa-solid fa-circle-info text-blue-400"></i>
-              How to Use This Page
-            </h2>
-            <div className="space-y-3 text-gray-300">
-              <p>
-                <strong className="text-white">Filter by Agency:</strong> Use the agency dropdown to view launches from specific space programs like SpaceX, NASA, or ISRO.
-              </p>
-              <p>
-                <strong className="text-white">Filter by Status:</strong> Select "Go" for confirmed launches, "TBD" for tentative dates, or "Hold" for delayed missions.
-              </p>
-              <p>
-                <strong className="text-white">Search Missions:</strong> Enter keywords to find specific missions or payloads.
-              </p>
-              <p>
-                <strong className="text-white">Live Countdowns:</strong> Each launch card shows a real-time countdown to liftoff. Countdowns update every second.
-              </p>
-              <p>
-                <strong className="text-white">Watch Live:</strong> Click the "Watch Live" button when available to view the official launch livestream.
-              </p>
+            {/* Right Column - How to Use Guide */}
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+              <h2 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                <i className="fa-solid fa-circle-info text-blue-400 text-sm"></i>
+                How to Use This Page
+              </h2>
+              <div className="space-y-2 text-sm text-gray-300">
+                <p>
+                  <strong className="text-white">Filter by Agency:</strong> Use the agency dropdown to view launches from specific space programs like SpaceX, NASA, or ISRO.
+                </p>
+                <p>
+                  <strong className="text-white">Filter by Status:</strong> Select "Go" for confirmed launches, "TBD" for tentative dates, or "Hold" for delayed missions.
+                </p>
+                <p>
+                  <strong className="text-white">Search Missions:</strong> Enter keywords to find specific missions or payloads.
+                </p>
+                <p>
+                  <strong className="text-white">Live Countdowns:</strong> Each launch card shows a real-time countdown to liftoff. Countdowns update every second.
+                </p>
+                <p>
+                  <strong className="text-white">Watch Live:</strong> Click the "Watch Live" button when available to view the official launch livestream.
+                </p>
+              </div>
             </div>
           </div>
         </section>
