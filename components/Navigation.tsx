@@ -85,7 +85,7 @@ export default function Navigation({ currentPage, variant = 'standard', classNam
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/launches" className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0">
             <div className="text-xl md:text-3xl font-bold text-white flex items-center gap-2 md:gap-3">
               <i className="fa-solid fa-rocket text-white"></i>
               <span className="hidden sm:inline">Spaceflight Tracker</span>
