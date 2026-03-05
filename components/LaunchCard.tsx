@@ -22,6 +22,7 @@ const STARLINK_6108_YOUTUBE_ID = 'kySMar3NiVI';
 const FIREFLY_ALPHA_STAIRWAY_YOUTUBE_ID= '8oRLF-jL0QE';
 const KAIROS_FLIGHT3_YOUTUBE_ID = 'FHulTZT73us';
 const STARLINK_1041_YOUTUBE_ID = 'mohksHgKRBQ';
+const ELECTRON_BLACKSKY_YOUTUBE_ID = 'VQhLu0hOB14';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -152,6 +153,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isHASTE = launch.name.includes('HASTE');
   const isFIREFLY = launch.name.toUpperCase().includes('STAIRWAY TO SEVEN');
   const isKairosFlight3 = launch.name.includes('KAIROS') && launch.name.includes('Flight 3');
+  const isElectronBlackSky = launch.name.includes('Insight at Speed is a Friend Indeed');
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
@@ -188,7 +190,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -429,6 +431,14 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isStarlink1041 && (
               <button
                 onClick={() => setVideoModalId(STARLINK_1041_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isElectronBlackSky && (
+              <button
+                onClick={() => setVideoModalId(ELECTRON_BLACKSKY_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
