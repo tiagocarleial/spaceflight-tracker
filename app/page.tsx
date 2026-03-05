@@ -26,8 +26,31 @@ export default async function HomePage() {
   let totalLaunches = mockLaunches.length;
 
   try {
-    const data = await fetchUpcomingLaunches({ limit: 3 });
-    nextLaunches = data.launches;
+    // Fetch more launches to ensure we get enough "Go" status ones
+    const data = await fetchUpcomingLaunches({ limit: 10 });
+
+    // Sort launches: "Go" status first, then others
+    const sortedLaunches = data.launches.sort((a, b) => {
+      // Define priority order (lower number = higher priority)
+      const statusPriority: Record<string, number> = {
+        'Go': 1,
+        'TBD': 2,
+        'Hold': 3,
+        'Success': 4,
+        'Failure': 5,
+      };
+
+      const priorityA = statusPriority[a.status] || 999;
+      const priorityB = statusPriority[b.status] || 999;
+
+      // If status priority is the same, maintain original order (by date)
+      if (priorityA === priorityB) return 0;
+
+      return priorityA - priorityB;
+    });
+
+    // Take the first 3 after sorting
+    nextLaunches = sortedLaunches.slice(0, 3);
     totalLaunches = data.count;
   } catch (error) {
     console.error('Failed to fetch launches for homepage:', error);
