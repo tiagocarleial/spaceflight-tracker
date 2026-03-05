@@ -285,5 +285,18 @@ export const mockLaunches: Launch[] = [
     status: 'TBD',
     description: 'Maiden flight of China\'s Tianlong-3 reusable rocket, featuring first stage landing technology. A milestone for Chinese commercial spaceflight.',
     recovery: 'First Stage: Drone Ship Landing'
+  },
+  {
+    id: '22',
+    name: 'Electron | Insight at Speed is a Friend Indeed (BlackSky Gen-3 4)',
+    rocket: 'Electron',
+    rocketId: 'electron',
+    operator: 'Rocket Lab',
+    location: 'Rocket Lab Launch Complex 1B, Mahia Peninsula, New Zealand',
+    launchDate: '2026-03-05T23:53:00.000Z',
+    status: 'Go',
+    description: 'Rocket Lab will launch the BlackSky Gen-3 4 satellite aboard the Electron rocket from New Zealand, providing high-resolution Earth imaging capabilities for BlackSky\'s constellation.',
+    recovery: 'Ocean Splashdown',
+    livestream: 'https://www.youtube.com/watch?v=VQhLu0hOB14'
   }
 ];
