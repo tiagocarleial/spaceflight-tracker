@@ -148,7 +148,7 @@ export const mockLaunches: Launch[] = [
     status: 'Go',
     description: 'Third launch attempt of the Kairos solid-fuel rocket carrying a small satellite payload. Space One aims to demonstrate reliable commercial launch services for small satellites.',
     recovery: 'N/A',
-    livestream: 'https://www.youtube.com/watch?v=FHulTZT73us'
+    livestream: 'https://www.youtube.com/watch?v=wpQLlW6jXk8'
   },
   {
     id: '11',
