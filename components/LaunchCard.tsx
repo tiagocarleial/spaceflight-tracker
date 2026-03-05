@@ -153,7 +153,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isHASTE = launch.name.includes('HASTE');
   const isFIREFLY = launch.name.toUpperCase().includes('STAIRWAY TO SEVEN');
   const isKairosFlight3 = launch.name.includes('KAIROS') && launch.name.includes('Flight 3');
-  const isElectronBlackSky = launch.name.includes('Insight at Speed is a Friend Indeed');
+  const isElectronBlackSky = launch.name.includes('Insight At Speed Is A Friend Indeed');
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
