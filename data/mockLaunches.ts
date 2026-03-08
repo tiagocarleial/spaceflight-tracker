@@ -298,5 +298,18 @@ export const mockLaunches: Launch[] = [
     description: 'Rocket Lab will launch the BlackSky Gen-3 4 satellite aboard the Electron rocket from New Zealand, providing high-resolution Earth imaging capabilities for BlackSky\'s constellation.',
     recovery: 'Ocean Splashdown',
     livestream: 'https://www.youtube.com/watch?v=VQhLu0hOB14'
+  },
+  {
+    id: '23',
+    name: 'Starlink Group 17-18',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-03-08T11:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=4bvsh6a6xdA'
   }
 ];
