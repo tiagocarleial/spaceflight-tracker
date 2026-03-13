@@ -24,6 +24,8 @@ const KAIROS_FLIGHT3_YOUTUBE_ID = 'FHulTZT73us';
 const STARLINK_1041_YOUTUBE_ID = 'mohksHgKRBQ';
 const ELECTRON_BLACKSKY_YOUTUBE_ID = 'VQhLu0hOB14';
 const STARLINK_1718_YOUTUBE_ID = '4bvsh6a6xdA';
+const STARLINK_1731_YOUTUBE_ID = '9-_Dj6F_bAs';
+const STARLINK_1048_YOUTUBE_ID = '1wAHx4eCiSw';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -152,6 +154,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink6108= isFalcon9 && launch.name.toLowerCase().includes('starlink group 6-108');
   const isStarlink1041= isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-41');
   const isStarlink1718 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-18');
+  const isStarlink1731 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-31');
+  const isStarlink1048 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-48');
   const isHASTE = launch.name.toLowerCase().includes('haste');
   const isFIREFLY = launch.name.toLowerCase().includes('stairway to seven');
   const isKairosFlight3 = launch.name.toLowerCase().includes('kairos') && launch.name.toLowerCase().includes('flight 3');
@@ -192,7 +196,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -449,6 +453,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isStarlink1718 && (
               <button
                 onClick={() => setVideoModalId(STARLINK_1718_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1731 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1731_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1048 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1048_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
