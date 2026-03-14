@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/fetch-articles?token=$ADMIN_SESSION_SECRET",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/auto-publish?token=$ADMIN_SESSION_SECRET",
+      "schedule": "0 10 * * *"
+    }
+  ]
+}
