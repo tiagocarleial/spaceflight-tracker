@@ -199,6 +199,10 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
                       isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048;
 
   const getRocketImage = () => {
+    // First check if launch has a custom image
+    if (launch.image) return launch.image;
+
+    // Otherwise, use rocket type detection
     if (isFalcon9) return '/images/falcon9.png';
     if (isFalconHeavy) return '/images/falconHeavy.png';
     if (isStarship) return '/images/starship.png';
