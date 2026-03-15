@@ -347,8 +347,7 @@ export const mockLaunches: Launch[] = [
     launchDate: '2026-03-15T13:20:00.000Z',
     status: 'Go',
     description: 'Details TBD.',
-    recovery: 'N/A',
-    image: '/images/longMarch6A.png'
+    recovery: 'N/A'
   },
   {
     id: '27',
@@ -359,7 +358,6 @@ export const mockLaunches: Launch[] = [
     launchDate: '2026-03-16T04:10:00.000Z',
     status: 'Go',
     description: 'Details TBD.',
-    recovery: 'N/A',
-    image: '/images/kuaizhou1A.png'
+    recovery: 'N/A'
   }
 ];
