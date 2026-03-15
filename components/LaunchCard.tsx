@@ -167,8 +167,10 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isNewGlenn = launch.rocket.includes('New Glenn');
   const isLongMarch2C = launch.rocket.includes('Long March 2C');
   const isLongMarch3BE = launch.rocket.includes('Long March 3B/E');
+  const isLongMarch6A = launch.rocket.includes('Long March 6A');
   const isLongMarch7 = launch.rocket.includes('Long March 7');
   const isLongMarch12 = launch.rocket.includes('Long March 12');
+  const isKuaizhou1A = launch.rocket.includes('Kuaizhou 1A');
   const isCeres1S = launch.rocket.includes('Ceres-1S');
   const isCeres2 = launch.rocket.includes('Ceres-2');
   const isNewShepard = launch.rocket.includes('New Shepard');
@@ -207,8 +209,10 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
     if (isNewGlenn) return '/images/newGlenn.png';
     if (isLongMarch2C) return '/images/longMarch2c.png';
     if (isLongMarch3BE) return '/images/LongMarch3be.png';
+    if (isLongMarch6A) return '/images/longMarch6A.png';
     if (isLongMarch7) return '/images/longMarch7.png';
     if (isLongMarch12) return '/images/longMarch12.png';
+    if (isKuaizhou1A) return '/images/kuaizhou1A.png';
     if (isCeres1S) return '/images/ceres1s.png';
     if (isCeres2) return '/images/ceres2.png';
     if (isNewShepard) return '/images/newShepard.png';
