@@ -337,5 +337,29 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
     recovery: 'ASDS - Just Read the Instructions',
     livestream: 'https://www.youtube.com/watch?v=1wAHx4eCiSw'
+  },
+  {
+    id: '26',
+    name: 'Long March 6A | Unknown Payload',
+    rocket: 'Long March 6A',
+    operator: 'China Aerospace Science and Technology Corporation',
+    location: 'Launch Complex 9A, Taiyuan Satellite Launch Center, People\'s Republic of China',
+    launchDate: '2026-03-15T13:20:00.000Z',
+    status: 'Go',
+    description: 'Details TBD.',
+    recovery: 'N/A',
+    image: '/images/longMarch6A.png'
+  },
+  {
+    id: '27',
+    name: 'Kuaizhou 1A | Unknown Payload',
+    rocket: 'Kuaizhou 1A',
+    operator: 'ExPace',
+    location: 'Launch Area 95A, Jiuquan Satellite Launch Center, People\'s Republic of China',
+    launchDate: '2026-03-16T04:10:00.000Z',
+    status: 'Go',
+    description: 'Details TBD.',
+    recovery: 'N/A',
+    image: '/images/kuaizhou1A.png'
   }
 ];
