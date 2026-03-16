@@ -27,7 +27,7 @@ const STARLINK_1718_YOUTUBE_ID = '4bvsh6a6xdA';
 const STARLINK_1731_YOUTUBE_ID = '9-_Dj6F_bAs';
 const STARLINK_1048_YOUTUBE_ID = '1wAHx4eCiSw';
 const STARLINK_1046_YOUTUBE_ID = 'djZIkcLXvjU';
-const STARLINK_1024_YOUTUBE_ID = 'AMAZ2ivrIBI';
+const STARLINK_1724_YOUTUBE_ID = 'AMAZ2ivrIBI';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -159,7 +159,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink1731 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-31');
   const isStarlink1048 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-48');
   const isStarlink1046 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-46');
-  const isStarlink1024 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-24');
+  const isStarlink1724 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-24');
   const isHASTE = launch.name.toLowerCase().includes('haste');
   const isFIREFLY = launch.name.toLowerCase().includes('stairway to seven');
   const isKairosFlight3 = launch.name.toLowerCase().includes('kairos') && launch.name.toLowerCase().includes('flight 3');
@@ -202,7 +202,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1024;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -490,9 +490,9 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
                 ▶ Watch Now
               </button>
             )}
-            {isStarlink1024 && (
+            {isStarlink1724 && (
               <button
-                onClick={() => setVideoModalId(STARLINK_1024_YOUTUBE_ID)}
+                onClick={() => setVideoModalId(STARLINK_1724_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
