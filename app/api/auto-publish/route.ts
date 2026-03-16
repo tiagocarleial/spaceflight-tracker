@@ -98,18 +98,43 @@ Reply with ONLY the image prompt, no quotes, no explanations.`,
     .replace(/["']/g, '')
     .trim();
 
-  // Generate image via Hugging Face
   const hf = new InferenceClient(process.env.HF_TOKEN);
 
-  const imageBlob = await hf.textToImage({
-    model: 'black-forest-labs/FLUX.1-schnell',
-    inputs: imagePrompt,
-    parameters: { width: 1024, height: 576 },
-  }) as unknown as Blob;
+  // List of models to try in order (fallback system)
+  const models = [
+    { name: 'black-forest-labs/FLUX.1-schnell', width: 1024, height: 576 },
+    { name: 'stabilityai/stable-diffusion-xl-base-1.0', width: 1024, height: 576 },
+    { name: 'runwayml/stable-diffusion-v1-5', width: 1024, height: 576 },
+    { name: 'CompVis/stable-diffusion-v1-4', width: 1024, height: 576 },
+  ];
 
-  const buffer = Buffer.from(await imageBlob.arrayBuffer());
-  const base64 = buffer.toString('base64');
-  return `data:image/jpeg;base64,${base64}`;
+  let lastError: Error | null = null;
+
+  // Try each model until one succeeds
+  for (const model of models) {
+    try {
+      console.log(`[generate-image] Trying model: ${model.name}`);
+
+      const imageBlob = await hf.textToImage({
+        model: model.name,
+        inputs: imagePrompt,
+        parameters: { width: model.width, height: model.height },
+      }) as unknown as Blob;
+
+      const buffer = Buffer.from(await imageBlob.arrayBuffer());
+      const base64 = buffer.toString('base64');
+
+      console.log(`[generate-image] Success with model: ${model.name}`);
+      return `data:image/jpeg;base64,${base64}`;
+    } catch (error) {
+      console.warn(`[generate-image] Failed with ${model.name}:`, (error as Error).message);
+      lastError = error as Error;
+      // Continue to next model
+    }
+  }
+
+  // If all models failed, throw the last error
+  throw new Error(`All image generation models failed. Last error: ${lastError?.message || 'Unknown error'}`);
 }
 
 async function processOneArticle(article: any): Promise<ProcessLog> {
@@ -153,23 +178,36 @@ async function processOneArticle(article: any): Promise<ProcessLog> {
     );
     log.steps.push({ step: 'generate_content', status: 'completed', length: content.length });
 
-    // Step 4: Generate image
+    // Step 4: Generate image (optional - won't block publication if it fails)
     log.steps.push({ step: 'generate_image', status: 'started' });
-    const imageUrl = await generateImage(title, description, content);
-    log.steps.push({ step: 'generate_image', status: 'completed' });
+    let imageUrl: string | null = null;
+    try {
+      imageUrl = await generateImage(title, description, content);
+      log.steps.push({ step: 'generate_image', status: 'completed' });
+    } catch (imageError) {
+      console.warn('[auto-publish] Image generation failed, publishing without image:', (imageError as Error).message);
+      log.steps.push({ step: 'generate_image', status: 'failed', error: (imageError as Error).message });
+      // Continue anyway - we'll publish without image
+    }
 
     // Step 5: Update article
     log.steps.push({ step: 'update_article', status: 'started' });
+    const updateData: any = {
+      title,
+      description,
+      content,
+      is_published: true,
+      published_at: new Date().toISOString(),
+    };
+
+    // Only add image_url if we successfully generated one
+    if (imageUrl) {
+      updateData.image_url = imageUrl;
+    }
+
     const { error: updateError } = await supabaseAdmin
       .from('articles')
-      .update({
-        title,
-        description,
-        content,
-        image_url: imageUrl,
-        is_published: true,
-        published_at: new Date().toISOString(),
-      })
+      .update(updateData)
       .eq('id', article.id);
 
     if (updateError) {
