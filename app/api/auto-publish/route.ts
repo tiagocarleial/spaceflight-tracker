@@ -189,11 +189,16 @@ async function processOneArticle(article: any): Promise<ProcessLog> {
 
 export async function POST(request: NextRequest) {
   try {
-    // Check for secret token
+    // Check for secret token (both query param and CRON_SECRET header)
     const { searchParams } = new URL(request.url);
     const token = searchParams.get('token');
+    const authHeader = request.headers.get('authorization');
 
-    if (token !== process.env.ADMIN_SESSION_SECRET) {
+    // Accept either query param token or CRON_SECRET from Vercel cron jobs
+    const isValidToken = token === process.env.ADMIN_SESSION_SECRET;
+    const isValidCronSecret = authHeader === `Bearer ${process.env.CRON_SECRET}`;
+
+    if (!isValidToken && !isValidCronSecret) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -206,7 +211,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json().catch(() => ({}));
-    const maxArticles = body.maxArticles || 8;
+    const maxArticles = parseInt(searchParams.get('maxArticles') || '') || body.maxArticles || 8;
 
     console.log(`[auto-publish] Starting auto-publish process (max: ${maxArticles} articles)`);
 
