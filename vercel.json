@@ -6,7 +6,7 @@
     },
     {
       "path": "/api/auto-publish?token=$ADMIN_SESSION_SECRET",
-      "schedule": "0 10 * * *"
+      "schedule": "27 19 * * *"
     }
   ]
 }
