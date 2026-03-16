@@ -194,13 +194,24 @@ export async function POST(request: NextRequest) {
     const token = searchParams.get('token');
     const authHeader = request.headers.get('authorization');
 
+    // Debug logging
+    console.log('[auto-publish] Auth debug:', {
+      hasToken: !!token,
+      hasAuthHeader: !!authHeader,
+      hasCronSecret: !!process.env.CRON_SECRET,
+      hasAdminSecret: !!process.env.ADMIN_SESSION_SECRET,
+    });
+
     // Accept either query param token or CRON_SECRET from Vercel cron jobs
     const isValidToken = token === process.env.ADMIN_SESSION_SECRET;
     const isValidCronSecret = authHeader === `Bearer ${process.env.CRON_SECRET}`;
 
     if (!isValidToken && !isValidCronSecret) {
+      console.error('[auto-publish] Authentication failed');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    console.log('[auto-publish] Authentication successful');
 
     // Check API keys
     if (!process.env.GROQ_API_KEY) {

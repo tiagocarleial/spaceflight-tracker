@@ -6,7 +6,7 @@
     },
     {
       "path": "/api/auto-publish",
-      "schedule": "33 20 * * *"
+      "schedule": "56 20 * * *"
     }
   ]
 }

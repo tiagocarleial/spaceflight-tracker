@@ -11,13 +11,24 @@ export async function POST(request: NextRequest) {
     const token = searchParams.get('token');
     const authHeader = request.headers.get('authorization');
 
+    // Debug logging
+    console.log('[fetch-articles] Auth debug:', {
+      hasToken: !!token,
+      hasAuthHeader: !!authHeader,
+      hasCronSecret: !!process.env.CRON_SECRET,
+      hasAdminSecret: !!process.env.ADMIN_SESSION_SECRET,
+    });
+
     // Accept either query param token or CRON_SECRET from Vercel cron jobs
     const isValidToken = token === process.env.ADMIN_SESSION_SECRET;
     const isValidCronSecret = authHeader === `Bearer ${process.env.CRON_SECRET}`;
 
     if (!isValidToken && !isValidCronSecret) {
+      console.error('[fetch-articles] Authentication failed');
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    console.log('[fetch-articles] Authentication successful');
 
     console.log('[fetch-articles] Starting RSS feed fetch...');
 
