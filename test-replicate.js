@@ -1,4 +1,4 @@
-const Replicate = require('replicate').default;
+const Replicate = require('replicate');
 const fs = require('fs');
 const fetch = require('node-fetch');
 require('dotenv').config({ path: '.env.local' });
