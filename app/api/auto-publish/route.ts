@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
 import Groq from 'groq-sdk';
 import { InferenceClient } from '@huggingface/inference';
+import Replicate from 'replicate';
 
 export const maxDuration = 300; // 5 minutes timeout for processing multiple articles
 
@@ -71,6 +72,39 @@ Original summary: ${description || '(no summary available)'}`;
   return completion.choices[0]?.message?.content?.trim() || '';
 }
 
+async function convertImageUrlToBase64(imageUrl: string): Promise<string | null> {
+  try {
+    console.log(`[convert-image] Downloading image from: ${imageUrl.substring(0, 100)}...`);
+
+    const response = await fetch(imageUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      redirect: 'follow',
+    });
+
+    if (!response.ok) {
+      console.warn(`[convert-image] Failed to fetch image: ${response.status}`);
+      return null;
+    }
+
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    if (buffer.length < 1000) {
+      console.warn(`[convert-image] Image too small: ${buffer.length} bytes`);
+      return null;
+    }
+
+    const base64 = buffer.toString('base64');
+    const contentType = response.headers.get('content-type') || 'image/jpeg';
+
+    console.log(`[convert-image] Successfully converted image (${buffer.length} bytes)`);
+    return `data:${contentType};base64,${base64}`;
+  } catch (error) {
+    console.warn(`[convert-image] Error converting image:`, (error as Error).message);
+    return null;
+  }
+}
+
 async function generateImage(title: string, description?: string, content?: string): Promise<string> {
   const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
   const contentSnippet = content ? content.slice(0, 2000) : '';
@@ -98,43 +132,81 @@ Reply with ONLY the image prompt, no quotes, no explanations.`,
     .replace(/["']/g, '')
     .trim();
 
-  const hf = new InferenceClient(process.env.HF_TOKEN);
+  console.log(`[generate-image] Generated prompt: "${imagePrompt}"`);
 
-  // List of models to try in order (fallback system)
-  const models = [
-    { name: 'black-forest-labs/FLUX.1-schnell', width: 1024, height: 576 },
-    { name: 'stabilityai/stable-diffusion-xl-base-1.0', width: 1024, height: 576 },
-    { name: 'runwayml/stable-diffusion-v1-5', width: 1024, height: 576 },
-    { name: 'CompVis/stable-diffusion-v1-4', width: 1024, height: 576 },
-  ];
-
-  let lastError: Error | null = null;
-
-  // Try each model until one succeeds
-  for (const model of models) {
+  // Try Replicate first (offers $5 free credits = ~900 images)
+  if (process.env.REPLICATE_API_TOKEN) {
     try {
-      console.log(`[generate-image] Trying model: ${model.name}`);
+      console.log('[generate-image] Trying Replicate API (free credits available)...');
 
-      const imageBlob = await hf.textToImage({
-        model: model.name,
-        inputs: imagePrompt,
-        parameters: { width: model.width, height: model.height },
-      }) as unknown as Blob;
+      const replicate = new Replicate({
+        auth: process.env.REPLICATE_API_TOKEN,
+      });
 
-      const buffer = Buffer.from(await imageBlob.arrayBuffer());
-      const base64 = buffer.toString('base64');
+      const output = await replicate.run(
+        "black-forest-labs/flux-schnell",
+        {
+          input: {
+            prompt: imagePrompt,
+            aspect_ratio: "16:9",
+            output_format: "jpg",
+            output_quality: 80,
+          }
+        }
+      ) as string[];
 
-      console.log(`[generate-image] Success with model: ${model.name}`);
-      return `data:image/jpeg;base64,${base64}`;
+      if (output && output[0]) {
+        // Download the image and convert to base64
+        const response = await fetch(output[0]);
+        if (response.ok) {
+          const arrayBuffer = await response.arrayBuffer();
+          const buffer = Buffer.from(arrayBuffer);
+          const base64 = buffer.toString('base64');
+
+          console.log(`[generate-image] Success with Replicate (${buffer.length} bytes)`);
+          return `data:image/jpeg;base64,${base64}`;
+        }
+      }
+
+      console.warn('[generate-image] Replicate returned empty output');
     } catch (error) {
-      console.warn(`[generate-image] Failed with ${model.name}:`, (error as Error).message);
-      lastError = error as Error;
-      // Continue to next model
+      console.warn('[generate-image] Replicate failed:', (error as Error).message);
     }
   }
 
-  // If all models failed, throw the last error
-  throw new Error(`All image generation models failed. Last error: ${lastError?.message || 'Unknown error'}`);
+  // Fallback to HuggingFace (requires credits)
+  if (process.env.HF_TOKEN) {
+    const hf = new InferenceClient(process.env.HF_TOKEN);
+
+    const models = [
+      { name: 'black-forest-labs/FLUX.1-schnell', width: 1024, height: 576 },
+      { name: 'stabilityai/stable-diffusion-xl-base-1.0', width: 1024, height: 576 },
+      { name: 'runwayml/stable-diffusion-v1-5', width: 1024, height: 576 },
+      { name: 'CompVis/stable-diffusion-v1-4', width: 1024, height: 576 },
+    ];
+
+    for (const model of models) {
+      try {
+        console.log(`[generate-image] Trying HuggingFace model: ${model.name}`);
+
+        const imageBlob = await hf.textToImage({
+          model: model.name,
+          inputs: imagePrompt,
+          parameters: { width: model.width, height: model.height },
+        }) as unknown as Blob;
+
+        const buffer = Buffer.from(await imageBlob.arrayBuffer());
+        const base64 = buffer.toString('base64');
+
+        console.log(`[generate-image] Success with HuggingFace: ${model.name}`);
+        return `data:image/jpeg;base64,${base64}`;
+      } catch (error) {
+        console.warn(`[generate-image] HuggingFace ${model.name} failed:`, (error as Error).message);
+      }
+    }
+  }
+
+  throw new Error('All image generation APIs failed');
 }
 
 async function processOneArticle(article: any): Promise<ProcessLog> {
@@ -178,16 +250,34 @@ async function processOneArticle(article: any): Promise<ProcessLog> {
     );
     log.steps.push({ step: 'generate_content', status: 'completed', length: content.length });
 
-    // Step 4: Generate image (optional - won't block publication if it fails)
-    log.steps.push({ step: 'generate_image', status: 'started' });
-    let imageUrl: string | null = null;
-    try {
-      imageUrl = await generateImage(title, description, content);
-      log.steps.push({ step: 'generate_image', status: 'completed' });
-    } catch (imageError) {
-      console.warn('[auto-publish] Image generation failed, publishing without image:', (imageError as Error).message);
-      log.steps.push({ step: 'generate_image', status: 'failed', error: (imageError as Error).message });
-      // Continue anyway - we'll publish without image
+    // Step 4: Handle image (use original if available, otherwise generate)
+    log.steps.push({ step: 'handle_image', status: 'started' });
+    let imageUrl: string | null = article.image_url || null;
+
+    // If we have an original image URL (from RSS feed), try to convert it to base64
+    if (imageUrl && imageUrl.startsWith('http')) {
+      console.log('[auto-publish] Converting external image to base64...');
+      const convertedImage = await convertImageUrlToBase64(imageUrl);
+      if (convertedImage) {
+        imageUrl = convertedImage;
+        log.steps.push({ step: 'handle_image', status: 'completed', source: 'converted_from_feed' });
+      } else {
+        // Keep original URL if conversion fails
+        log.steps.push({ step: 'handle_image', status: 'completed', source: 'original_url' });
+      }
+    } else if (!imageUrl) {
+      // If no original image, try to generate one
+      try {
+        imageUrl = await generateImage(title, description, content);
+        log.steps.push({ step: 'handle_image', status: 'completed', source: 'generated' });
+      } catch (imageError) {
+        console.warn('[auto-publish] Image generation failed, publishing without image:', (imageError as Error).message);
+        log.steps.push({ step: 'handle_image', status: 'failed', error: (imageError as Error).message });
+        // Continue anyway - we'll publish without image
+      }
+    } else {
+      // Already a base64 image
+      log.steps.push({ step: 'handle_image', status: 'completed', source: 'base64' });
     }
 
     // Step 5: Update article
