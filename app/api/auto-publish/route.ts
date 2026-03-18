@@ -3,6 +3,7 @@ import { supabaseAdmin } from '@/lib/supabase';
 import Groq from 'groq-sdk';
 import { InferenceClient } from '@huggingface/inference';
 import Replicate from 'replicate';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export const maxDuration = 300; // 5 minutes timeout for processing multiple articles
 
@@ -134,7 +135,47 @@ Reply with ONLY the image prompt, no quotes, no explanations.`,
 
   console.log(`[generate-image] Generated prompt: "${imagePrompt}"`);
 
-  // Try Replicate first (offers $5 free credits = ~900 images)
+  // Try Google Gemini first (500 images/day free, no credit card needed)
+  if (process.env.GOOGLE_AI_API_KEY) {
+    try {
+      console.log('[generate-image] Trying Google Gemini API (500 free images/day)...');
+
+      const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
+      const model = genAI.getGenerativeModel({ model: 'gemini-3.1-flash-image-preview' });
+
+      const result = await model.generateContent({
+        contents: [{
+          role: 'user',
+          parts: [{
+            text: imagePrompt
+          }]
+        }],
+        generationConfig: {
+          responseModalities: ['IMAGE']
+        }
+      });
+
+      const response = await result.response;
+
+      // Get the image from the response
+      if (response.candidates && response.candidates[0]?.content?.parts?.[0]) {
+        const part = response.candidates[0].content.parts[0];
+
+        // Check if the part has inline data (base64)
+        if (part.inlineData) {
+          const { mimeType, data } = part.inlineData;
+          console.log(`[generate-image] Success with Google Gemini (base64 image)`);
+          return `data:${mimeType};base64,${data}`;
+        }
+      }
+
+      console.warn('[generate-image] Google Gemini returned unexpected format');
+    } catch (error) {
+      console.warn('[generate-image] Google Gemini failed:', (error as Error).message);
+    }
+  }
+
+  // Try Replicate second (offers $5 free credits = ~900 images)
   if (process.env.REPLICATE_API_TOKEN) {
     try {
       console.log('[generate-image] Trying Replicate API (free credits available)...');

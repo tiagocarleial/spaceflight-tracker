@@ -36,6 +36,32 @@ export const RSS_FEEDS: FeedConfig[] = [
     sourceName: 'Space.com',
     category: 'space',
   },
+  // TEMPORARY: Additional space/astronomy feeds for next auto-post
+  {
+    url: 'https://www.universetoday.com/feed',
+    sourceName: 'Universe Today',
+    category: 'astronomy',
+  },
+  {
+    url: 'https://www.planetary.org/feeds/rss/news.xml',
+    sourceName: 'The Planetary Society',
+    category: 'space',
+  },
+  {
+    url: 'https://spacenews.com/feed/',
+    sourceName: 'SpaceNews',
+    category: 'space',
+  },
+  {
+    url: 'https://www.jpl.nasa.gov/news/rss/news.xml',
+    sourceName: 'NASA JPL',
+    category: 'space',
+  },
+  {
+    url: 'https://skyandtelescope.org/astronomy-news/feed/',
+    sourceName: 'Sky & Telescope',
+    category: 'astronomy',
+  },
   // Tecnologia
   {
     url: 'https://www.theverge.com/rss/index.xml',
