@@ -149,10 +149,7 @@ Reply with ONLY the image prompt, no quotes, no explanations.`,
           parts: [{
             text: imagePrompt
           }]
-        }],
-        generationConfig: {
-          responseModalities: ['IMAGE']
-        }
+        }]
       });
 
       const response = await result.response;
