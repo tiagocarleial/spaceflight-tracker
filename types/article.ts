@@ -6,7 +6,7 @@ export interface Article {
   image_url: string | null;
   source_url: string | null;
   source_name: string;
-  category: 'space' | 'technology' | 'astronomy';
+  category: 'space' | 'natural-disasters' | 'astronomy' | 'archaeology';
   slug: string | null;
   is_published: boolean;
   is_manual: boolean;
@@ -14,7 +14,7 @@ export interface Article {
   created_at: string;
 }
 
-export type ArticleCategory = 'space' | 'technology' | 'astronomy';
+export type ArticleCategory = 'space' | 'natural-disasters' | 'astronomy' | 'archaeology';
 
 export interface CreateArticlePayload {
   title: string;

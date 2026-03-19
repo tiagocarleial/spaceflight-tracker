@@ -7,14 +7,16 @@ import { Article } from '@/types/article';
 
 const CATEGORY_LABELS: Record<string, string> = {
   space: 'Space',
-  technology: 'Tech',
   astronomy: 'Astronomia',
+  'natural-disasters': 'Desastres Naturais',
+  archaeology: 'Arqueologia',
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
   space: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  technology: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
   astronomy: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+  'natural-disasters': 'bg-red-500/20 text-red-400 border-red-500/30',
+  archaeology: 'bg-green-500/20 text-green-400 border-green-500/30',
 };
 
 interface EditForm {
@@ -417,7 +419,7 @@ export default function AdminDashboard() {
           </div>
 
           <div className="flex bg-gray-800 rounded-lg p-1 gap-1">
-            {(['all', 'space', 'technology', 'astronomy'] as const).map(c => (
+            {(['all', 'space', 'astronomy', 'natural-disasters', 'archaeology'] as const).map(c => (
               <button
                 key={c}
                 onClick={() => setCategoryFilter(c)}

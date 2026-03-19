@@ -9,8 +9,9 @@ import { Article } from '@/types/article';
 const CATEGORY_FILTERS = [
   { value: 'all', label: 'Todos' },
   { value: 'space', label: 'Space' },
-  { value: 'technology', label: 'Tecnologia' },
   { value: 'astronomy', label: 'Astronomia' },
+  { value: 'natural-disasters', label: 'Desastres Naturais' },
+  { value: 'archaeology', label: 'Arqueologia' },
 ] as const;
 
 export default function BlogPage() {
@@ -70,10 +71,10 @@ export default function BlogPage() {
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <div className="flex items-center gap-3">
             <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
-            <h1 className="text-2xl font-bold text-white">Space & Tech News</h1>
+            <h1 className="text-2xl font-bold text-white">Space & Nature News</h1>
           </div>
           <p className="text-gray-400 text-sm">
-            Notícias de espaço, astronomia e tecnologia
+            Notícias de espaço, astronomia, arqueologia e desastres naturais
           </p>
         </div>
 

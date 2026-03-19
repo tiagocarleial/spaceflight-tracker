@@ -6,20 +6,23 @@ interface BlogCardProps {
 
 const CATEGORY_STYLES: Record<string, string> = {
   space: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  technology: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
   astronomy: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+  'natural-disasters': 'bg-red-500/20 text-red-400 border-red-500/30',
+  archaeology: 'bg-green-500/20 text-green-400 border-green-500/30',
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
   space: 'Space',
-  technology: 'Tecnologia',
   astronomy: 'Astronomia',
+  'natural-disasters': 'Desastres Naturais',
+  archaeology: 'Arqueologia',
 };
 
 const DEFAULT_IMAGES: Record<string, string> = {
   space: 'https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=600&q=80',
   astronomy: 'https://images.unsplash.com/photo-1462332420958-a05d1e002413?w=600&q=80',
-  technology: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80',
+  'natural-disasters': 'https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=600&q=80',
+  archaeology: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&q=80',
 };
 
 export default function BlogCard({ article }: BlogCardProps) {

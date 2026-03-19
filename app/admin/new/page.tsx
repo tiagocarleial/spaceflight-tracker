@@ -166,8 +166,9 @@ export default function AdminNewPost() {
               className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
             >
               <option value="space">Space</option>
-              <option value="technology">Tecnologia</option>
               <option value="astronomy">Astronomia</option>
+              <option value="natural-disasters">Desastres Naturais</option>
+              <option value="archaeology">Arqueologia</option>
             </select>
           </div>
 

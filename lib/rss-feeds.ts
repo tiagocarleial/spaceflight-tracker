@@ -62,21 +62,37 @@ export const RSS_FEEDS: FeedConfig[] = [
     sourceName: 'Sky & Telescope',
     category: 'astronomy',
   },
-  // Tecnologia
+  // Desastres Naturais
   {
-    url: 'https://www.theverge.com/rss/index.xml',
-    sourceName: 'The Verge',
-    category: 'technology',
+    url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.atom',
+    sourceName: 'USGS Earthquakes',
+    category: 'natural-disasters',
   },
   {
-    url: 'https://techcrunch.com/feed/',
-    sourceName: 'TechCrunch',
-    category: 'technology',
+    url: 'https://reliefweb.int/updates/rss.xml',
+    sourceName: 'ReliefWeb',
+    category: 'natural-disasters',
   },
   {
-    url: 'https://feeds.arstechnica.com/arstechnica/index',
-    sourceName: 'Ars Technica',
-    category: 'technology',
+    url: 'https://www.gdacs.org/xml/rss.xml',
+    sourceName: 'GDACS',
+    category: 'natural-disasters',
+  },
+  // Arqueologia
+  {
+    url: 'https://www.archaeology.org/feed',
+    sourceName: 'Archaeology Magazine',
+    category: 'archaeology',
+  },
+  {
+    url: 'https://www.sciencedaily.com/rss/fossils_ruins.xml',
+    sourceName: 'Science Daily',
+    category: 'archaeology',
+  },
+  {
+    url: 'https://www.heritagedaily.com/feed',
+    sourceName: 'Heritage Daily',
+    category: 'archaeology',
   },
 ];
 
