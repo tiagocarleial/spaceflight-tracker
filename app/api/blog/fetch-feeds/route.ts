@@ -18,10 +18,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ inserted: 0, errors }, { status: 200 });
   }
 
-  // Insert using upsert on slug to avoid duplicates
+  // Insert using upsert on source_url to avoid duplicates
   const { data, error } = await supabaseAdmin
     .from('articles')
-    .upsert(articles, { onConflict: 'slug', ignoreDuplicates: true })
+    .upsert(articles, { onConflict: 'source_url', ignoreDuplicates: true })
     .select();
 
   if (error) {

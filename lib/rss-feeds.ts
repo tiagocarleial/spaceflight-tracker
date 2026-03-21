@@ -121,7 +121,7 @@ export async function fetchFeed(feed: FeedConfig): Promise<CreateArticlePayload[
       if (!item.title) continue;
 
       const title = item.title.trim();
-      const slug = `${slugify(title)}-${Date.now().toString(36)}`;
+      const slug = slugify(title);
       const description = item.contentSnippet?.slice(0, 300) || item.summary?.slice(0, 300) || null;
       const image_url =
         item.enclosure?.url ||
