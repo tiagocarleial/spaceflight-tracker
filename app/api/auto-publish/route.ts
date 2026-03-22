@@ -353,6 +353,75 @@ async function processOneArticle(article: any): Promise<ProcessLog> {
   }
 }
 
+async function fetchNewFeeds(baseUrl: string, token: string): Promise<void> {
+  try {
+    console.log('[auto-publish] Fetching new RSS feeds before publishing...');
+
+    const fetchUrl = `${baseUrl}/api/fetch-articles?token=${token}`;
+    const response = await fetch(fetchUrl, { method: 'POST' });
+
+    if (!response.ok) {
+      console.warn('[auto-publish] Failed to fetch new feeds:', response.status);
+      return;
+    }
+
+    const data = await response.json();
+    console.log(`[auto-publish] RSS feeds fetched: ${data.inserted} new articles, ${data.skipped} skipped`);
+  } catch (error) {
+    console.warn('[auto-publish] Error fetching new feeds:', (error as Error).message);
+  }
+}
+
+function selectArticlesByPriority(
+  articlesByCategory: Record<string, any[]>,
+  maxArticles: number
+): any[] {
+  // Priority order: space > astronomy > archaeology > natural-disasters
+  // Distribution for 8 articles: 4 space, 2 astronomy, 1 archaeology, 1 natural-disasters
+
+  const priorities = [
+    { category: 'space', percentage: 0.5 },         // 50%
+    { category: 'astronomy', percentage: 0.25 },    // 25%
+    { category: 'archaeology', percentage: 0.125 },  // 12.5%
+    { category: 'natural-disasters', percentage: 0.125 }, // 12.5%
+  ];
+
+  const selected: any[] = [];
+  const remaining: any[] = [];
+
+  // First pass: select based on percentage allocation
+  for (const { category, percentage } of priorities) {
+    const articles = articlesByCategory[category] || [];
+    const targetCount = Math.round(maxArticles * percentage);
+    const toSelect = Math.min(targetCount, articles.length);
+
+    selected.push(...articles.slice(0, toSelect));
+
+    // Keep track of remaining articles from this category
+    if (articles.length > toSelect) {
+      remaining.push(...articles.slice(toSelect));
+    }
+
+    console.log(`[auto-publish] Selected ${toSelect}/${targetCount} articles from ${category}`);
+  }
+
+  // Second pass: fill remaining slots with priority order
+  if (selected.length < maxArticles && remaining.length > 0) {
+    const slotsAvailable = maxArticles - selected.length;
+
+    // Sort remaining by priority (already in priority order from priorities array)
+    const priorityOrder = priorities.map(p => p.category);
+    remaining.sort((a, b) => {
+      return priorityOrder.indexOf(a.category) - priorityOrder.indexOf(b.category);
+    });
+
+    selected.push(...remaining.slice(0, slotsAvailable));
+    console.log(`[auto-publish] Filled ${Math.min(slotsAvailable, remaining.length)} remaining slots`);
+  }
+
+  return selected.slice(0, maxArticles);
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Check for secret token (both query param and CRON_SECRET header)
@@ -392,19 +461,23 @@ export async function POST(request: NextRequest) {
 
     console.log(`[auto-publish] Starting auto-publish process (max: ${maxArticles} articles)`);
 
-    // Fetch unpublished articles
-    const { data: articles, error: fetchError } = await supabaseAdmin
+    // Step 1: Fetch new RSS feeds first
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const authToken = token || process.env.ADMIN_SESSION_SECRET || '';
+    await fetchNewFeeds(baseUrl, authToken);
+
+    // Step 2: Fetch unpublished articles grouped by category
+    const { data: allArticles, error: fetchError } = await supabaseAdmin
       .from('articles')
       .select('*')
       .eq('is_published', false)
-      .order('created_at', { ascending: false })
-      .limit(maxArticles);
+      .order('created_at', { ascending: false });
 
     if (fetchError) {
       throw fetchError;
     }
 
-    if (!articles || articles.length === 0) {
+    if (!allArticles || allArticles.length === 0) {
       return NextResponse.json({
         message: 'No unpublished articles to process',
         processed: 0,
@@ -413,7 +486,42 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    console.log(`[auto-publish] Found ${articles.length} unpublished articles`);
+    console.log(`[auto-publish] Found ${allArticles.length} unpublished articles`);
+
+    // Step 3: Group articles by category
+    const articlesByCategory: Record<string, any[]> = {
+      'space': [],
+      'astronomy': [],
+      'archaeology': [],
+      'natural-disasters': [],
+    };
+
+    for (const article of allArticles) {
+      if (articlesByCategory[article.category]) {
+        articlesByCategory[article.category].push(article);
+      }
+    }
+
+    console.log('[auto-publish] Articles by category:', {
+      space: articlesByCategory.space.length,
+      astronomy: articlesByCategory.astronomy.length,
+      archaeology: articlesByCategory.archaeology.length,
+      'natural-disasters': articlesByCategory['natural-disasters'].length,
+    });
+
+    // Step 4: Select articles based on priority
+    const articles = selectArticlesByPriority(articlesByCategory, maxArticles);
+
+    if (articles.length === 0) {
+      return NextResponse.json({
+        message: 'No articles selected for publishing',
+        processed: 0,
+        successful: 0,
+        failed: 0,
+      });
+    }
+
+    console.log(`[auto-publish] Selected ${articles.length} articles for processing`);
 
     // Process each article sequentially (to avoid rate limits)
     const results: ProcessLog[] = [];
