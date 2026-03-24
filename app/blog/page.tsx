@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Link from 'next/link';
 import BlogCard from '@/components/BlogCard';
@@ -15,22 +16,32 @@ const CATEGORY_FILTERS = [
 ] as const;
 
 export default function BlogPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('all');
-  const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
   const LIMIT = 18;
 
-  const loadArticles = async (cat: string, off: number, append: boolean = false) => {
-    if (!append) setLoading(true);
-    else setLoadingMore(true);
+  const currentPage = parseInt(searchParams.get('page') || '1');
+
+  // Sync category from URL
+  useEffect(() => {
+    const urlCategory = searchParams.get('category') || 'all';
+    if (urlCategory !== category) {
+      setCategory(urlCategory);
+    }
+  }, [searchParams]);
+
+  const loadArticles = async (cat: string, page: number) => {
+    setLoading(true);
 
     try {
+      const offset = (page - 1) * LIMIT;
       const params = new URLSearchParams({
         limit: String(LIMIT + 1), // fetch one extra to know if there's more
-        offset: String(off),
+        offset: String(offset),
       });
       if (cat !== 'all') params.set('category', cat);
 
@@ -41,24 +52,60 @@ export default function BlogPage() {
       setHasMore(fetched.length > LIMIT);
       const toShow = fetched.slice(0, LIMIT);
 
-      setArticles(prev => append ? [...prev, ...toShow] : toShow);
+      setArticles(toShow);
     } catch {
       console.error('Failed to load articles');
     } finally {
       setLoading(false);
-      setLoadingMore(false);
     }
   };
 
   useEffect(() => {
-    setOffset(0);
-    loadArticles(category, 0);
-  }, [category]);
+    loadArticles(category, currentPage);
+  }, [category, currentPage]);
 
-  const handleLoadMore = () => {
-    const newOffset = offset + LIMIT;
-    setOffset(newOffset);
-    loadArticles(category, newOffset, true);
+  const handleCategoryChange = (newCategory: string) => {
+    setCategory(newCategory);
+    router.push(`/blog?page=1${newCategory !== 'all' ? `&category=${newCategory}` : ''}`);
+  };
+
+  const goToPage = (page: number) => {
+    const params = new URLSearchParams();
+    params.set('page', String(page));
+    if (category !== 'all') params.set('category', category);
+    router.push(`/blog?${params.toString()}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Generate page numbers to display
+  const generatePageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+
+    // If we're on early pages, show 1-5
+    if (currentPage <= 3) {
+      for (let i = 1; i <= Math.min(maxVisiblePages, currentPage + 2); i++) {
+        pages.push(i);
+      }
+      if (hasMore && pages[pages.length - 1] < currentPage + 2) {
+        pages.push(currentPage + 2);
+      }
+    }
+    // If we're on later pages, show current page and neighbors
+    else {
+      pages.push(1);
+      if (currentPage > 4) pages.push('...');
+
+      for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+        pages.push(i);
+      }
+
+      if (hasMore) {
+        pages.push('...');
+      }
+    }
+
+    return pages;
   };
 
   return (
@@ -83,7 +130,7 @@ export default function BlogPage() {
           {CATEGORY_FILTERS.map(f => (
             <button
               key={f.value}
-              onClick={() => setCategory(f.value)}
+              onClick={() => handleCategoryChange(f.value)}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 category === f.value
                   ? 'bg-gray-700 text-white'
@@ -123,27 +170,51 @@ export default function BlogPage() {
               ))}
             </div>
 
-            {/* Load more */}
-            {hasMore && (
-              <div className="mt-10 text-center">
+            {/* Pagination */}
+            {(currentPage > 1 || hasMore) && (
+              <div className="mt-10 flex items-center justify-center gap-2">
                 <button
-                  onClick={handleLoadMore}
-                  disabled={loadingMore}
-                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 disabled:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
-                  {loadingMore ? (
-                    <>
-                      <div className="inline-block animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white"></div>
-                      Carregando...
-                    </>
-                  ) : (
-                    <>
-                      Ver mais notícias
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </>
-                  )}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Anterior
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {generatePageNumbers().map((page, index) => (
+                    page === '...' ? (
+                      <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-500">
+                        ...
+                      </span>
+                    ) : (
+                      <button
+                        key={page}
+                        onClick={() => goToPage(page as number)}
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                          currentPage === page
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-800 hover:bg-gray-700 text-white'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    )
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={!hasMore}
+                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 disabled:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
+                >
+                  Próxima
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
               </div>
             )}
