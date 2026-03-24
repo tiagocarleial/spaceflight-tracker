@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Link from 'next/link';
@@ -15,7 +15,7 @@ const CATEGORY_FILTERS = [
   { value: 'archaeology', label: 'Arqueologia' },
 ] as const;
 
-export default function BlogPage() {
+function BlogContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [articles, setArticles] = useState<Article[]>([]);
@@ -234,5 +234,23 @@ export default function BlogPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function BlogPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-900">
+        <Navigation currentPage="blog" variant="standard" />
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center py-16">
+            <div className="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+            <p className="text-gray-400 mt-4">Carregando...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <BlogContent />
+    </Suspense>
   );
 }
