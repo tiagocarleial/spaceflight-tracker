@@ -33,6 +33,8 @@ const ELECTRON_STRIX8_YOUTUBE_ID = 'EfUFYq2i4us';
 const STARLINK_1715_YOUTUBE_ID = 'ycPLsr6A8kw';
 const PROGRESS_MS33_YOUTUBE_ID = 'iUYFJSfNrmE';
 const STARLINK_1062_YOUTUBE_ID = 'xT1aSiu3MCY';
+const STARLINK_1717_YOUTUBE_ID = 'gnsvRgCQijE';
+const ELECTRON_DAUGHTER_YOUTUBE_ID = 'qJGdUrhxi6U';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -168,6 +170,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink1033 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-33');
   const isStarlink1715 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-15');
   const isStarlink1062 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-62');
+  const isStarlink1717 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-17');
   const isHASTE = launch.name.toLowerCase().includes('haste');
   const isFIREFLY = launch.name.toLowerCase().includes('stairway to seven');
   const isKairosFlight3 = launch.name.toLowerCase().includes('kairos') && launch.name.toLowerCase().includes('flight 3');
@@ -191,6 +194,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isGSLVMk3 = launch.rocket.includes('GSLV Mk-3') || launch.rocket.includes('GSLV Mk III') || launch.rocket.includes('GSLV Mk. III') || launch.rocket.includes('LVM3');
   const isElectron = launch.rocket.includes('Electron');
   const isElectronStriX8 = isElectron && (launch.name.toLowerCase().includes('eight days a week') || launch.name.toLowerCase().includes('strix launch 8'));
+  const isElectronDaughter = isElectron && (launch.name.toLowerCase().includes('daughter of the stars') || launch.name.toLowerCase().includes('leo-pnt pathfinder'));
   const isSmartDragon3 = launch.rocket.includes('Smart Dragon 3');
   const isVulcanVC4S = launch.rocket.includes('Vulcan VC4S');
   const isAriane6 = launch.rocket.includes('Ariane 6') || launch.rocket.includes('Ariane 64');
@@ -212,7 +216,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -543,6 +547,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isStarlink1062 && (
               <button
                 onClick={() => setVideoModalId(STARLINK_1062_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1717 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1717_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isElectronDaughter && (
+              <button
+                onClick={() => setVideoModalId(ELECTRON_DAUGHTER_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
