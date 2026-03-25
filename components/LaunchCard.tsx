@@ -35,6 +35,7 @@ const PROGRESS_MS33_YOUTUBE_ID = 'iUYFJSfNrmE';
 const STARLINK_1062_YOUTUBE_ID = 'xT1aSiu3MCY';
 const STARLINK_1717_YOUTUBE_ID = 'gnsvRgCQijE';
 const ELECTRON_DAUGHTER_YOUTUBE_ID = 'qJGdUrhxi6U';
+const SPECTRUM_ONWARD_YOUTUBE_ID = 'MsbZj8PxmUk';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -195,6 +196,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isElectron = launch.rocket.includes('Electron');
   const isElectronStriX8 = isElectron && (launch.name.toLowerCase().includes('eight days a week') || launch.name.toLowerCase().includes('strix launch 8'));
   const isElectronDaughter = isElectron && (launch.name.toLowerCase().includes('daughter of the stars') || launch.name.toLowerCase().includes('leo-pnt pathfinder'));
+  const isSpectrumOnward = isSpectrum && launch.name.toLowerCase().includes('onward and upward');
   const isSmartDragon3 = launch.rocket.includes('Smart Dragon 3');
   const isVulcanVC4S = launch.rocket.includes('Vulcan VC4S');
   const isAriane6 = launch.rocket.includes('Ariane 6') || launch.rocket.includes('Ariane 64');
@@ -216,7 +218,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -563,6 +565,14 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isElectronDaughter && (
               <button
                 onClick={() => setVideoModalId(ELECTRON_DAUGHTER_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isSpectrumOnward && (
+              <button
+                onClick={() => setVideoModalId(SPECTRUM_ONWARD_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
