@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Link from 'next/link';
 import BlogCard from '@/components/BlogCard';
+import AdUnit from '@/components/AdUnit';
 import { Article } from '@/types/article';
 
 const CATEGORY_FILTERS = [
@@ -141,6 +142,9 @@ function BlogContent() {
             </button>
           ))}
         </div>
+
+        {/* Ad Unit - Top of Blog */}
+        <AdUnit slot="1122334455" format="horizontal" />
 
         {/* Loading */}
         {loading && (

@@ -3,6 +3,7 @@ import { mockRockets } from '@/data/mockRockets';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import LaunchDetailClient from './LaunchDetailClient';
+import AdUnit from '@/components/AdUnit';
 import { Metadata } from 'next';
 
 interface LaunchDetailPageProps {
@@ -117,8 +118,14 @@ export default async function LaunchDetailPage({ params }: LaunchDetailPageProps
           </Link>
         </div>
 
+        {/* Ad Unit 1 - Top of Launch Details */}
+        <AdUnit slot="9988776655" format="horizontal" />
+
         {/* Use Client Component for Countdown */}
         <LaunchDetailClient launch={launch} rocket={rocket} />
+
+        {/* Ad Unit 2 - Bottom of Launch Details */}
+        <AdUnit slot="4433221100" format="horizontal" />
       </main>
 
       {/* Footer */}

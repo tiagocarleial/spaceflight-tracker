@@ -3,6 +3,7 @@ import { fetchUpcomingLaunches } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
+import AdUnit from '@/components/AdUnit';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -128,6 +129,11 @@ export default async function HomePage() {
             <LaunchCard key={launch.id} launch={launch} />
           ))}
         </div>
+      </section>
+
+      {/* Ad Unit 1 - After Next Launches */}
+      <section className="container mx-auto px-4">
+        <AdUnit slot="1234567890" format="horizontal" />
       </section>
 
       {/* What We Track Section */}
@@ -411,6 +417,11 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Ad Unit 2 - Before CTA */}
+      <section className="container mx-auto px-4">
+        <AdUnit slot="0987654321" format="horizontal" />
       </section>
 
       {/* CTA Section */}

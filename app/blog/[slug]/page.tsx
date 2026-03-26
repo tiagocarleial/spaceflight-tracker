@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { supabaseAdmin } from '@/lib/supabase';
+import AdUnit from '@/components/AdUnit';
 import { Metadata } from 'next';
 
 interface Props {
@@ -123,6 +124,9 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
         )}
 
+        {/* Ad Unit 1 - After Description */}
+        <AdUnit slot="5544332211" format="horizontal" />
+
         {/* Content */}
         {article.content && (
           <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-4">
@@ -133,6 +137,9 @@ export default async function BlogPostPage({ params }: Props) {
             ))}
           </div>
         )}
+
+        {/* Ad Unit 2 - After Content */}
+        <AdUnit slot="6677889900" format="horizontal" />
 
       </main>
 
