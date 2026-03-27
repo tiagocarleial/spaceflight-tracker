@@ -359,5 +359,18 @@ export const mockLaunches: Launch[] = [
     status: 'Go',
     description: 'Details TBD.',
     recovery: 'N/A'
+  },
+  {
+    id: '28',
+    name: 'Atlas V 551 | Amazon Leo (LA-05)',
+    rocket: 'Atlas V 551',
+    rocketId: 'atlasvn22',
+    operator: 'United Launch Alliance',
+    location: 'Space Launch Complex 41, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-03-29T07:53:00.000Z',
+    status: 'Go',
+    description: 'United Launch Alliance will launch a batch of Amazon Kuiper satellites aboard the Atlas V 551 rocket to expand Amazon\'s broadband internet constellation.',
+    recovery: 'N/A',
+    livestream: 'https://www.youtube.com/watch?v=6SiX9UPKq8Y'
   }
 ];
