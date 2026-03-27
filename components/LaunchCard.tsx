@@ -198,7 +198,6 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isElectronStriX8 = isElectron && (launch.name.toLowerCase().includes('eight days a week') || launch.name.toLowerCase().includes('strix launch 8'));
   const isElectronDaughter = isElectron && (launch.name.toLowerCase().includes('daughter of the stars') || launch.name.toLowerCase().includes('leo-pnt pathfinder'));
   const isSpectrumOnward = isSpectrum && launch.name.toLowerCase().includes('onward and upward');
-  const isAtlasVAmazonLeo = isAtlasV && launch.name.toLowerCase().includes('amazon leo');
   const isSmartDragon3 = launch.rocket.includes('Smart Dragon 3');
   const isVulcanVC4S = launch.rocket.includes('Vulcan VC4S');
   const isAriane6 = launch.rocket.includes('Ariane 6') || launch.rocket.includes('Ariane 64');
@@ -213,6 +212,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isNeutron = launch.rocket.includes('Neutron');
   const isGaganyaan = launch.rocket.includes('Gaganyaan');
   const isAtlasV = launch.rocket.includes('Atlas V');
+  const isAtlasVAmazonLeo = isAtlasV && launch.name.toLowerCase().includes('amazon leo');
   const isMinotaurIV = launch.rocket.includes('Minotaur IV') || launch.rocket.includes('Minotaur 4');
   const isPegasusXL = launch.rocket.includes('Pegasus XL');
   const isTianlong3 = launch.rocket.includes('Tianlong-3') || launch.rocket.includes('Tianlong 3');
