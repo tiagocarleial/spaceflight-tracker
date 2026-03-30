@@ -1,15 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/ads.txt",
-        destination: "https://srv.adstxtmanager.com/19390/spaceflight-tracker.com",
-        permanent: false,
-      },
-    ];
-  },
+  // Removed ads.txt redirect to allow direct serving from public folder
+  // Google AdSense requires ads.txt to be served directly without redirects
 };
 
 export default nextConfig;
