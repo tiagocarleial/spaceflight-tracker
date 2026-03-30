@@ -56,6 +56,15 @@ export default function GlossaryPage() {
         { term: 'Escape Velocity', def: 'The minimum speed needed to break free from a celestial body\'s gravitational pull. For Earth, approximately 25,000 mph (40,000 km/h).' },
         { term: 'EVA (Extravehicular Activity)', def: 'A spacewalk. Any activity performed by an astronaut outside a spacecraft in the vacuum of space.' },
         { term: 'Expendable', def: 'A rocket or component designed for single use, discarded after launch. Opposite of reusable.' },
+        { term: 'Exoplanet', def: 'A planet orbiting a star outside our solar system. Over 5,000 exoplanets have been discovered, ranging from gas giants to rocky worlds in habitable zones.' },
+      ]
+    },
+    {
+      letter: 'F',
+      entries: [
+        { term: 'Fairing', def: 'The aerodynamic nose cone that protects satellites and payloads during launch through the atmosphere. Jettisoned once outside the atmosphere to reduce weight.' },
+        { term: 'Free Return Trajectory', def: 'An orbital path around the Moon that automatically returns a spacecraft to Earth without requiring additional propulsion. Used as a safety feature on Apollo missions.' },
+        { term: 'Fuel Cell', def: 'An electrochemical device that combines hydrogen and oxygen to produce electricity and water. Used on spacecraft like the Space Shuttle and Apollo for power and drinking water.' },
       ]
     },
     {
@@ -65,6 +74,15 @@ export default function GlossaryPage() {
         { term: 'Geosynchronous Orbit', def: 'An orbit with a period equal to Earth\'s rotation (24 hours) but not necessarily above the equator.' },
         { term: 'Gravity Assist', def: 'Using a planet\'s gravity to alter a spacecraft\'s speed and trajectory without using fuel. Also called a gravitational slingshot.' },
         { term: 'Grid Fins', def: 'Lattice-like control surfaces used by some rockets (like Falcon 9) to steer during atmospheric descent.' },
+        { term: 'G-Force', def: 'A measure of acceleration felt as weight. 1g equals Earth\'s surface gravity. Astronauts experience 3-4g during launch and reentry.' },
+      ]
+    },
+    {
+      letter: 'H',
+      entries: [
+        { term: 'Habitat Module', def: 'A pressurized compartment where astronauts live and work in space. Can be part of a space station or standalone on long-duration missions.' },
+        { term: 'Hohmann Transfer', def: 'An energy-efficient elliptical orbit used to transfer between two circular orbits. Named after Walter Hohmann who described it in 1925.' },
+        { term: 'Hypergolic Propellant', def: 'Rocket fuels that ignite spontaneously when mixed together, requiring no ignition system. Common in spacecraft maneuvering systems. Example: hydrazine and nitrogen tetroxide.' },
       ]
     },
     {
@@ -74,6 +92,14 @@ export default function GlossaryPage() {
         { term: 'Insertion Burn', def: 'A rocket burn that places a spacecraft into a specific orbit.' },
         { term: 'Interplanetary', def: 'Between planets; refers to space travel or trajectories beyond Earth orbit but within our solar system.' },
         { term: 'Interstellar', def: 'Between stars; the vast space between stellar systems.' },
+        { term: 'Ion Engine', def: 'An electric propulsion system that accelerates ions to very high speeds. Provides low thrust but excellent fuel efficiency for long-duration missions. Used on deep space probes.' },
+        { term: 'ISRU', def: 'In-Situ Resource Utilization—producing fuel, water, oxygen, or building materials from local resources on other worlds rather than transporting everything from Earth.' },
+      ]
+    },
+    {
+      letter: 'J',
+      entries: [
+        { term: 'Jettison', def: 'To discard or eject something from a spacecraft, such as spent rocket stages, fairings, or excess propellant.' },
       ]
     },
     {
@@ -128,6 +154,13 @@ export default function GlossaryPage() {
         { term: 'Perihelion', def: 'The point in an orbit closest to the Sun.' },
         { term: 'Polar Orbit', def: 'An orbit passing over or near Earth\'s poles, with an inclination of approximately 90°.' },
         { term: 'Propellant', def: 'The fuel and oxidizer combination used to propel a rocket. Can be liquid (LOX/RP-1) or solid.' },
+        { term: 'Propulsive Landing', def: 'Using rocket engines to slow a spacecraft for a controlled vertical landing. SpaceX Falcon 9 and Starship use this technique for booster recovery.' },
+      ]
+    },
+    {
+      letter: 'Q',
+      entries: [
+        { term: 'Quarantine', def: 'Isolation procedures used to prevent biological contamination. Apollo astronauts were quarantined after Moon missions; future Mars samples will be quarantined to prevent potential Martian organisms from reaching Earth.' },
       ]
     },
     {
@@ -150,6 +183,8 @@ export default function GlossaryPage() {
         { term: 'Stage', def: 'A section of a rocket containing its own engine(s) and propellant, designed to be jettisoned when empty.' },
         { term: 'Static Fire', def: 'A test where rocket engines are fired while the vehicle is held down, conducted before launch to verify systems.' },
         { term: 'Suborbital', def: 'A flight that reaches space but doesn\'t achieve orbital velocity, following a parabolic trajectory back to Earth.' },
+        { term: 'Sun-Synchronous Orbit (SSO)', def: 'A polar orbit where the satellite passes over any given point on Earth at the same local solar time. Ideal for Earth observation satellites requiring consistent lighting conditions.' },
+        { term: 'Supernova', def: 'The explosive death of a massive star, briefly outshining entire galaxies. These events create and spread heavy elements throughout the universe.' },
       ]
     },
     {
@@ -161,6 +196,14 @@ export default function GlossaryPage() {
         { term: 'Thrust', def: 'The force produced by a rocket engine, typically measured in newtons or pounds-force.' },
         { term: 'Trajectory', def: 'The path followed by a spacecraft or projectile through space.' },
         { term: 'Trans-Lunar Injection (TLI)', def: 'A propulsion maneuver that sets a spacecraft on a trajectory toward the Moon.' },
+        { term: 'Tether', def: 'A long cable connecting spacecraft or satellites. Can be used for artificial gravity, momentum exchange, or electrodynamic propulsion.' },
+      ]
+    },
+    {
+      letter: 'U',
+      entries: [
+        { term: 'Ullage Motor', def: 'Small rocket motors that provide acceleration to settle propellant at the bottom of tanks before main engine ignition, especially important in microgravity.' },
+        { term: 'Upper Stage', def: 'The topmost rocket stage that operates in vacuum to place payloads into their final orbits or send spacecraft beyond Earth orbit.' },
       ]
     },
     {
@@ -168,12 +211,20 @@ export default function GlossaryPage() {
       entries: [
         { term: 'Velocity', def: 'Speed in a given direction. Orbital velocity is the speed needed to maintain an orbit.' },
         { term: 'Vernier Engines', def: 'Small thrusters used for fine adjustments to a spacecraft\'s trajectory or attitude.' },
+        { term: 'Van Allen Belts', def: 'Regions of intense radiation trapped by Earth\'s magnetic field, discovered by Explorer 1 in 1958. Spacecraft must pass through them quickly or avoid them with orbital inclination.' },
       ]
     },
     {
       letter: 'W',
       entries: [
         { term: 'Webcast', def: 'Live video broadcast of a rocket launch, typically streamed on YouTube or the agency\'s website.' },
+        { term: 'Wet Mass', def: 'The total mass of a rocket stage including propellant. Compare to dry mass (empty stage). The ratio between them affects efficiency.' },
+      ]
+    },
+    {
+      letter: 'Z',
+      entries: [
+        { term: 'Zero-G / Zero Gravity', def: 'Colloquial term for weightlessness or microgravity. Technically incorrect as gravity still exists in orbit, but objects are in continuous free fall.' },
       ]
     },
   ];
@@ -218,7 +269,7 @@ export default function GlossaryPage() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Space Terms & Definitions</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A comprehensive glossary of space exploration terminology, rocket science jargon,
+            A comprehensive glossary with over 100 space exploration terms, rocket science jargon,
             and astronomical definitions to help you understand the language of spaceflight
           </p>
         </div>

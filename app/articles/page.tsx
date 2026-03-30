@@ -36,6 +36,30 @@ export default function ArticlesPage() {
       href: '/articles/near-earth-asteroids',
       color: 'orange',
     },
+    {
+      title: 'Commercial Space Tourism: The New Era',
+      description: 'Everything about space tourism—current providers, costs, training, safety, and the future of civilian spaceflight with Blue Origin, Virgin Galactic, and SpaceX.',
+      category: 'Space Tourism',
+      readTime: '14 min read',
+      href: '/articles/space-tourism',
+      color: 'green',
+    },
+    {
+      title: 'The Future of Mars Exploration',
+      description: 'Comprehensive guide to Mars missions—current rovers, NASA\'s plans, SpaceX Starship, colonization challenges, and humanity\'s path to the Red Planet.',
+      category: 'Mars Exploration',
+      readTime: '15 min read',
+      href: '/articles/mars-exploration',
+      color: 'red',
+    },
+    {
+      title: 'Satellite Constellations: Connecting the World',
+      description: 'Deep dive into mega-constellations like Starlink, OneWeb, and Kuiper—how they work, their benefits, space debris concerns, and impact on astronomy.',
+      category: 'Satellite Technology',
+      readTime: '13 min read',
+      href: '/articles/satellite-constellations',
+      color: 'cyan',
+    },
   ];
 
   return (
@@ -119,7 +143,7 @@ export default function ArticlesPage() {
                 <i className="fa-solid fa-circle-question text-blue-400 text-2xl"></i>
               </div>
               <h3 className="text-white font-semibold mb-2">FAQ</h3>
-              <p className="text-gray-400 text-sm">26 answered questions about space exploration</p>
+              <p className="text-gray-400 text-sm">33 answered questions about space exploration</p>
             </Link>
 
             <Link href="/glossary" className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-purple-500 transition-colors text-center">
@@ -127,7 +151,7 @@ export default function ArticlesPage() {
                 <i className="fa-solid fa-book text-purple-400 text-2xl"></i>
               </div>
               <h3 className="text-white font-semibold mb-2">Glossary</h3>
-              <p className="text-gray-400 text-sm">80+ space terms and definitions</p>
+              <p className="text-gray-400 text-sm">100+ space terms and definitions</p>
             </Link>
 
             <Link href="/launches" className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-orange-500 transition-colors text-center">

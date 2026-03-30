@@ -138,6 +138,39 @@ export default function FAQPage() {
         {
           q: 'What is the Great Filter theory?',
           a: 'The Great Filter is a proposed solution to the Fermi Paradox (why haven\'t we detected alien civilizations). It suggests there\'s a barrier that prevents life from reaching advanced, space-faring stages. This filter could be behind us (abiogenesis is extremely rare) or ahead of us (civilizations tend to destroy themselves). Space exploration helps us understand whether we\'ve passed the filter or if challenges await.'
+        },
+        {
+          q: 'What is the Overview Effect?',
+          a: 'The Overview Effect is a cognitive shift reported by astronauts when viewing Earth from space. Seeing the planet as a fragile, borderless whole suspended in the void often produces profound feelings of awe, interconnectedness, and a desire to protect Earth. Many astronauts describe it as a life-changing experience that transforms their perspective on humanity and our place in the universe. This psychological phenomenon is one reason some advocate for wider access to spaceflight.'
+        }
+      ]
+    },
+    {
+      category: 'Commercial Spaceflight & Technology',
+      questions: [
+        {
+          q: 'What is Starlink and how does it work?',
+          a: 'Starlink is SpaceX\'s satellite internet constellation with over 5,000 satellites in low Earth orbit (340-570 km altitude). Unlike traditional satellites in geostationary orbit (35,786 km), Starlink\'s low altitude reduces latency to 20-40ms—comparable to fiber internet. User terminals on the ground automatically track satellites as they pass overhead, switching between them for continuous connectivity. The system provides internet to remote and rural areas where traditional broadband is unavailable.'
+        },
+        {
+          q: 'Can regular people go to space?',
+          a: 'Yes! Commercial space tourism is now a reality. Blue Origin and Virgin Galactic offer suborbital flights that reach the edge of space for $200,000-450,000 per seat, providing a few minutes of weightlessness. SpaceX offers orbital missions starting around $50-60 million per seat for multi-day trips. Axiom Space arranges ISS visits for $55-70 million. While currently expensive, costs are expected to decrease over time as technology improves and competition increases.'
+        },
+        {
+          q: 'What is SpaceX\'s Starship and why is it important?',
+          a: 'Starship is SpaceX\'s fully reusable super heavy-lift launch system designed to carry 100+ tons to orbit or Mars. At 120 meters tall when stacked with its Super Heavy booster, it will be the most powerful rocket ever built. Unlike any previous rocket, both stages are designed to be fully and rapidly reusable, potentially reducing launch costs dramatically. Starship is central to SpaceX\'s Mars colonization plans and NASA has selected a lunar variant for Artemis moon landings. It represents a paradigm shift in space transportation.'
+        },
+        {
+          q: 'How do companies make money from space?',
+          a: 'Space is now a trillion-dollar economy. Launch providers (SpaceX, Rocket Lab, ULA) sell launch services to governments and commercial customers. Satellite communications companies provide internet, TV, and data services. Earth observation companies sell imagery to agriculture, government, insurance, and other industries. Space tourism is emerging. Manufacturing experiments test products in microgravity. GPS and navigation systems generate enormous economic value. Asteroid mining and space-based solar power are future possibilities still in development.'
+        },
+        {
+          q: 'What are CubeSats?',
+          a: 'CubeSats are miniature satellites built in standardized 10cm x 10cm x 10cm units (1U), with common sizes being 1U, 3U, 6U, or 12U. They\'ve revolutionized access to space by dramatically reducing costs—a CubeSat mission might cost $100,000-500,000 vs. tens of millions for traditional satellites. Universities, startups, and research organizations use CubeSats for Earth observation, technology demonstrations, scientific research, and communications. They often launch as secondary payloads on missions carrying larger satellites.'
+        },
+        {
+          q: 'What is space debris and why is it dangerous?',
+          a: 'Space debris consists of defunct satellites, spent rocket stages, and fragments from collisions and explosions—over 34,000 trackable objects larger than 10cm orbit Earth, with millions of smaller pieces. At orbital velocities (17,500+ mph), even small debris can catastrophically damage satellites or spacecraft. The Kessler Syndrome describes a theoretical cascade where collisions create more debris, triggering more collisions. This could render certain orbits unusable. Mitigation includes designing satellites to deorbit within 25 years (now often 5 years), avoiding debris-generating events, and developing active debris removal technologies.'
         }
       ]
     }
