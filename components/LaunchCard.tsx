@@ -39,7 +39,7 @@ const SPECTRUM_ONWARD_YOUTUBE_ID = 'MsbZj8PxmUk';
 const ATLAS_V_AMAZON_LEO_YOUTUBE_ID = '6SiX9UPKq8Y';
 const STARLINK_1044_YOUTUBE_ID = 'tArfYI_wUsU';
 const MERIDIAN_M21L_YOUTUBE_ID = '83D0qjisYEo';
-const ARTEMIS_II_YOUTUBE_ID = 'oQ6t_wWGZmY';
+const ARTEMIS_II_YOUTUBE_ID = 'Tf_UjBMIzNo';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
