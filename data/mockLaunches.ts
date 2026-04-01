@@ -2,6 +2,18 @@ import { Launch } from '@/types/launch';
 
 export const mockLaunches: Launch[] = [
   {
+    id: '2',
+    name: '🔥 Artemis II',
+    rocket: 'Space Launch System Block 1',
+    rocketId: 'sls',
+    operator: 'NASA',
+    location: 'Kennedy Space Center LC-39B, FL, USA',
+    launchDate: '2026-04-02T18:14:00.000Z',
+    status: 'Go',
+    description: 'First crewed mission of NASA\'s Artemis program, carrying astronauts around the Moon.',
+    recovery: 'N/A'
+  },
+  {
     id: '0',
     name: 'Starlink Group 17-13',
     rocket: 'Falcon 9 Block 5',
@@ -39,18 +51,6 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband network.',
     recovery: 'ASDS - Just Read the Instructions',
     livestream: 'https://www.youtube.com/spacex'
-  },
-  {
-    id: '2',
-    name: 'Artemis II',
-    rocket: 'Space Launch System Block 1',
-    rocketId: 'sls',
-    operator: 'NASA',
-    location: 'Kennedy Space Center LC-39B, FL, USA',
-    launchDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 1 day from now
-    status: 'Go',
-    description: 'First crewed mission of NASA\'s Artemis program, carrying astronauts around the Moon.',
-    recovery: 'N/A'
   },
   {
     id: '3',
