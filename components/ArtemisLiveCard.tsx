@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const ARTEMIS_LIVE_YOUTUBE_ID = 'NQ3gSBrhSk4';
+const ARTEMIS_LIVE_YOUTUBE_ID = '6RwfNBtepa4';
 
 export default function ArtemisLiveCard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
