@@ -17,5 +17,4 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: ['/admin/dashboard/:path*', '/admin/new/:path*'],
-  runtime: 'edge', // Required for Cloudflare Pages
 };
