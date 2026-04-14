@@ -34,6 +34,18 @@ export default function FAQPage() {
         {
           q: 'What happens during a launch abort?',
           a: 'Modern crewed rockets have launch abort systems (LAS) designed to quickly separate the crew capsule from the rocket if something goes wrong. The abort system fires powerful solid rocket motors that pull the capsule away from the failing rocket, then deploys parachutes for a safe landing. SpaceX Crew Dragon demonstrated this capability in 2020 with an in-flight abort test.'
+        },
+        {
+          q: 'What is the difference between orbital and suborbital launches?',
+          a: 'Orbital launches place spacecraft into orbit around Earth at speeds of approximately 17,500 mph, allowing them to continuously circle the planet. Suborbital launches reach space (above 62 miles) but don\'t achieve orbital velocity, so they arc up and come back down, similar to a very high ballistic trajectory. Space tourism flights by Blue Origin and Virgin Galactic are suborbital, providing a few minutes of weightlessness before returning to Earth.'
+        },
+        {
+          q: 'What are the major spaceports around the world?',
+          a: 'Major launch sites include Kennedy Space Center and Cape Canaveral Space Force Station in Florida (USA), Vandenberg Space Force Base in California (USA), Baikonur Cosmodrome in Kazakhstan (Russia\'s primary site), Guiana Space Centre in French Guiana (ESA), Jiuquan, Taiyuan, Xichang, and Wenchang in China, Tanegashima and Uchinoura in Japan, and Satish Dhawan Space Centre in India. Each site is chosen for geographic advantages—proximity to the equator provides extra velocity from Earth\'s rotation for eastward launches.'
+        },
+        {
+          q: 'How do countdown holds work during a launch?',
+          a: 'Launch countdowns include built-in holds at specific points (like T-10 minutes or T-4 minutes) where the clock stops while teams verify systems and complete final preparations. These planned holds are normal and expected. Unplanned holds occur when issues arise that need resolution. The countdown can resume once problems are fixed, or the launch may be scrubbed if issues can\'t be resolved within the launch window. Teams follow detailed checklists during holds to ensure no steps are missed.'
         }
       ]
     },
@@ -59,6 +71,18 @@ export default function FAQPage() {
         {
           q: 'Why are rockets so loud?',
           a: 'Rocket engines produce immense noise from the high-speed exhaust gases. The sound comes from shock waves, turbulence, and the interaction of the exhaust with the atmosphere. A Falcon 9 launch generates around 140-150 decibels at close range—enough to cause immediate hearing damage. The sound can be heard and felt from miles away. Launch pads use water deluge systems to absorb some of the acoustic energy.'
+        },
+        {
+          q: 'How do ion drives work?',
+          a: 'Ion drives (or ion thrusters) use electricity to ionize propellant atoms (typically xenon) and accelerate them to extremely high velocities using electric fields. While thrust is very small—about the weight of a piece of paper—ion drives are incredibly fuel-efficient and can operate continuously for years. They\'re ideal for deep space missions like NASA\'s Dawn spacecraft, which explored asteroids Vesta and Ceres. Ion drives work best in the vacuum of space and can\'t overcome Earth\'s gravity, so they\'re used only after conventional rockets reach orbit.'
+        },
+        {
+          q: 'What is specific impulse and why does it matter?',
+          a: 'Specific impulse (Isp) measures rocket engine efficiency—how much thrust you get per unit of propellant over time, expressed in seconds. Higher Isp means better fuel efficiency. Chemical rockets have Isp values of 300-450 seconds, while ion drives can exceed 3,000 seconds. However, ion drives produce minimal thrust. The ideal engine depends on the mission: chemical rockets for launch where high thrust is needed, electric propulsion for long-duration space missions where efficiency matters more than thrust. Specific impulse is to rockets what miles-per-gallon is to cars.'
+        },
+        {
+          q: 'What is thrust-to-weight ratio?',
+          a: 'Thrust-to-weight ratio (TWR) compares a rocket\'s thrust to its weight. A TWR greater than 1 means the rocket can overcome gravity and lift off. Saturn V had a liftoff TWR of about 1.5, while modern rockets like Falcon Heavy achieve ratios around 1.5-2.0. Fighter jets can have TWRs exceeding 1.0, allowing vertical acceleration. As rockets burn fuel and become lighter, their TWR increases dramatically. This is why rockets accelerate faster as they ascend—the same engines push against decreasing mass.'
         }
       ]
     },
@@ -142,6 +166,18 @@ export default function FAQPage() {
         {
           q: 'What is the Overview Effect?',
           a: 'The Overview Effect is a cognitive shift reported by astronauts when viewing Earth from space. Seeing the planet as a fragile, borderless whole suspended in the void often produces profound feelings of awe, interconnectedness, and a desire to protect Earth. Many astronauts describe it as a life-changing experience that transforms their perspective on humanity and our place in the universe. This psychological phenomenon is one reason some advocate for wider access to spaceflight.'
+        },
+        {
+          q: 'How do we find exoplanets?',
+          a: 'Astronomers use several methods to detect planets orbiting other stars. The transit method watches for tiny dips in a star\'s brightness when a planet passes in front of it—NASA\'s Kepler and TESS missions used this technique to discover thousands of exoplanets. The radial velocity method detects the wobble a planet causes in its star\'s motion. Direct imaging captures actual pictures of planets, though this is extremely difficult. Gravitational microlensing uses gravity\'s bending of light to reveal planets. Over 5,500 exoplanets have been confirmed, revolutionizing our understanding of planetary systems.'
+        },
+        {
+          q: 'What is the habitable zone?',
+          a: 'The habitable zone (or "Goldilocks zone") is the region around a star where conditions might be just right for liquid water to exist on a planet\'s surface—not too hot, not too cold. For our Sun, this zone extends roughly from Venus\'s orbit to Mars\'s orbit, with Earth perfectly positioned in the middle. However, being in the habitable zone doesn\'t guarantee life—Venus is too hot due to its runaway greenhouse effect, while Mars is too cold and has lost most of its atmosphere. Many factors beyond distance affect habitability, including atmospheric composition, magnetic field, and planetary mass.'
+        },
+        {
+          q: 'What is dark matter?',
+          a: 'Dark matter is mysterious invisible matter that makes up about 85% of all matter in the universe. We can\'t see it directly because it doesn\'t emit, absorb, or reflect light, but we know it exists because of its gravitational effects. Galaxies rotate faster than they should based on visible matter alone—dark matter provides the extra gravity holding them together. Despite decades of searching, we still don\'t know what dark matter is made of. Leading candidates include WIMPs (weakly interacting massive particles) and axions. Understanding dark matter is one of the biggest challenges in modern physics.'
         }
       ]
     },
@@ -171,6 +207,69 @@ export default function FAQPage() {
         {
           q: 'What is space debris and why is it dangerous?',
           a: 'Space debris consists of defunct satellites, spent rocket stages, and fragments from collisions and explosions—over 34,000 trackable objects larger than 10cm orbit Earth, with millions of smaller pieces. At orbital velocities (17,500+ mph), even small debris can catastrophically damage satellites or spacecraft. The Kessler Syndrome describes a theoretical cascade where collisions create more debris, triggering more collisions. This could render certain orbits unusable. Mitigation includes designing satellites to deorbit within 25 years (now often 5 years), avoiding debris-generating events, and developing active debris removal technologies.'
+        }
+      ]
+    },
+    {
+      category: 'Planets & Solar System',
+      questions: [
+        {
+          q: 'Why is Mars red?',
+          a: 'Mars appears red because its surface is covered in iron oxide—essentially rust. Billions of years ago, Mars had liquid water and a thicker atmosphere. Iron in Martian rocks reacted with oxygen and water to form iron oxide, the same process that makes iron rust on Earth. This reddish dust covers most of the planet and gets kicked up by winds, giving Mars its distinctive rusty color visible even from Earth. The iron-rich minerals in Mars\' soil were likely oxidized when the planet still had a wetter, more active climate.'
+        },
+        {
+          q: 'What are the phases of the Moon and why do they change?',
+          a: 'The Moon\'s phases—new moon, crescent, quarter, gibbous, and full moon—result from changing angles between the Sun, Moon, and Earth. The Moon doesn\'t produce its own light; it reflects sunlight. As the Moon orbits Earth (taking about 29.5 days), we see different portions of its sunlit side. At new moon, the Moon is between Earth and Sun, so its dark side faces us. At full moon, Earth is between the Sun and Moon, and we see the entire sunlit side. The phases progress predictably, allowing ancient cultures to create lunar calendars. The same side of the Moon always faces Earth due to tidal locking.'
+        },
+        {
+          q: 'Could there be life on Jupiter\'s moons?',
+          a: 'Jupiter\'s moons, particularly Europa, Ganymede, and Callisto, are prime candidates for extraterrestrial life in our solar system. Europa has a global ocean beneath its icy crust containing twice as much water as all of Earth\'s oceans. Tidal heating from Jupiter\'s gravity keeps this ocean liquid and may create hydrothermal vents on the ocean floor—similar to those that support life in Earth\'s deep oceans. NASA\'s Europa Clipper mission (launching 2024) will study Europa\'s ice shell and ocean for signs of habitability. While we haven\'t found life there yet, these moons have the key ingredients: liquid water, chemical nutrients, and energy sources.'
+        },
+        {
+          q: 'What would happen if you stood on Jupiter?',
+          a: 'You can\'t stand on Jupiter because it\'s a gas giant with no solid surface. Jupiter consists mainly of hydrogen and helium gas that gradually transitions to liquid hydrogen under immense pressure deeper in the planet. If you fell into Jupiter, you\'d first pass through ammonia clouds in the upper atmosphere. As you descended, pressure and temperature would increase dramatically—eventually reaching 20,000°C and millions of times Earth\'s atmospheric pressure. The intense radiation, crushing pressure, and extreme heat would destroy any spacecraft long before reaching the theoretical rocky core deep in Jupiter\'s interior. Jupiter\'s "surface" is defined as the altitude where atmospheric pressure equals Earth\'s sea-level pressure.'
+        }
+      ]
+    },
+    {
+      category: 'Astronomy & Observation',
+      questions: [
+        {
+          q: 'Why can\'t we see stars during the day?',
+          a: 'Stars are always in the sky, both day and night, but during the day, the Sun\'s light scattered by Earth\'s atmosphere makes the sky bright blue, overwhelming the faint light from distant stars. This scattering occurs because sunlight collides with molecules in our atmosphere, redirecting light in all directions. The effect is strongest for blue light (shorter wavelength), which is why the sky appears blue. Stars become visible after sunset when sunlight no longer dominates. Astronauts in space, where there\'s no atmosphere to scatter light, can see stars even when the Sun is in view. This same principle explains why the sky is darker at higher altitudes where the atmosphere is thinner.'
+        },
+        {
+          q: 'What is a supernova?',
+          a: 'A supernova is the catastrophic explosion of a star, one of the most energetic events in the universe. There are two main types: Type Ia supernovae occur when a white dwarf star accumulates matter from a companion star until it reaches a critical mass and explodes. Type II supernovae happen when massive stars (at least 8 times the Sun\'s mass) exhaust their nuclear fuel and collapse, then rebound in a violent explosion. For a few weeks, a single supernova can outshine an entire galaxy of billions of stars. These explosions create and distribute heavy elements like gold, iron, and uranium throughout the universe—elements essential for planets and life. The core collapse of massive stars can create neutron stars or black holes.'
+        },
+        {
+          q: 'How do we know the universe is expanding?',
+          a: 'In 1929, Edwin Hubble discovered that distant galaxies show redshift—their light is stretched to longer, redder wavelengths. This redshift occurs because galaxies are moving away from us; the farther away a galaxy is, the faster it recedes. This relationship (Hubble\'s Law) indicates the universe itself is expanding, carrying galaxies apart like dots on an inflating balloon. The expansion isn\'t galaxies moving through space, but space itself stretching. Detailed observations of distant supernovae in the 1990s revealed that this expansion is accelerating, driven by mysterious dark energy. The cosmic microwave background radiation—the afterglow of the Big Bang—provides additional evidence of the universe\'s expansion from a hot, dense state 13.8 billion years ago.'
+        },
+        {
+          q: 'What are meteor showers and when do they occur?',
+          a: 'Meteor showers occur when Earth passes through debris trails left by comets orbiting the Sun. As comets approach the Sun, they shed dust and ice particles. When Earth crosses these debris streams, particles enter our atmosphere at high speeds (up to 70 km/s), burning up and creating bright streaks we call meteors or "shooting stars." Major annual showers include the Perseids (August, from comet Swift-Tuttle), Leonids (November, from comet Tempel-Tuttle), and Geminids (December, from asteroid 3200 Phaethon). Each shower radiates from a specific constellation, which gives them their names. Peak viewing times are predictable years in advance, best seen from dark locations away from city lights in the hours before dawn.'
+        }
+      ]
+    },
+    {
+      category: 'Future of Space Exploration',
+      questions: [
+        {
+          q: 'What is the Artemis program?',
+          a: 'Artemis is NASA\'s program to return humans to the Moon and establish sustainable lunar exploration by the late 2020s. Unlike Apollo\'s brief visits, Artemis aims to build a permanent presence with the Lunar Gateway space station in lunar orbit and surface habitats near the Moon\'s south pole. Artemis I (2022) successfully tested the SLS rocket and Orion spacecraft. Artemis II (planned 2026) will send astronauts around the Moon. Artemis III aims to land humans on the lunar surface, including the first woman and first person of color. The program serves as a proving ground for technologies needed for eventual Mars missions, including life support systems, radiation protection, and in-situ resource utilization (extracting water ice and producing fuel from lunar materials).'
+        },
+        {
+          q: 'Can humans live on Mars permanently?',
+          a: 'Mars presents enormous challenges for permanent settlement, but none appear insurmountable with sufficient technology and resources. Major challenges include: radiation exposure (Mars lacks Earth\'s protective magnetic field and thick atmosphere), toxic perchlorates in Martian soil, extreme cold (average -60°C), low atmospheric pressure (requiring pressurized habitats), and psychological isolation. However, potential solutions exist: habitats could use regolith (Martian soil) for radiation shielding, greenhouses could grow food, water ice at the poles could provide water and breathable oxygen, and in-situ resource utilization could manufacture fuel and building materials. Long-term health effects of Mars\' 38% Earth gravity remain unknown. Small research bases are likely before large permanent settlements, possibly arriving in the 2040s-2050s. Success requires international cooperation and enormous financial investment.'
+        },
+        {
+          q: 'Will we ever reach another star system?',
+          a: 'Reaching another star system presents challenges far beyond anything we\'ve attempted. The nearest star, Proxima Centauri, is 4.24 light-years away (40 trillion km). Current spacecraft would take 80,000+ years to reach it. However, several concepts could dramatically reduce travel time: nuclear fusion rockets might achieve 10% light speed, reaching Proxima in 40-50 years. Breakthrough Starshot proposes tiny light-sail probes pushed by powerful lasers, potentially reaching 20% light speed for 20-year journeys. Generation ships carrying multiple generations of crew could make centuries-long journeys. More speculative ideas include antimatter propulsion or even warp drives (currently purely theoretical). The first interstellar missions will likely be unmanned probes. Crewed interstellar travel probably won\'t happen this century but may become possible in the next few hundred years as technology advances.'
+        },
+        {
+          q: 'What is space-based solar power?',
+          a: 'Space-based solar power (SBSP) involves collecting solar energy in space using enormous satellite arrays and transmitting it wirelessly to Earth via microwaves or lasers. In space, solar panels would receive sunlight 24/7 without atmospheric interference, weather, or day/night cycles, making them 5-10 times more efficient than ground-based solar. The energy would be beamed to receiving stations (rectennas) on Earth\'s surface and converted to electricity. Advantages include clean, abundant energy and reduced land use. Challenges are enormous: launching thousands of tons of solar panels to space, assembling kilometer-scale structures in orbit, safely transmitting power, and achieving costs competitive with ground-based renewables. China and Japan have active SBSP research programs, with Japan planning demonstration satellites by 2025. Commercial viability likely requires significantly cheaper launch costs, possibly via Starship-class reusable rockets.'
         }
       ]
     }

@@ -4,7 +4,6 @@ import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
 import AdUnit from '@/components/AdUnit';
-import ArtemisLiveCard from '@/components/ArtemisLiveCard';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -105,12 +104,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Artemis II Live Coverage - Special Featured Section */}
-      <section className="container mx-auto px-4 py-8">
-        <ArtemisLiveCard />
-      </section>
-
-      {/* Next Launches Highlight - MOVED UP */}
+      {/* Next Launches Highlight */}
       <section className="container mx-auto px-4 py-8">
         <div className="mb-5">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">

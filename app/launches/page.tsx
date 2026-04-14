@@ -92,6 +92,137 @@ export default async function LaunchesPage() {
           </div>
         </section>
 
+        {/* Educational Content - Understanding Space Launches */}
+        <section className="mb-8 max-w-7xl mx-auto">
+          <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8 mb-6">
+            <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+              <i className="fa-solid fa-rocket text-blue-400"></i>
+              Understanding Space Launches
+            </h2>
+            <div className="space-y-4 text-gray-300 leading-relaxed">
+              <p>
+                A space launch is one of the most complex and precisely orchestrated engineering achievements in human history.
+                Each launch represents the culmination of years of design, testing, and preparation, where thousands of components
+                must work flawlessly in sequence to propel a payload from Earth's surface to the vacuum of space at speeds exceeding
+                17,500 miles per hour (28,000 km/h) required to achieve orbital velocity.
+              </p>
+
+              <h3 className="text-xl font-semibold text-white mt-6 mb-3">What Happens During a Launch</h3>
+              <p>
+                The launch sequence begins at T-minus several hours with final vehicle checks, propellant loading, and range clearance.
+                Modern rockets use a multi-stage design where sections of the vehicle are jettisoned after their fuel is exhausted,
+                reducing mass and allowing the remaining stages to accelerate more efficiently. The first stage, which does the heavy
+                lifting of breaking free from Earth's gravitational pull, burns for approximately 2-3 minutes before separation.
+                Second stages then ignite to continue the climb toward orbital altitude, often performing multiple burns to circularize
+                the orbit or inject the payload onto its intended trajectory.
+              </p>
+
+              <p>
+                For missions beyond low Earth orbit—such as lunar missions, Mars rovers, or deep space probes—upper stages may perform
+                additional burns hours or even days after launch. Companies like SpaceX have revolutionized the industry with reusable
+                first stages that autonomously return to Earth, landing vertically on drone ships or landing pads to be refurbished
+                and flown again, dramatically reducing launch costs.
+              </p>
+
+              <h3 className="text-xl font-semibold text-white mt-6 mb-3">Why Launches Matter</h3>
+              <p>
+                Every space launch serves a critical purpose that impacts life on Earth. Communication satellites enable global internet,
+                television, and phone services, connecting billions of people across continents. Earth observation satellites monitor
+                climate change, track deforestation, predict weather patterns, and provide early warning for natural disasters. GPS
+                satellites enable navigation systems used by everyone from commercial airlines to emergency services to smartphone users.
+              </p>
+
+              <p>
+                Scientific missions expand our understanding of the universe: telescopes like James Webb peer into the early universe,
+                planetary probes study the geology and atmospheres of other worlds, and space-based observatories monitor the Sun's
+                activity to predict solar storms. Cargo resupply missions keep the International Space Station operational, enabling
+                continuous scientific research in microgravity that has led to breakthroughs in medicine, materials science, and biology.
+              </p>
+
+              <h3 className="text-xl font-semibold text-white mt-6 mb-3">Types of Missions</h3>
+              <div className="grid md:grid-cols-2 gap-4 mt-3">
+                <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">Commercial Satellites</h4>
+                  <p className="text-sm text-gray-400">
+                    Deploy communication, imaging, and internet constellation satellites. SpaceX's Starlink missions regularly
+                    launch 50+ satellites per flight to build global broadband coverage.
+                  </p>
+                </div>
+                <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">Crewed Missions</h4>
+                  <p className="text-sm text-gray-400">
+                    Transport astronauts to and from the International Space Station or other destinations. Require extensive
+                    safety systems and human-rated vehicles like Crew Dragon or Soyuz.
+                  </p>
+                </div>
+                <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">Cargo & Resupply</h4>
+                  <p className="text-sm text-gray-400">
+                    Deliver supplies, experiments, and equipment to space stations. Dragon, Cygnus, and Progress vehicles
+                    regularly resupply the ISS with food, water, scientific equipment, and spare parts.
+                  </p>
+                </div>
+                <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4">
+                  <h4 className="font-semibold text-white mb-2">Planetary Exploration</h4>
+                  <p className="text-sm text-gray-400">
+                    Send robotic probes, rovers, and orbiters to study other planets, moons, and asteroids. Missions like
+                    Perseverance, Europa Clipper, and JUICE expand our knowledge of the solar system.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Launch Windows and Timing Section */}
+          <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8">
+            <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+              <i className="fa-solid fa-clock text-blue-400"></i>
+              Launch Windows and Timing
+            </h2>
+            <div className="space-y-4 text-gray-300 leading-relaxed">
+              <p>
+                Unlike commercial aviation where flights can depart with some flexibility, space launches must occur within precise
+                "launch windows"—specific time periods when the orbital mechanics align to allow the mission to reach its intended
+                destination. These windows can range from instantaneous (a single second) for missions to the International Space Station,
+                to several hours for satellite deployments into geostationary orbit, to weeks for interplanetary missions.
+              </p>
+
+              <h3 className="text-xl font-semibold text-white mt-6 mb-3">Why Orbital Mechanics Dictate Timing</h3>
+              <p>
+                Earth rotates at approximately 1,000 miles per hour at the equator while simultaneously orbiting the Sun at 67,000 miles
+                per hour. The launch site, target orbit, and destination all move in complex paths through three-dimensional space.
+                To rendezvous with the ISS, for example, a spacecraft must launch at the exact moment when the station's orbital plane
+                intersects with the launch site's position on Earth's surface. Miss this window by even a few minutes, and the spacecraft
+                will end up in the wrong orbital plane, requiring prohibitively expensive fuel to correct.
+              </p>
+
+              <p>
+                For interplanetary missions, launch windows are determined by the relative positions of Earth and the target planet.
+                Mars launch windows occur approximately every 26 months when Earth and Mars are properly aligned for the most fuel-efficient
+                trajectory called a Hohmann transfer orbit. Venus missions have more frequent windows every 19 months. Missions to the
+                outer planets may have windows only once every several years when planetary positions create gravitational assist opportunities.
+              </p>
+
+              <h3 className="text-xl font-semibold text-white mt-6 mb-3">Weather and Technical Considerations</h3>
+              <p>
+                Even within an ideal orbital window, launches must satisfy strict weather criteria. Upper-level wind shear, lightning,
+                ground winds, and precipitation can all scrub a launch. Range safety rules prohibit launching through clouds that could
+                contain charged particles that might trigger lightning. Temperature affects propellant density and performance—too cold
+                and seals become brittle (as tragically demonstrated by the Challenger disaster), too hot and cryogenic fuels boil off
+                faster than planned.
+              </p>
+
+              <p>
+                Technical issues discovered during final countdown procedures often require delays. Modern rockets contain millions of
+                components, and any anomaly in telemetry data, propellant flow rates, or computer systems can halt the launch sequence.
+                This is why you'll often see launches postponed by 24-48 hours—teams need time to troubleshoot issues, implement fixes,
+                and reset complex ground systems. For crewed missions, safety margins are even more conservative, resulting in a higher
+                scrub rate but ensuring astronaut safety remains the top priority.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Data Source Indicator */}
         {!useRealData && (
           <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-lg p-3 mb-6">
