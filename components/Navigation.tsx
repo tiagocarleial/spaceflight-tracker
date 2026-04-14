@@ -21,13 +21,14 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/rockets', label: 'Rockets', icon: 'fa-space-shuttle', id: 'rockets' },
   { href: '/iss', label: 'ISS Live', icon: 'fa-satellite', id: 'iss' },
   { href: '/asteroids', label: 'Asteroids', icon: 'fa-meteor', id: 'asteroids' },
-  { href: '/events', label: 'Events', icon: 'fa-calendar-star', id: 'events' },
+  { href: '/events', label: 'Events', icon: 'fa-star', id: 'events' },
   { href: '/earthquakes', label: 'Earthquakes', icon: 'fa-earth-americas', id: 'earthquakes' },
   { href: '/blog', label: 'Blog', icon: 'fa-newspaper', id: 'blog' },
 ];
 
 const LEARN_ITEMS = [
   { href: '/articles', label: 'Articles', icon: 'fa-graduation-cap' },
+  { href: '/guides', label: 'Guides', icon: 'fa-book-open' },
   { href: '/faq', label: 'FAQ', icon: 'fa-circle-question' },
   { href: '/glossary', label: 'Glossary', icon: 'fa-book' },
 ];
