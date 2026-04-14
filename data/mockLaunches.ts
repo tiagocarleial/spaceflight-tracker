@@ -2,6 +2,19 @@ import { Launch } from '@/types/launch';
 
 export const mockLaunches: Launch[] = [
   {
+    id: 'starlink-17-27',
+    name: 'Starlink Group 17-27',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-04-15T02:00:00.000Z', // Apr 14, 2026, 11:00 PM GMT-3
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=C9PsD7HP33w'
+  },
+  {
     id: '2',
     name: '🔥 Artemis II',
     rocket: 'Space Launch System Block 1',
