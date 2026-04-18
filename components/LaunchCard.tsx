@@ -186,7 +186,6 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink1735 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-35');
   const isStarlink1727 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-27');
   const isStarlink1722 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-22');
-  const isNewGlennBlueBird2 = isNewGlenn && launch.name.toLowerCase().includes('bluebird block 2');
   const isGPSIIISV10 = isFalcon9 && launch.name.toLowerCase().includes('gps iii sv10');
   const isHASTE = launch.name.toLowerCase().includes('haste');
   const isFIREFLY = launch.name.toLowerCase().includes('stairway to seven');
@@ -198,6 +197,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isArtemisII = isSLS && launch.name.toLowerCase().includes('artemis ii');
   const isPSLV = launch.rocket.includes('PSLV');
   const isNewGlenn = launch.rocket.includes('New Glenn');
+  const isNewGlennBlueBird2 = isNewGlenn && launch.name.toLowerCase().includes('bluebird block 2');
   const isLongMarch2C = launch.rocket.includes('Long March 2C');
   const isLongMarch3BE = launch.rocket.includes('Long March 3B/E');
   const isLongMarch6A = launch.rocket.includes('Long March 6A');
