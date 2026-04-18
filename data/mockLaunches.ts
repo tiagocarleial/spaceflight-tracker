@@ -398,5 +398,44 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
     recovery: 'ASDS - Of Course I Still Love You',
     livestream: 'https://www.youtube.com/watch?v=H2Dofm5HhJk'
+  },
+  {
+    id: '30',
+    name: 'New Glenn | BlueBird Block 2 #2',
+    rocket: 'New Glenn',
+    rocketId: 'newglenn',
+    operator: 'Blue Origin',
+    location: 'Launch Complex 36A, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-04-18T20:00:00.000Z',
+    status: 'Go',
+    description: 'Blue Origin will launch the second BlueBird satellite constellation mission aboard the New Glenn rocket.',
+    recovery: 'Landing Ship',
+    livestream: 'https://www.youtube.com/watch?v=Th6CEXFBW9Q'
+  },
+  {
+    id: '31',
+    name: 'Starlink Group 17-22',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-04-19T14:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=HGjxJTLsjIQ'
+  },
+  {
+    id: '32',
+    name: 'GPS III SV10',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-04-20T06:57:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch the GPS III SV10 satellite for the U.S. Space Force to modernize the Global Positioning System constellation.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=q8kuBDUd-fM'
   }
 ];
