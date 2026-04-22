@@ -437,5 +437,31 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch the GPS III SV10 satellite for the U.S. Space Force to modernize the Global Positioning System constellation.',
     recovery: 'ASDS - Just Read the Instructions',
     livestream: 'https://www.youtube.com/watch?v=q8kuBDUd-fM'
+  },
+  {
+    id: '33',
+    name: 'Starlink Group 17-14',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-04-23T02:55:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=gw8bTsnujaA'
+  },
+  {
+    id: '34',
+    name: 'Kakushin Rising (JAXA Rideshare)',
+    rocket: 'Electron',
+    rocketId: 'electron',
+    operator: 'Rocket Lab',
+    location: 'Rocket Lab Launch Complex 1A, Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand',
+    launchDate: '2026-04-23T03:09:00.000Z',
+    status: 'Go',
+    description: 'Rocket Lab will launch the Kakushin Rising mission carrying JAXA rideshare payloads aboard the Electron rocket from New Zealand.',
+    recovery: 'Ocean Splashdown',
+    livestream: 'https://www.youtube.com/watch?v=6Ijsdu_B4gw'
   }
 ];
