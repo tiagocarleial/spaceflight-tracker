@@ -463,5 +463,31 @@ export const mockLaunches: Launch[] = [
     description: 'Rocket Lab will launch the Kakushin Rising mission carrying JAXA rideshare payloads aboard the Electron rocket from New Zealand.',
     recovery: 'Ocean Splashdown',
     livestream: 'https://www.youtube.com/watch?v=6Ijsdu_B4gw'
+  },
+  {
+    id: '35',
+    name: 'ViaSat-3 F3 (ViaSat-3 Asia-Pacific)',
+    rocket: 'Falcon Heavy',
+    rocketId: 'falconheavy',
+    operator: 'SpaceX',
+    location: 'Launch Complex 39A, Kennedy Space Center, FL, USA',
+    launchDate: '2026-04-27T14:21:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch the ViaSat-3 F3 communications satellite to provide high-speed internet coverage across the Asia-Pacific region.',
+    recovery: 'Side Boosters: RTLS - LZ-1/LZ-2, Center Core: Expendable',
+    livestream: 'https://www.youtube.com/watch?v=n14D0CYfocE'
+  },
+  {
+    id: '36',
+    name: 'Amazon Leo (LA-06)',
+    rocket: 'Atlas V 551',
+    rocketId: 'atlasvn22',
+    operator: 'United Launch Alliance',
+    location: 'Space Launch Complex 41, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-04-28T00:52:00.000Z',
+    status: 'Go',
+    description: 'United Launch Alliance will launch another batch of Amazon Kuiper satellites aboard the Atlas V 551 rocket to expand Amazon\'s broadband internet constellation.',
+    recovery: 'N/A',
+    livestream: 'https://www.youtube.com/watch?v=u5qUzkJb1tk'
   }
 ];

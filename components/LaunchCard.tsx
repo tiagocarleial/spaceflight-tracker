@@ -48,6 +48,8 @@ const STARLINK_1722_YOUTUBE_ID = 'HGjxJTLsjIQ';
 const GPS_III_SV10_YOUTUBE_ID = 'q8kuBDUd-fM';
 const STARLINK_1714_YOUTUBE_ID = 'gw8bTsnujaA';
 const ELECTRON_KAKUSHIN_YOUTUBE_ID = '6Ijsdu_B4gw';
+const VIASAT3_F3_YOUTUBE_ID = 'n14D0CYfocE';
+const ATLAS_V_AMAZON_LA06_YOUTUBE_ID = 'u5qUzkJb1tk';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -195,6 +197,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isKairosFlight3 = launch.name.toLowerCase().includes('kairos') && launch.name.toLowerCase().includes('flight 3');
   const isElectronBlackSky = launch.name.toLowerCase().includes('insight at speed is a friend indeed');
   const isFalconHeavy = launch.rocket.includes('Falcon Heavy');
+  const isViaSat3F3 = isFalconHeavy && launch.name.toLowerCase().includes('viasat-3 f3');
   const isStarship = launch.rocket.includes('Starship');
   const isSLS = launch.rocket.includes('Space Launch System') || launch.rocket.includes('SLS');
   const isArtemisII = isSLS && launch.name.toLowerCase().includes('artemis ii');
@@ -234,6 +237,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isGaganyaan = launch.rocket.includes('Gaganyaan');
   const isAtlasV = launch.rocket.includes('Atlas V');
   const isAtlasVAmazonLeo = isAtlasV && launch.name.toLowerCase().includes('amazon leo');
+  const isAtlasVAmazonLA06 = isAtlasV && launch.name.toLowerCase().includes('la-06');
   const isMinotaurIV = launch.rocket.includes('Minotaur IV') || launch.rocket.includes('Minotaur 4');
   const isMinotaurIVSTP = isMinotaurIV && (launch.name.toLowerCase().includes('stp-s29a') || launch.name.toLowerCase().includes('stp s29a'));
   const isPegasusXL = launch.rocket.includes('Pegasus XL');
@@ -242,7 +246,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin || isViaSat3F3 || isAtlasVAmazonLA06;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -693,6 +697,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isElectronKakushin && (
               <button
                 onClick={() => setVideoModalId(ELECTRON_KAKUSHIN_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isViaSat3F3 && (
+              <button
+                onClick={() => setVideoModalId(VIASAT3_F3_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isAtlasVAmazonLA06 && (
+              <button
+                onClick={() => setVideoModalId(ATLAS_V_AMAZON_LA06_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
