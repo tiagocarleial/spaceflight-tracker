@@ -489,5 +489,31 @@ export const mockLaunches: Launch[] = [
     description: 'United Launch Alliance will launch another batch of Amazon Kuiper satellites aboard the Atlas V 551 rocket to expand Amazon\'s broadband internet constellation.',
     recovery: 'N/A',
     livestream: 'https://www.youtube.com/watch?v=u5qUzkJb1tk'
+  },
+  {
+    id: '37',
+    name: 'Starlink Group 17-36',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-04-30T02:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=aICKQg1K8Yk'
+  },
+  {
+    id: '38',
+    name: 'Amazon Leo (LE-02)',
+    rocket: 'Ariane 64',
+    rocketId: 'ariane6',
+    operator: 'Arianespace',
+    location: 'Ariane Launch Area 4, Guiana Space Centre, French Guiana',
+    launchDate: '2026-04-30T08:08:00.000Z',
+    status: 'Go',
+    description: 'Arianespace will launch a batch of Amazon Kuiper satellites aboard the Ariane 64 rocket to expand Amazon\'s broadband internet constellation.',
+    recovery: 'N/A',
+    livestream: 'https://www.youtube.com/watch?v=-XFZXWr9QMI'
   }
 ];
