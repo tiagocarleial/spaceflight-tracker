@@ -515,5 +515,31 @@ export const mockLaunches: Launch[] = [
     description: 'Arianespace will launch a batch of Amazon Kuiper satellites aboard the Ariane 64 rocket to expand Amazon\'s broadband internet constellation.',
     recovery: 'N/A',
     livestream: 'https://www.youtube.com/watch?v=-XFZXWr9QMI'
+  },
+  {
+    id: '39',
+    name: 'Starlink Group 10-38',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-05-01T17:35:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=F6t613w-Pow'
+  },
+  {
+    id: '40',
+    name: 'CAS500-2 & Others',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-05-03T06:59:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch the CAS500-2 Earth observation satellite along with other rideshare payloads to sun-synchronous orbit.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=eI10xHO4f8E'
   }
 ];
