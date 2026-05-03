@@ -541,5 +541,18 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch the CAS500-2 Earth observation satellite along with other rideshare payloads to sun-synchronous orbit.',
     recovery: 'ASDS - Of Course I Still Love You',
     livestream: 'https://www.youtube.com/watch?v=eI10xHO4f8E'
+  },
+  {
+    id: '41',
+    name: 'Starlink Group 17-29',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-05-06T02:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=IhlqOzOj6qM'
   }
 ];
