@@ -91,15 +91,6 @@ export default function RootLayout({
           suppressHydrationWarning
         ></script>
 
-        {/* PropellerAds Display Ads */}
-        <script
-          src="https://quge5.com/88/tag.min.js"
-          data-zone="238487"
-          async
-          data-cfasync="false"
-          suppressHydrationWarning
-        ></script>
-
         {/* Media.net Script - Uncomment and add your Customer ID after approval */}
         {/* <script
           type="text/javascript"
