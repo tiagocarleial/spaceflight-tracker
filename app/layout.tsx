@@ -90,6 +90,24 @@ export default function RootLayout({
           crossOrigin="anonymous"
           suppressHydrationWarning
         ></script>
+
+        {/* Media.net Script - Uncomment and add your Customer ID after approval */}
+        {/* <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window._mNHandle = window._mNHandle || {};
+              window._mNHandle.queue = window._mNHandle.queue || [];
+              medianet_versionId = "3121199";
+            `,
+          }}
+          suppressHydrationWarning
+        />
+        <script
+          src="https://contextual.media.net/dmedianet.js?cid=YOUR_CUSTOMER_ID_HERE"
+          async
+          suppressHydrationWarning
+        ></script> */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
