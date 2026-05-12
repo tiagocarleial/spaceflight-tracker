@@ -554,5 +554,18 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
     recovery: 'ASDS - Of Course I Still Love You',
     livestream: 'https://www.youtube.com/watch?v=IhlqOzOj6qM'
+  },
+  {
+    id: '42',
+    name: 'Dragon CRS-2 SpX-34',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-05-12T23:16:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch the 34th Commercial Resupply Services mission to the International Space Station carrying cargo and scientific experiments.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=yWghA0cLDh0'
   }
 ];
