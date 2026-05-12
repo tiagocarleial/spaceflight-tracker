@@ -26,7 +26,7 @@ export default function MediaNetAd({
   useEffect(() => {
     try {
       if (typeof window !== 'undefined') {
-        window._mNHandle = window._mNHandle || {};
+        window._mNHandle = window._mNHandle || { queue: [] };
         window._mNHandle.queue = window._mNHandle.queue || [];
         window._mNHandle.queue.push(function() {
           // Media.net ad initialization will happen here
