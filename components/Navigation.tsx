@@ -20,7 +20,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/launches', label: 'Launches', icon: 'fa-rocket', id: 'launches' },
   { href: '/rockets', label: 'Rockets', icon: 'fa-space-shuttle', id: 'rockets' },
   { href: '/iss', label: 'ISS Live', icon: 'fa-satellite', id: 'iss' },
-  { href: '/tiangong', label: 'Tiangong 🇨🇳', icon: 'fa-satellite', id: 'tiangong' },
+  { href: '/tiangong', label: 'Tiangong Live', icon: 'fa-satellite', id: 'tiangong' },
   { href: '/asteroids', label: 'Asteroids', icon: 'fa-meteor', id: 'asteroids' },
   { href: '/events', label: 'Events', icon: 'fa-star', id: 'events' },
   { href: '/earthquakes', label: 'Earthquakes', icon: 'fa-earth-americas', id: 'earthquakes' },
@@ -88,7 +88,7 @@ export default function Navigation({ currentPage, variant = 'standard', classNam
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="text-xl md:text-3xl font-bold text-white flex items-center gap-2 md:gap-3">
+            <div className="text-base md:text-xl font-bold text-white flex items-center gap-2">
               <i className="fa-solid fa-rocket text-white"></i>
               <span className="hidden sm:inline">Spaceflight Tracker</span>
               <span className="sm:hidden">SpaceFlight</span>
