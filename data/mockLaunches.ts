@@ -567,5 +567,18 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch the 34th Commercial Resupply Services mission to the International Space Station carrying cargo and scientific experiments.',
     recovery: 'ASDS - Just Read the Instructions',
     livestream: 'https://www.youtube.com/watch?v=yWghA0cLDh0'
+  },
+  {
+    id: '43',
+    name: 'Starlink Group 17-37',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-05-15T14:00:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=qZ6vZHkgqZI'
   }
 ];
