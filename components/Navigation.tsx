@@ -20,6 +20,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/launches', label: 'Launches', icon: 'fa-rocket', id: 'launches' },
   { href: '/rockets', label: 'Rockets', icon: 'fa-space-shuttle', id: 'rockets' },
   { href: '/iss', label: 'ISS Live', icon: 'fa-satellite', id: 'iss' },
+  { href: '/tiangong', label: 'Tiangong 🇨🇳', icon: 'fa-satellite', id: 'tiangong' },
   { href: '/asteroids', label: 'Asteroids', icon: 'fa-meteor', id: 'asteroids' },
   { href: '/events', label: 'Events', icon: 'fa-star', id: 'events' },
   { href: '/earthquakes', label: 'Earthquakes', icon: 'fa-earth-americas', id: 'earthquakes' },
