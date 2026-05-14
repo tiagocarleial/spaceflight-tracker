@@ -90,12 +90,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
           suppressHydrationWarning
         ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(s){s.dataset.zone='11003513',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`,
-          }}
-          suppressHydrationWarning
-        />
 
         {/* Media.net Script - Uncomment and add your Customer ID after approval */}
         {/* <script
