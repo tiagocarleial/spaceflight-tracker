@@ -566,7 +566,7 @@ export const mockLaunches: Launch[] = [
     status: 'Go',
     description: 'SpaceX will launch the 34th Commercial Resupply Services mission to the International Space Station carrying cargo and scientific experiments.',
     recovery: 'ASDS - Just Read the Instructions',
-    livestream: 'https://www.youtube.com/watch?v=yWghA0cLDh0'
+    livestream: 'https://www.youtube.com/watch?v=sduVCfNEg7o'
   },
   {
     id: '43',
