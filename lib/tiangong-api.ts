@@ -1,6 +1,6 @@
 import { ISSPosition, Astronaut } from '@/types/iss';
 
-const ASTRONAUTS_API = 'http://api.open-notify.org/astros.json';
+const ASTRONAUTS_API = 'https://api.open-notify.org/astros.json';
 
 export async function getTiangongPosition(): Promise<ISSPosition | null> {
   try {

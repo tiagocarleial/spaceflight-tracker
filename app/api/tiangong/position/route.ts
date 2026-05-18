@@ -34,9 +34,12 @@ export async function GET() {
   try {
     const apiKey = process.env.NEXT_PUBLIC_N2YO_API_KEY;
 
+    console.log('N2YO API Key available:', !!apiKey);
+
     if (!apiKey || apiKey === 'YOUR_API_KEY_HERE') {
+      console.error('N2YO API key not configured');
       return NextResponse.json(
-        { error: 'N2YO API key not configured' },
+        { error: 'N2YO API key not configured. Please add NEXT_PUBLIC_N2YO_API_KEY to your environment variables.' },
         { status: 500 }
       );
     }
@@ -44,22 +47,29 @@ export async function GET() {
     const seconds = 1;
     const url = `${N2YO_API_BASE}/positions/${TIANGONG_NORAD_ID}/${DEFAULT_OBSERVER.lat}/${DEFAULT_OBSERVER.lng}/${DEFAULT_OBSERVER.alt}/${seconds}?apiKey=${apiKey}`;
 
+    console.log('Fetching Tiangong position from N2YO...');
+
     const response = await fetch(url, {
       cache: 'no-store',
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`N2YO API error: ${response.status} - ${errorText}`);
       throw new Error(`N2YO API error: ${response.status}`);
     }
 
     const data: N2YOPositionsResponse = await response.json();
 
     if (!data.positions || data.positions.length === 0) {
+      console.error('No position data returned from N2YO');
       throw new Error('No position data returned');
     }
 
     const pos = data.positions[0];
     const orbitalVelocity = 27600; // km/h
+
+    console.log('Successfully fetched Tiangong position');
 
     return NextResponse.json({
       latitude: pos.satlatitude,
@@ -77,7 +87,7 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching Tiangong position:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch Tiangong position' },
+      { error: `Failed to fetch Tiangong position: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
     );
   }

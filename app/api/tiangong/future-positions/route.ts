@@ -34,9 +34,12 @@ export async function GET(request: Request) {
   try {
     const apiKey = process.env.NEXT_PUBLIC_N2YO_API_KEY;
 
+    console.log('Future positions - N2YO API Key available:', !!apiKey);
+
     if (!apiKey || apiKey === 'YOUR_API_KEY_HERE') {
+      console.error('N2YO API key not configured');
       return NextResponse.json(
-        { error: 'N2YO API key not configured' },
+        { error: 'N2YO API key not configured. Please add NEXT_PUBLIC_N2YO_API_KEY to your environment variables.' },
         { status: 500 }
       );
     }
