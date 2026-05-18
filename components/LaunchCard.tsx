@@ -57,6 +57,8 @@ const CAS500_2_YOUTUBE_ID = 'eI10xHO4f8E';
 const STARLINK_1729_YOUTUBE_ID = 'IhlqOzOj6qM';
 const DRAGON_CRS2_SPX34_YOUTUBE_ID = 'sduVCfNEg7o';
 const STARLINK_1737_YOUTUBE_ID = 'qZ6vZHkgqZI';
+const SMILE_YOUTUBE_ID = 'MLUJ7W4Uz-8';
+const STARLINK_1742_YOUTUBE_ID = 'RM2r6SzRJCI';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -204,6 +206,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink1038 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-38');
   const isCAS5002 = isFalcon9 && launch.name.toLowerCase().includes('cas500-2');
   const isDragonCRS2SpX34 = isFalcon9 && launch.name.toLowerCase().includes('dragon crs-2 spx-34');
+  const isSMILE = launch.name.toLowerCase().includes('smile') || launch.name.toLowerCase().includes('magnetosphere ionosphere');
+  const isStarlink1742 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-42');
   const isGPSIIISV10 = isFalcon9 && launch.name.toLowerCase().includes('gps iii sv10');
   const isHASTE = launch.name.toLowerCase().includes('haste');
   const isFIREFLY = launch.name.toLowerCase().includes('stairway to seven');
@@ -260,7 +264,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin || isViaSat3F3 || isAtlasVAmazonLA06 || isStarlink1736 || isAriane64AmazonLE02 || isStarlink1038 || isCAS5002 || isStarlink1729 || isDragonCRS2SpX34 || isStarlink1737;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin || isViaSat3F3 || isAtlasVAmazonLA06 || isStarlink1736 || isAriane64AmazonLE02 || isStarlink1038 || isCAS5002 || isStarlink1729 || isDragonCRS2SpX34 || isStarlink1737 || isSMILE || isStarlink1742;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -783,6 +787,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isStarlink1737 && (
               <button
                 onClick={() => setVideoModalId(STARLINK_1737_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isSMILE && (
+              <button
+                onClick={() => setVideoModalId(SMILE_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1742 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1742_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now

@@ -580,5 +580,31 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
     recovery: 'ASDS - Of Course I Still Love You',
     livestream: 'https://www.youtube.com/watch?v=qZ6vZHkgqZI'
+  },
+  {
+    id: '44',
+    name: 'Solar wind Magnetosphere Ionosphere Link Explorer (SMILE)',
+    rocket: 'Vega-C',
+    rocketId: 'vegac',
+    operator: 'Avio S.p.A',
+    location: 'Ariane Launch Area 1 (ELV), Guiana Space Centre, French Guiana',
+    launchDate: '2026-05-19T03:52:00.000Z',
+    status: 'Go',
+    description: 'Joint ESA-Chinese Academy of Sciences mission to study the dynamic response of Earth\'s magnetosphere to the solar wind.',
+    recovery: 'N/A',
+    livestream: 'https://www.youtube.com/watch?v=MLUJ7W4Uz-8'
+  },
+  {
+    id: '45',
+    name: 'Starlink Group 17-42',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-05-20T02:11:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=RM2r6SzRJCI'
   }
 ];
