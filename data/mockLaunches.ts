@@ -606,5 +606,44 @@ export const mockLaunches: Launch[] = [
     description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
     recovery: 'ASDS - Of Course I Still Love You',
     livestream: 'https://www.youtube.com/watch?v=RM2r6SzRJCI'
+  },
+  {
+    id: '46',
+    name: 'Starlink Group 10-31',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-05-21T09:26:00.000Z',
+    status: 'Go',
+    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=0z38uvKyoi0'
+  },
+  {
+    id: '47',
+    name: 'Starship | Flight 12',
+    rocket: 'Starship',
+    rocketId: 'starship',
+    operator: 'SpaceX',
+    location: 'Starbase Orbital Launch Pad, TX, USA',
+    launchDate: '2026-05-21T22:30:00.000Z',
+    status: 'Go',
+    description: 'Twelfth integrated flight test of SpaceX\'s fully reusable super heavy-lift launch system.',
+    recovery: 'Booster: Tower Catch, Ship: Ocean Splashdown',
+    livestream: 'https://www.youtube.com/watch?v=ZpA7u2wIvSo'
+  },
+  {
+    id: '48',
+    name: 'Electron | Viva La StriX (StriX Launch 9)',
+    rocket: 'Electron',
+    rocketId: 'electron',
+    operator: 'Rocket Lab',
+    location: 'Rocket Lab Launch Complex 1A, Mahia Peninsula, New Zealand',
+    launchDate: '2026-05-22T09:30:00.000Z',
+    status: 'Go',
+    description: 'Rocket Lab will launch the ninth StriX synthetic aperture radar satellite aboard the Electron rocket for Synspective, providing high-resolution Earth observation capabilities.',
+    recovery: 'Ocean Splashdown',
+    livestream: 'https://www.youtube.com/watch?v=W2nTAM4mng0'
   }
 ];
