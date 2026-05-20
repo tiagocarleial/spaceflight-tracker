@@ -225,10 +225,17 @@ export default async function LaunchesPage() {
 
         {/* Data Source Indicator */}
         {!useRealData && (
-          <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-lg p-3 mb-6">
-            <p className="text-yellow-400 text-sm">
-              Using mock data. Real data from The Space Devs API could not be loaded.
-            </p>
+          <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-lg p-4 mb-6">
+            <div className="flex items-start gap-3">
+              <i className="fa-solid fa-circle-exclamation text-yellow-400 text-xl mt-0.5"></i>
+              <div>
+                <p className="text-yellow-400 font-semibold mb-1">Using Mock Data</p>
+                <p className="text-yellow-300 text-sm">
+                  Unable to load real-time data from The Space Devs API. Displaying sample launch data instead.
+                  This may occur due to API rate limits, network issues, or temporary service unavailability.
+                </p>
+              </div>
+            </div>
           </div>
         )}
 

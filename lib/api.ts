@@ -146,22 +146,41 @@ export async function fetchUpcomingLaunches(params: FetchLaunchesParams = {}): P
   }
 
   try {
+    console.log('Fetching launches from The Space Devs API...');
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const response = await fetch(`${API_BASE_URL}/launches/upcoming/?${queryParams.toString()}`, {
       next: { revalidate: 60 }, // Cache for 60 seconds
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+      },
     });
 
+    clearTimeout(timeout);
+
     if (!response.ok) {
+      console.error(`API request failed with status: ${response.status}`);
       throw new Error(`API request failed: ${response.status}`);
     }
 
     const data: ApiLaunchResponse = await response.json();
+    console.log(`Successfully fetched ${data.results.length} launches from API`);
 
     return {
       launches: data.results.map(transformLaunch),
       count: data.count,
     };
   } catch (error) {
-    console.error('Error fetching launches:', error);
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        console.error('Request timeout: The Space Devs API took too long to respond');
+      } else {
+        console.error('Error fetching launches:', error.message);
+      }
+    }
     throw error;
   }
 }
@@ -169,22 +188,41 @@ export async function fetchUpcomingLaunches(params: FetchLaunchesParams = {}): P
 // Fetch list of launch service providers for filters
 export async function fetchLaunchProviders(): Promise<Array<{ id: number; name: string }>> {
   try {
+    console.log('Fetching launch providers from The Space Devs API...');
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+
     const response = await fetch(`${API_BASE_URL}/agencies/?limit=100&featured=true`, {
       next: { revalidate: 3600 }, // Cache for 1 hour
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+      },
     });
 
+    clearTimeout(timeout);
+
     if (!response.ok) {
+      console.error(`API request failed with status: ${response.status}`);
       throw new Error(`API request failed: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log(`Successfully fetched ${data.results.length} agencies from API`);
 
     return data.results.map((agency: any) => ({
       id: agency.id,
       name: agency.name,
     }));
   } catch (error) {
-    console.error('Error fetching launch providers:', error);
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        console.error('Request timeout: The Space Devs API took too long to respond');
+      } else {
+        console.error('Error fetching launch providers:', error.message);
+      }
+    }
     return [];
   }
 }
