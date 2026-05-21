@@ -4,7 +4,6 @@ import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
 import AdUnit from '@/components/AdUnit';
-import AdsterraAd from '@/components/AdsterraAd';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -130,11 +129,6 @@ export default async function HomePage() {
             <LaunchCard key={launch.id} launch={launch} />
           ))}
         </div>
-      </section>
-
-      {/* Adsterra Ad - After Next Launches */}
-      <section className="container mx-auto px-4">
-        <AdsterraAd atOptions={{ key: 'f3e65203656eb536de288445042d86d3' }} />
       </section>
 
       {/* What We Track Section */}
@@ -418,20 +412,6 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Adsterra Ad 2 - Vertical Banner */}
-      <section className="container mx-auto px-4">
-        <AdsterraAd
-          atOptions={{
-            key: 'a989577f8b00169fa31ebc43fdf7f8bd',
-            format: 'iframe',
-            height: 300,
-            width: 160,
-            params: {}
-          }}
-          domain="iframe"
-        />
       </section>
 
       {/* CTA Section */}
