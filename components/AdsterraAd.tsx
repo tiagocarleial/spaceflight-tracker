@@ -23,7 +23,7 @@ export default function AdsterraAd({ atOptions }: AdsterraAdProps) {
     // Load Adsterra script dynamically
     const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = `//pl29513991.effectivecpmnetwork.com/${atOptions.key}/invoke.js`;
+    script.src = `https://pl29513991.effectivecpmnetwork.com/${atOptions.key}/invoke.js`;
     script.async = true;
     script.setAttribute('data-cfasync', 'false');
 
