@@ -80,22 +80,40 @@ export default function RocketsPage() {
           <AmazonAffiliateBanner product={shuffledProducts[0]} />
         </div>
 
-        {/* Rockets Grid */}
+        {/* Rockets Grid with distributed banners */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-          {rockets.map((rocket) => (
+          {rockets.slice(0, 10).map((rocket) => (
+            <RocketCard key={rocket.id} rocket={rocket} />
+          ))}
+        </div>
+
+        {/* Amazon Banner 2 */}
+        <AmazonAffiliateBanner product={shuffledProducts[1]} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          {rockets.slice(10, 20).map((rocket) => (
+            <RocketCard key={rocket.id} rocket={rocket} />
+          ))}
+        </div>
+
+        {/* Amazon Banner 3 */}
+        <AmazonAffiliateBanner product={shuffledProducts[2]} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          {rockets.slice(20, 30).map((rocket) => (
+            <RocketCard key={rocket.id} rocket={rocket} />
+          ))}
+        </div>
+
+        {/* Amazon Banner 4 */}
+        <AmazonAffiliateBanner product={shuffledProducts[3]} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          {rockets.slice(30).map((rocket) => (
             <RocketCard key={rocket.id} rocket={rocket} />
           ))}
         </div>
       </main>
-
-      {/* Amazon Banner 2 */}
-      <AmazonAffiliateBanner product={shuffledProducts[1]} />
-
-      {/* Amazon Banner 3 */}
-      <AmazonAffiliateBanner product={shuffledProducts[2]} />
-
-      {/* Amazon Banner 4 */}
-      <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">
