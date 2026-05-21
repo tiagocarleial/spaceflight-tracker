@@ -64,40 +64,40 @@ export default async function HomePage() {
 
       {/* Hero Section - Compact */}
       <section className="relative bg-gradient-to-b from-gray-800 to-gray-900 border-b border-gray-800">
-        <div className="container mx-auto px-4 py-8 md:py-10">
+        <div className="container mx-auto px-4 py-4 md:py-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 mb-3 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5">
-              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
-              <span className="text-blue-400 text-xs font-medium">Live Tracking • Real-Time Updates</span>
+            <div className="inline-flex items-center gap-1.5 mb-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1">
+              <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse"></div>
+              <span className="text-blue-400 text-[10px] md:text-xs font-medium">Live Tracking • Real-Time Updates</span>
             </div>
 
-            <h1 className="text-2xl md:text-4xl font-bold text-white mb-3 leading-tight">
+            <h1 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
               Your Gateway to{' '}
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Space Exploration
               </span>
             </h1>
 
-            <p className="text-sm md:text-base text-gray-400 mb-4 max-w-2xl mx-auto">
+            <p className="text-xs md:text-sm text-gray-400 mb-3 max-w-2xl mx-auto">
               Track space launches, monitor the ISS, discover asteroids, and explore astronomical events in real-time.
             </p>
 
             {/* Compact Stats */}
-            <div className="flex flex-wrap gap-2 justify-center text-xs">
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
+            <div className="flex flex-wrap gap-1.5 justify-center text-[10px] md:text-xs">
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-2 py-1 md:px-2.5 md:py-1 flex items-center gap-1.5">
                 <span className="font-bold text-blue-400">{totalLaunches}+</span>
                 <span className="text-gray-400">Launches</span>
               </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                <i className="fa-solid fa-satellite text-purple-400"></i>
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-2 py-1 md:px-2.5 md:py-1 flex items-center gap-1.5">
+                <i className="fa-solid fa-satellite text-purple-400 text-[8px] md:text-xs"></i>
                 <span className="text-gray-400">ISS Live</span>
               </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                <i className="fa-solid fa-meteor text-orange-400"></i>
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-2 py-1 md:px-2.5 md:py-1 flex items-center gap-1.5">
+                <i className="fa-solid fa-meteor text-orange-400 text-[8px] md:text-xs"></i>
                 <span className="text-gray-400">Asteroids</span>
               </div>
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-1.5 flex items-center gap-2">
-                <i className="fa-solid fa-earth-americas text-green-400"></i>
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg px-2 py-1 md:px-2.5 md:py-1 flex items-center gap-1.5">
+                <i className="fa-solid fa-earth-americas text-green-400 text-[8px] md:text-xs"></i>
                 <span className="text-gray-400">Earthquakes</span>
               </div>
             </div>

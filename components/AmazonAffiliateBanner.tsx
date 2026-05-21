@@ -37,6 +37,7 @@ export default function AmazonAffiliateBanner() {
                 relative bg-gradient-to-br from-gray-800 to-gray-900
                 border-2 border-yellow-500/30 rounded-xl overflow-hidden
                 transition-all duration-300 shadow-lg
+                min-h-[180px] md:min-h-[200px]
                 ${isHovered ? 'border-yellow-500/60 shadow-2xl shadow-yellow-500/20 scale-[1.01]' : ''}
               `}
             >
