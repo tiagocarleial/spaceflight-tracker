@@ -454,6 +454,20 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Amazon Affiliate Banner 3 - Space Shuttle Building Set */}
+      <AmazonAffiliateBanner
+        product={{
+          name: 'Space Shuttle Building Kit with Rocket Booster',
+          asin: 'B0F32W3T1M',
+          affiliateLink: 'https://www.amazon.com/dp/B0F32W3T1M?tag=tiagoolivei07-20&linkCode=ll2&linkId=5e6bb356be52e604f0f030f577c65b56',
+          imageUrl: 'https://m.media-amazon.com/images/I/61klXS3jD2L._AC_SL1280_.jpg',
+          description: 'Detailed space shuttle with external fuel tank, solid rocket boosters, and display stand',
+          badge: 'Space Shuttle Launch',
+          pieces: '1,230 Pieces',
+          age: 'Ages 8+',
+        }}
+      />
+
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">
         <div className="container mx-auto px-4 py-8">

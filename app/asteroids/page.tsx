@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Link from 'next/link';
 import AsteroidCard from '@/components/AsteroidCard';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
+import { getRandomProduct } from '@/data/amazonProducts';
 import { getNearEarthAsteroids } from '@/lib/nasa-api';
 
 export const metadata: Metadata = {
@@ -287,6 +289,9 @@ export default async function AsteroidsPage() {
           </div>
         </div>
       </main>
+
+      {/* Amazon Affiliate Banner - Random Product */}
+      <AmazonAffiliateBanner product={getRandomProduct()} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

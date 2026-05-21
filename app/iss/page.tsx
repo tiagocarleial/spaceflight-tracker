@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import ISSMapClient from '@/components/ISSMapClient';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
+import { getRandomProduct } from '@/data/amazonProducts';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -190,6 +192,9 @@ export default function ISSPage() {
             </div>
           </section>
         </main>
+
+        {/* Amazon Affiliate Banner - Random Product */}
+        <AmazonAffiliateBanner product={getRandomProduct()} />
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">

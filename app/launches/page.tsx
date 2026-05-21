@@ -2,6 +2,8 @@ import LaunchesContainer from '@/components/LaunchesContainer';
 import { fetchUpcomingLaunches, fetchLaunchProviders } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
+import { getRandomProduct } from '@/data/amazonProducts';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
@@ -383,6 +385,9 @@ export default async function LaunchesPage() {
           </div>
         </section>
       </main>
+
+      {/* Amazon Affiliate Banner - Random Product */}
+      <AmazonAffiliateBanner product={getRandomProduct()} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">
