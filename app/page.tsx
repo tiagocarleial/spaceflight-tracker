@@ -105,6 +105,9 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Amazon Affiliate Banner */}
+      <AmazonAffiliateBanner />
+
       {/* Next Launches Highlight */}
       <section className="container mx-auto px-4 py-8">
         <div className="mb-5">
@@ -267,9 +270,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Amazon Affiliate Banner */}
-      <AmazonAffiliateBanner />
 
       {/* Why Space Matters Section */}
       <section className="container mx-auto px-4 py-12">
