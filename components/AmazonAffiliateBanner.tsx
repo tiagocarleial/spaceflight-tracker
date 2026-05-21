@@ -14,15 +14,15 @@ export default function AmazonAffiliateBanner() {
     name: 'LEGO Icons NASA Space Shuttle Discovery',
     asin: 'B0CRWGX5NH',
     affiliateLink: 'https://www.amazon.com/dp/B0CRWGX5NH?tag=tiagoolivei07-20&linkCode=ll2&linkId=b72017a00c3d1f501c948aa9e042ef56',
-    imageUrl: 'https://m.media-amazon.com/images/I/81vAQ+K5aTL._AC_SL1500_.jpg',
+    imageUrl: 'https://m.media-amazon.com/images/I/81b4hg2iyRL._AC_SL1500_.jpg',
     description: 'Authentic replica with 2,354 pieces, opening payload bay & deployable Hubble Telescope',
     badge: 'Official NASA Product',
   };
 
   return (
-    <section className="bg-gray-900 py-6 md:py-8">
+    <section className="bg-gray-900 py-3 md:py-4">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Banner Container */}
           <a
             href={product.affiliateLink}
@@ -35,25 +35,25 @@ export default function AmazonAffiliateBanner() {
             <div
               className={`
                 relative bg-gradient-to-br from-gray-800 to-gray-900
-                border-2 border-yellow-500/30 rounded-2xl overflow-hidden
+                border-2 border-yellow-500/30 rounded-xl overflow-hidden
                 transition-all duration-300 shadow-lg
-                ${isHovered ? 'border-yellow-500/60 shadow-2xl shadow-yellow-500/20 scale-[1.02]' : ''}
+                ${isHovered ? 'border-yellow-500/60 shadow-2xl shadow-yellow-500/20 scale-[1.01]' : ''}
               `}
             >
               {/* Badge */}
-              <div className="absolute top-4 left-4 z-10">
-                <div className="bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5">
-                  <i className="fa-solid fa-star"></i>
+              <div className="absolute top-2 left-2 md:top-3 md:left-3 z-10">
+                <div className="bg-yellow-500 text-gray-900 px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-bold flex items-center gap-1">
+                  <i className="fa-solid fa-star text-[8px] md:text-xs"></i>
                   <span>{product.badge}</span>
                 </div>
               </div>
 
               {/* Amazon Logo */}
-              <div className="absolute top-4 right-4 z-10">
-                <div className="bg-white px-3 py-1.5 rounded-lg shadow-lg">
+              <div className="absolute top-2 right-2 md:top-3 md:right-3 z-10">
+                <div className="bg-white px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-lg shadow-lg">
                   <svg
                     viewBox="0 0 603 182"
-                    className="h-5 w-auto"
+                    className="h-3 md:h-4 w-auto"
                     fill="#FF9900"
                   >
                     <g fillRule="evenodd">
@@ -69,7 +69,7 @@ export default function AmazonAffiliateBanner() {
               </div>
 
               {/* Content Grid */}
-              <div className="grid md:grid-cols-5 gap-6 p-6 md:p-8">
+              <div className="grid md:grid-cols-5 gap-3 md:gap-4 p-4 md:p-5">
                 {/* Product Image - Left Side */}
                 <div className="md:col-span-2 flex items-center justify-center">
                   <div className="relative">
@@ -77,7 +77,7 @@ export default function AmazonAffiliateBanner() {
                       src={product.imageUrl}
                       alt={product.name}
                       className={`
-                        w-full h-auto max-w-xs mx-auto
+                        w-full h-auto max-w-[140px] md:max-w-[180px] mx-auto
                         transition-transform duration-300
                         ${isHovered ? 'scale-110' : 'scale-100'}
                       `}
@@ -86,51 +86,51 @@ export default function AmazonAffiliateBanner() {
                 </div>
 
                 {/* Product Details - Right Side */}
-                <div className="md:col-span-3 flex flex-col justify-center gap-4">
+                <div className="md:col-span-3 flex flex-col justify-center gap-2 md:gap-3">
                   {/* Product Name */}
-                  <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                  <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
                     {product.name}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-300 text-sm md:text-base">
+                  <p className="text-gray-300 text-xs md:text-sm">
                     {product.description}
                   </p>
 
                   {/* Features */}
-                  <div className="flex flex-wrap gap-2">
-                    <div className="bg-blue-500/20 border border-blue-500/40 rounded-lg px-3 py-1.5 text-blue-300 text-xs font-medium flex items-center gap-1.5">
-                      <i className="fa-solid fa-cube"></i>
+                  <div className="flex flex-wrap gap-1.5">
+                    <div className="bg-blue-500/20 border border-blue-500/40 rounded-md px-2 py-0.5 md:px-2.5 md:py-1 text-blue-300 text-[10px] md:text-xs font-medium flex items-center gap-1">
+                      <i className="fa-solid fa-cube text-[8px] md:text-xs"></i>
                       <span>2,354 Pieces</span>
                     </div>
-                    <div className="bg-purple-500/20 border border-purple-500/40 rounded-lg px-3 py-1.5 text-purple-300 text-xs font-medium flex items-center gap-1.5">
-                      <i className="fa-solid fa-star"></i>
+                    <div className="bg-purple-500/20 border border-purple-500/40 rounded-md px-2 py-0.5 md:px-2.5 md:py-1 text-purple-300 text-[10px] md:text-xs font-medium flex items-center gap-1">
+                      <i className="fa-solid fa-star text-[8px] md:text-xs"></i>
                       <span>Ages 18+</span>
                     </div>
-                    <div className="bg-orange-500/20 border border-orange-500/40 rounded-lg px-3 py-1.5 text-orange-300 text-xs font-medium flex items-center gap-1.5">
-                      <i className="fa-solid fa-box"></i>
+                    <div className="bg-orange-500/20 border border-orange-500/40 rounded-md px-2 py-0.5 md:px-2.5 md:py-1 text-orange-300 text-[10px] md:text-xs font-medium flex items-center gap-1">
+                      <i className="fa-solid fa-box text-[8px] md:text-xs"></i>
                       <span>Collector's Item</span>
                     </div>
                   </div>
 
                   {/* CTA Button */}
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <div
                       className={`
-                        inline-flex items-center gap-3 px-6 py-3 rounded-lg
+                        inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-lg
                         bg-gradient-to-r from-yellow-500 to-orange-500
-                        text-gray-900 font-bold text-lg
+                        text-gray-900 font-bold text-sm md:text-base
                         transition-all duration-300
                         ${isHovered ? 'shadow-lg shadow-yellow-500/50 scale-105' : 'shadow-md'}
                       `}
                     >
                       <span>View on Amazon</span>
-                      <i className={`fa-solid fa-arrow-right transition-transform ${isHovered ? 'translate-x-1' : ''}`}></i>
+                      <i className={`fa-solid fa-arrow-right text-xs transition-transform ${isHovered ? 'translate-x-1' : ''}`}></i>
                     </div>
                   </div>
 
                   {/* Prime Badge */}
-                  <div className="flex items-center gap-2 text-blue-400 text-sm">
+                  <div className="flex items-center gap-1.5 text-blue-400 text-[10px] md:text-xs">
                     <i className="fa-solid fa-shipping-fast"></i>
                     <span className="font-medium">Eligible for Amazon Prime</span>
                   </div>
@@ -149,7 +149,7 @@ export default function AmazonAffiliateBanner() {
           </a>
 
           {/* Disclaimer */}
-          <p className="text-center text-gray-500 text-xs mt-4">
+          <p className="text-center text-gray-500 text-[10px] md:text-xs mt-2">
             As an Amazon Associate, we earn from qualifying purchases. Price and availability subject to change.
           </p>
         </div>
