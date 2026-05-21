@@ -420,9 +420,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Ad Unit 2 - Before CTA */}
+      {/* Adsterra Ad 2 - Vertical Banner */}
       <section className="container mx-auto px-4">
-        <AdUnit slot="0987654321" format="horizontal" />
+        <AdsterraAd
+          atOptions={{
+            key: 'a989577f8b00169fa31ebc43fdf7f8bd',
+            format: 'iframe',
+            height: 300,
+            width: 160,
+            params: {}
+          }}
+          domain="iframe"
+        />
       </section>
 
       {/* CTA Section */}

@@ -2,9 +2,39 @@
 
 ## ✅ Current Setup
 
-Your Adsterra ad is now configured with the reusable `AdsterraAd` component.
+Your Adsterra ads are now configured with the reusable `AdsterraAd` component.
 
-**Ad Key**: `f3e65203656eb536de288445042d86d3`
+**Ad Unit 1** (Horizontal Banner): `f3e65203656eb536de288445042d86d3`
+**Ad Unit 2** (Vertical Banner): `a989577f8b00169fa31ebc43fdf7f8bd` (160x300)
+
+---
+
+## 📦 Two Ad Types Configured
+
+### Ad Type 1: Horizontal Banner (effectivecpmnetwork.com)
+```tsx
+<AdsterraAd atOptions={{ key: 'f3e65203656eb536de288445042d86d3' }} />
+```
+- **Format**: Responsive horizontal banner
+- **Best for**: Between content sections
+- **Placement**: Homepage after "Next Launches"
+
+### Ad Type 2: Vertical Banner (highperformanceformat.com)
+```tsx
+<AdsterraAd
+  atOptions={{
+    key: 'a989577f8b00169fa31ebc43fdf7f8bd',
+    format: 'iframe',
+    height: 300,
+    width: 160,
+    params: {}
+  }}
+  domain="iframe"
+/>
+```
+- **Format**: 160x300 (vertical skyscraper)
+- **Best for**: Sidebar, between vertical content
+- **Placement**: Homepage after "Data Sources"
 
 ---
 
