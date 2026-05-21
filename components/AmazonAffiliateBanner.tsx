@@ -2,22 +2,41 @@
 
 import { useState } from 'react';
 
+interface Product {
+  name: string;
+  asin: string;
+  affiliateLink: string;
+  imageUrl: string;
+  description: string;
+  badge: string;
+  pieces: string;
+  age: string;
+}
+
+interface AmazonAffiliateBannerProps {
+  product?: Product;
+}
+
 /**
  * Amazon Affiliate Product Banner
- * Display-style rectangular banner featuring LEGO Space Shuttle
+ * Display-style rectangular banner featuring LEGO products
  */
-export default function AmazonAffiliateBanner() {
+export default function AmazonAffiliateBanner({ product: customProduct }: AmazonAffiliateBannerProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Product details
-  const product = {
+  // Default product (Space Shuttle Discovery)
+  const defaultProduct: Product = {
     name: 'LEGO Icons NASA Space Shuttle Discovery',
     asin: 'B0CRWGX5NH',
     affiliateLink: 'https://www.amazon.com/dp/B0CRWGX5NH?tag=tiagoolivei07-20&linkCode=ll2&linkId=b72017a00c3d1f501c948aa9e042ef56',
     imageUrl: 'https://m.media-amazon.com/images/I/81b4hg2iyRL._AC_SL1500_.jpg',
     description: 'Authentic replica with 2,354 pieces, opening payload bay & deployable Hubble Telescope',
     badge: 'Official NASA Product',
+    pieces: '2,354 Pieces',
+    age: 'Ages 18+',
   };
+
+  const product = customProduct || defaultProduct;
 
   return (
     <section className="bg-gray-900 py-3 md:py-4">
@@ -102,11 +121,11 @@ export default function AmazonAffiliateBanner() {
                   <div className="flex flex-wrap gap-1.5">
                     <div className="bg-blue-500/20 border border-blue-500/40 rounded-md px-2 py-0.5 md:px-2.5 md:py-1 text-blue-300 text-[10px] md:text-xs font-medium flex items-center gap-1">
                       <i className="fa-solid fa-cube text-[8px] md:text-xs"></i>
-                      <span>2,354 Pieces</span>
+                      <span>{product.pieces}</span>
                     </div>
                     <div className="bg-purple-500/20 border border-purple-500/40 rounded-md px-2 py-0.5 md:px-2.5 md:py-1 text-purple-300 text-[10px] md:text-xs font-medium flex items-center gap-1">
                       <i className="fa-solid fa-star text-[8px] md:text-xs"></i>
-                      <span>Ages 18+</span>
+                      <span>{product.age}</span>
                     </div>
                     <div className="bg-orange-500/20 border border-orange-500/40 rounded-md px-2 py-0.5 md:px-2.5 md:py-1 text-orange-300 text-[10px] md:text-xs font-medium flex items-center gap-1">
                       <i className="fa-solid fa-box text-[8px] md:text-xs"></i>

@@ -135,6 +135,20 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Amazon Affiliate Banner 2 - Apollo Saturn V */}
+      <AmazonAffiliateBanner
+        product={{
+          name: 'LEGO Ideas NASA Apollo Saturn V',
+          asin: 'B08GNXNPR6',
+          affiliateLink: 'https://www.amazon.com/dp/B08GNXNPR6?tag=tiagoolivei07-20&linkCode=ll2&linkId=b46d910cf09c6f9330bbf2820360ef29',
+          imageUrl: 'https://m.media-amazon.com/images/I/81jtA27x30L._AC_SL1500_.jpg',
+          description: 'Iconic 1 meter tall rocket with 3 removable stages, lunar lander, and display stand',
+          badge: 'Historic Moon Mission',
+          pieces: '1,969 Pieces',
+          age: 'Ages 14+',
+        }}
+      />
+
       {/* What We Track Section */}
       <section className="bg-gray-800/30 border-y border-gray-800 py-12">
         <div className="container mx-auto px-4">
