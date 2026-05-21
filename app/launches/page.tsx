@@ -3,7 +3,7 @@ import { fetchUpcomingLaunches, fetchLaunchProviders } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
-import { getRandomProduct } from '@/data/amazonProducts';
+import { getShuffledProducts } from '@/data/amazonProducts';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
 };
 
 export default async function LaunchesPage() {
+  // Shuffle Amazon products for random banner order
+  const shuffledProducts = getShuffledProducts();
+
   // Try to fetch real data, fallback to mock data if API fails
   let launches = mockLaunches;
   let count = mockLaunches.length;
@@ -386,8 +389,10 @@ export default async function LaunchesPage() {
         </section>
       </main>
 
-      {/* Amazon Affiliate Banner - Random Product */}
-      <AmazonAffiliateBanner product={getRandomProduct()} />
+      {/* Amazon Affiliate Banners - All 4 products in random order */}
+      {shuffledProducts.map((product, index) => (
+        <AmazonAffiliateBanner key={product.asin} product={product} />
+      ))}
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

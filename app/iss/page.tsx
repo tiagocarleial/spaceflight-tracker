@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import ISSMapClient from '@/components/ISSMapClient';
 import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
-import { getRandomProduct } from '@/data/amazonProducts';
+import { getShuffledProducts } from '@/data/amazonProducts';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
 };
 
 export default function ISSPage() {
+  // Shuffle Amazon products for random banner order
+  const shuffledProducts = getShuffledProducts();
+
   return (
     <div className="relative w-full">
       {/* Fixed Navigation Header */}
@@ -193,8 +196,10 @@ export default function ISSPage() {
           </section>
         </main>
 
-        {/* Amazon Affiliate Banner - Random Product */}
-        <AmazonAffiliateBanner product={getRandomProduct()} />
+        {/* Amazon Affiliate Banners - All 4 products in random order */}
+        {shuffledProducts.map((product) => (
+          <AmazonAffiliateBanner key={product.asin} product={product} />
+        ))}
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">
