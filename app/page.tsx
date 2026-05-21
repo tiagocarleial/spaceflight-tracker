@@ -4,6 +4,7 @@ import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
 import AdUnit from '@/components/AdUnit';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -266,6 +267,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Amazon Affiliate Banner */}
+      <AmazonAffiliateBanner />
 
       {/* Why Space Matters Section */}
       <section className="container mx-auto px-4 py-12">
