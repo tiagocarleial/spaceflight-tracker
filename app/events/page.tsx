@@ -68,6 +68,9 @@ export default function EventsPage() {
         </div>
       </div>
 
+      {/* Amazon Banner 1 */}
+      <AmazonAffiliateBanner product={shuffledProducts[0]} />
+
       {/* Filters */}
       <div className="sticky top-16 z-30 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 py-4">
         <div className="container mx-auto px-4">
@@ -158,6 +161,9 @@ export default function EventsPage() {
         </div>
       </div>
 
+      {/* Amazon Banner 2 */}
+      <AmazonAffiliateBanner product={shuffledProducts[1]} />
+
       {/* Events Grid */}
       <div className="container mx-auto px-4 py-8">
         {filteredEvents.length === 0 ? (
@@ -178,6 +184,9 @@ export default function EventsPage() {
           </div>
         )}
       </div>
+
+      {/* Amazon Banner 3 */}
+      <AmazonAffiliateBanner product={shuffledProducts[2]} />
 
       {/* Footer Info */}
       <div className="container mx-auto px-4 pb-8">
@@ -200,10 +209,8 @@ export default function EventsPage() {
         </div>
       </div>
 
-      {/* Amazon Affiliate Banners - All 4 products in random order */}
-      {shuffledProducts.map((product) => (
-        <AmazonAffiliateBanner key={product.asin} product={product} />
-      ))}
+      {/* Amazon Banner 4 */}
+      <AmazonAffiliateBanner product={shuffledProducts[3]} />
     </div>
   );
 }

@@ -75,6 +75,11 @@ export default function RocketsPage() {
           </div>
         </div>
 
+        {/* Amazon Banner 1 */}
+        <div className="mb-8">
+          <AmazonAffiliateBanner product={shuffledProducts[0]} />
+        </div>
+
         {/* Rockets Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
           {rockets.map((rocket) => (
@@ -83,10 +88,14 @@ export default function RocketsPage() {
         </div>
       </main>
 
-      {/* Amazon Affiliate Banners - All 4 products in random order */}
-      {shuffledProducts.map((product) => (
-        <AmazonAffiliateBanner key={product.asin} product={product} />
-      ))}
+      {/* Amazon Banner 2 */}
+      <AmazonAffiliateBanner product={shuffledProducts[1]} />
+
+      {/* Amazon Banner 3 */}
+      <AmazonAffiliateBanner product={shuffledProducts[2]} />
+
+      {/* Amazon Banner 4 */}
+      <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

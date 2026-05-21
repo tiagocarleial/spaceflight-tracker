@@ -98,6 +98,9 @@ export default async function AsteroidsPage() {
           </div>
         </div>
 
+        {/* Amazon Banner 1 */}
+        <AmazonAffiliateBanner product={shuffledProducts[0]} />
+
         {/* Educational Content - Asteroid Classification */}
         <section className="mb-8 max-w-7xl mx-auto">
           <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8 mb-6">
@@ -173,7 +176,12 @@ export default async function AsteroidsPage() {
               </p>
             </div>
           </div>
+        </section>
 
+        {/* Amazon Banner 2 */}
+        <AmazonAffiliateBanner product={shuffledProducts[1]} />
+
+        <section className="mb-8 max-w-7xl mx-auto">
           {/* Planetary Defense Section */}
           <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8">
             <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
@@ -257,6 +265,9 @@ export default async function AsteroidsPage() {
           </div>
         </section>
 
+        {/* Amazon Banner 3 */}
+        <AmazonAffiliateBanner product={shuffledProducts[2]} />
+
         {/* Asteroids Grid */}
         {asteroids.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -293,10 +304,8 @@ export default async function AsteroidsPage() {
         </div>
       </main>
 
-      {/* Amazon Affiliate Banners - All 4 products in random order */}
-      {shuffledProducts.map((product) => (
-        <AmazonAffiliateBanner key={product.asin} product={product} />
-      ))}
+      {/* Amazon Banner 4 */}
+      <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

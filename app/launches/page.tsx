@@ -228,6 +228,9 @@ export default async function LaunchesPage() {
           </div>
         </section>
 
+        {/* Amazon Banner 1 */}
+        <AmazonAffiliateBanner product={shuffledProducts[0]} />
+
         {/* Data Source Indicator */}
         {!useRealData && (
           <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-lg p-4 mb-6">
@@ -258,6 +261,9 @@ export default async function LaunchesPage() {
             }}
           />
         </section>
+
+        {/* Amazon Banner 2 */}
+        <AmazonAffiliateBanner product={shuffledProducts[1]} />
 
         {/* Educational Content Below Launches */}
         <section className="mb-12 max-w-6xl mx-auto">
@@ -365,7 +371,12 @@ export default async function LaunchesPage() {
               </div>
             </div>
           </div>
+        </section>
 
+        {/* Amazon Banner 3 */}
+        <AmazonAffiliateBanner product={shuffledProducts[2]} />
+
+        <section className="mb-12 max-w-6xl mx-auto">
           {/* Why Watch Launches */}
           <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/20 rounded-xl p-8">
             <h2 className="text-2xl font-bold text-white mb-4">Why Watch Space Launches?</h2>
@@ -389,10 +400,8 @@ export default async function LaunchesPage() {
         </section>
       </main>
 
-      {/* Amazon Affiliate Banners - All 4 products in random order */}
-      {shuffledProducts.map((product, index) => (
-        <AmazonAffiliateBanner key={product.asin} product={product} />
-      ))}
+      {/* Amazon Banner 4 */}
+      <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

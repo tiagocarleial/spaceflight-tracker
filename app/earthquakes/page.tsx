@@ -47,6 +47,9 @@ export default function EarthquakesPage() {
 
       {/* Educational Content Section - Below the Map */}
       <div className="bg-gray-900">
+        {/* Amazon Banner 1 */}
+        <AmazonAffiliateBanner product={shuffledProducts[0]} />
+
         <main className="container mx-auto px-4 py-12">
           <section className="mb-12 max-w-7xl mx-auto">
             {/* Plate Tectonics and Earthquake Science */}
@@ -174,7 +177,14 @@ export default function EarthquakesPage() {
                 </div>
               </div>
             </div>
+          </section>
+        </main>
 
+        {/* Amazon Banner 2 */}
+        <AmazonAffiliateBanner product={shuffledProducts[1]} />
+
+        <main className="container mx-auto px-4 py-12">
+          <section className="mb-12 max-w-7xl mx-auto">
             {/* Measurement and Prediction */}
             <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8">
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
@@ -211,6 +221,18 @@ export default function EarthquakesPage() {
                   </div>
                 </div>
 
+              </div>
+            </div>
+          </section>
+        </main>
+
+        {/* Amazon Banner 3 */}
+        <AmazonAffiliateBanner product={shuffledProducts[2]} />
+
+        <main className="container mx-auto px-4 py-12">
+          <section className="mb-12 max-w-7xl mx-auto">
+            <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8">
+              <div className="space-y-4 text-gray-300 leading-relaxed">
                 <h3 className="text-xl font-semibold text-white mt-6 mb-3">Early Warning Systems</h3>
                 <p>
                   While predicting earthquakes days or weeks in advance remains beyond current capabilities, earthquake early warning
@@ -271,10 +293,8 @@ export default function EarthquakesPage() {
           </section>
         </main>
 
-        {/* Amazon Affiliate Banners - All 4 products in random order */}
-        {shuffledProducts.map((product) => (
-          <AmazonAffiliateBanner key={product.asin} product={product} />
-        ))}
+        {/* Amazon Banner 4 */}
+        <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">

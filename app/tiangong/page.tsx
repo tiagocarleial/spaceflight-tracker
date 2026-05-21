@@ -41,6 +41,9 @@ export default function TiangongPage() {
 
       {/* Educational Content Section - Below the Map */}
       <div className="bg-gray-900">
+        {/* Amazon Banner 1 */}
+        <AmazonAffiliateBanner product={shuffledProducts[0]} />
+
         <main className="container mx-auto px-4 py-12">
           <section className="mb-12 max-w-7xl mx-auto">
             {/* Tiangong Overview */}
@@ -102,7 +105,18 @@ export default function TiangongPage() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+        </main>
 
+        {/* Amazon Banner 2 */}
+        <AmazonAffiliateBanner product={shuffledProducts[1]} />
+
+        <main className="container mx-auto px-4 py-12">
+          <section className="mb-12 max-w-7xl mx-auto">
+            <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8 mb-6">
+              <div className="space-y-4 text-gray-300 leading-relaxed">
                 <h3 className="text-xl font-semibold text-white mt-6 mb-3">Life Aboard Tiangong</h3>
                 <p>
                   Taikonauts living aboard Tiangong follow a structured daily schedule that balances scientific work, station
@@ -195,7 +209,18 @@ export default function TiangongPage() {
                   and institutions proposing experiments to fly aboard the station, though no international crew members have
                   yet visited.
                 </p>
+              </div>
+            </div>
+          </section>
+        </main>
 
+        {/* Amazon Banner 3 */}
+        <AmazonAffiliateBanner product={shuffledProducts[2]} />
+
+        <main className="container mx-auto px-4 py-12">
+          <section className="mb-12 max-w-7xl mx-auto">
+            <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8 mb-6">
+              <div className="space-y-4 text-gray-300 leading-relaxed">
                 <h3 className="text-xl font-semibold text-white mt-6 mb-3">Comparison with ISS</h3>
                 <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4 mt-4">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -237,10 +262,8 @@ export default function TiangongPage() {
           </section>
         </main>
 
-        {/* Amazon Affiliate Banners - All 4 products in random order */}
-        {shuffledProducts.map((product) => (
-          <AmazonAffiliateBanner key={product.asin} product={product} />
-        ))}
+        {/* Amazon Banner 4 */}
+        <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">

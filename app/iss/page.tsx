@@ -41,6 +41,9 @@ export default function ISSPage() {
 
       {/* Educational Content Section - Below the Map */}
       <div className="bg-gray-900">
+        {/* Amazon Banner 1 */}
+        <AmazonAffiliateBanner product={shuffledProducts[0]} />
+
         <main className="container mx-auto px-4 py-12">
           <section className="mb-12 max-w-7xl mx-auto">
             {/* ISS Overview */}
@@ -98,7 +101,18 @@ export default function ISSPage() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+        </main>
 
+        {/* Amazon Banner 2 */}
+        <AmazonAffiliateBanner product={shuffledProducts[1]} />
+
+        <main className="container mx-auto px-4 py-12">
+          <section className="mb-12 max-w-7xl mx-auto">
+            <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8 mb-6">
+              <div className="space-y-4 text-gray-300 leading-relaxed">
                 <h3 className="text-xl font-semibold text-white mt-6 mb-3">Life Aboard the Space Station</h3>
                 <p>
                   Living in microgravity presents unique challenges and requires extensive adaptation. Astronauts' typical day
@@ -180,7 +194,18 @@ export default function ISSPage() {
                   production, and even space tourism through partnerships with companies like Axiom Space. These commercial activities
                   help offset operational costs while demonstrating the economic potential of low Earth orbit.
                 </p>
+              </div>
+            </div>
+          </section>
+        </main>
 
+        {/* Amazon Banner 3 */}
+        <AmazonAffiliateBanner product={shuffledProducts[2]} />
+
+        <main className="container mx-auto px-4 py-12">
+          <section className="mb-12 max-w-7xl mx-auto">
+            <div className="bg-gray-800/30 border border-gray-800 rounded-xl p-8 mb-6">
+              <div className="space-y-4 text-gray-300 leading-relaxed">
                 <h3 className="text-xl font-semibold text-white mt-6 mb-3">The Future of the ISS</h3>
                 <p>
                   While the ISS is currently approved for operation through at least 2030, discussions about its eventual retirement
@@ -196,10 +221,8 @@ export default function ISSPage() {
           </section>
         </main>
 
-        {/* Amazon Affiliate Banners - All 4 products in random order */}
-        {shuffledProducts.map((product) => (
-          <AmazonAffiliateBanner key={product.asin} product={product} />
-        ))}
+        {/* Amazon Banner 4 */}
+        <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">
