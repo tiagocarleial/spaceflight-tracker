@@ -40,6 +40,16 @@ export const amazonProducts: Product[] = [
     pieces: '1,230 Pieces',
     age: 'Ages 8+',
   },
+  {
+    name: 'LEGO International Space Station',
+    asin: 'B083JWZNW7',
+    affiliateLink: 'https://www.amazon.com/dp/B083JWZNW7?tag=tiagoolivei07-20&linkCode=ll2&linkId=391161a7e3792488f424041ae94a7dc7',
+    imageUrl: 'https://m.media-amazon.com/images/I/71CCfgqrjEL._AC_SL1500_.jpg',
+    description: 'Build the iconic orbiting laboratory with posable solar panels, rotating joints, and detailed modules',
+    badge: 'Orbiting Laboratory',
+    pieces: '864 Pieces',
+    age: 'Ages 16+',
+  },
 ];
 
 /**
