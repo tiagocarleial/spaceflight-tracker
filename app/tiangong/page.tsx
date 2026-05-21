@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import TiangongMapClient from '@/components/TiangongMapClient';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
+import { getShuffledProducts } from '@/data/amazonProducts';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -24,6 +26,9 @@ export const metadata: Metadata = {
 };
 
 export default function TiangongPage() {
+  // Shuffle Amazon products for random banner order
+  const shuffledProducts = getShuffledProducts();
+
   return (
     <div className="relative w-full">
       {/* Fixed Navigation Header */}
@@ -231,6 +236,11 @@ export default function TiangongPage() {
             </div>
           </section>
         </main>
+
+        {/* Amazon Affiliate Banners - All 4 products in random order */}
+        {shuffledProducts.map((product) => (
+          <AmazonAffiliateBanner key={product.asin} product={product} />
+        ))}
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">

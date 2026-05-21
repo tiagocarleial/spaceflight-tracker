@@ -1,6 +1,8 @@
 import RocketCard from '@/components/RocketCard';
 import { mockRockets } from '@/data/mockRockets';
 import Navigation from '@/components/Navigation';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
+import { getShuffledProducts } from '@/data/amazonProducts';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
 };
 
 export default function RocketsPage() {
+  // Shuffle Amazon products for random banner order
+  const shuffledProducts = getShuffledProducts();
+
   const rockets = mockRockets;
 
   // Calculate stats
@@ -77,6 +82,11 @@ export default function RocketsPage() {
           ))}
         </div>
       </main>
+
+      {/* Amazon Affiliate Banners - All 4 products in random order */}
+      {shuffledProducts.map((product) => (
+        <AmazonAffiliateBanner key={product.asin} product={product} />
+      ))}
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

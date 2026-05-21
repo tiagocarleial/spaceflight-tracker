@@ -4,10 +4,15 @@ import { useState, useMemo } from 'react';
 import Navigation from '@/components/Navigation';
 import { getAstronomyEvents } from '@/lib/astronomy-events-api';
 import AstronomyEventCard from '@/components/AstronomyEventCard';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
+import { getShuffledProducts } from '@/data/amazonProducts';
 
 export default function EventsPage() {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [showPastEvents, setShowPastEvents] = useState(false);
+
+  // Shuffle Amazon products for random banner order
+  const shuffledProducts = getShuffledProducts();
 
   const allEvents = getAstronomyEvents();
 
@@ -194,6 +199,11 @@ export default function EventsPage() {
           </div>
         </div>
       </div>
+
+      {/* Amazon Affiliate Banners - All 4 products in random order */}
+      {shuffledProducts.map((product) => (
+        <AmazonAffiliateBanner key={product.asin} product={product} />
+      ))}
     </div>
   );
 }

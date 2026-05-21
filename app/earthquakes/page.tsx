@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import EarthquakeMapClient from '@/components/EarthquakeMapClient';
 import EarthquakeFooter from '@/components/EarthquakeFooter';
+import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
+import { getShuffledProducts } from '@/data/amazonProducts';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
 };
 
 export default function EarthquakesPage() {
+  // Shuffle Amazon products for random banner order
+  const shuffledProducts = getShuffledProducts();
+
   return (
     <div className="relative w-full">
       <div className="relative h-screen w-full overflow-hidden flex flex-col">
@@ -265,6 +270,11 @@ export default function EarthquakesPage() {
             </div>
           </section>
         </main>
+
+        {/* Amazon Affiliate Banners - All 4 products in random order */}
+        {shuffledProducts.map((product) => (
+          <AmazonAffiliateBanner key={product.asin} product={product} />
+        ))}
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">
