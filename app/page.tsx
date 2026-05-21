@@ -4,6 +4,7 @@ import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
 import AdUnit from '@/components/AdUnit';
+import AdsterraAd from '@/components/AdsterraAd';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -131,9 +132,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Ad Unit 1 - After Next Launches */}
+      {/* Adsterra Ad - After Next Launches */}
       <section className="container mx-auto px-4">
-        <AdUnit slot="1234567890" format="horizontal" />
+        <AdsterraAd atOptions={{ key: 'f3e65203656eb536de288445042d86d3' }} />
       </section>
 
       {/* What We Track Section */}
