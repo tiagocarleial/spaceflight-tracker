@@ -60,8 +60,8 @@ const STARLINK_1737_YOUTUBE_ID = 'hAbo8i2iky0';
 const SMILE_YOUTUBE_ID = 'MLUJ7W4Uz-8';
 const STARLINK_1742_YOUTUBE_ID = 'RM2r6SzRJCI';
 const STARLINK_1031_YOUTUBE_ID = '0z38uvKyoi0';
-const STARSHIP_FLIGHT12_YOUTUBE_ID = 'JcNsHf607hU';
-const ELECTRON_STRIX9_YOUTUBE_ID = 'Kpz_hnG7LRw';
+const STARSHIP_FLIGHT12_YOUTUBE_ID = 'mhJRzQsLZGg';
+const ELECTRON_STRIX9_YOUTUBE_ID = 'oyrrCpLFU88';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
