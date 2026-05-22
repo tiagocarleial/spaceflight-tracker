@@ -24,9 +24,9 @@ interface AmazonAffiliateBannerProps {
 export default function AmazonAffiliateBanner({ product: customProduct }: AmazonAffiliateBannerProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Default product (Space Shuttle Discovery)
+  // Default product (Artemis Space Launch System)
   const defaultProduct: Product = {
-    name: 'LEGO Icons NASA Space Shuttle Discovery',
+    name: 'LEGO Icons NASA Artemis Space Launch System',
     asin: 'B0CRWGX5NH',
     affiliateLink: 'https://www.amazon.com/dp/B0CRWGX5NH?tag=tiagoolivei07-20&linkCode=ll2&linkId=b72017a00c3d1f501c948aa9e042ef56',
     imageUrl: 'https://m.media-amazon.com/images/I/81b4hg2iyRL._AC_SL1500_.jpg',
