@@ -11,7 +11,7 @@ interface Product {
 
 export const amazonProducts: Product[] = [
   {
-    name: 'LEGO Icons NASA Space Shuttle Discovery',
+    name: 'LEGO Icons NASA Artemis Space Launch System',
     asin: 'B0CRWGX5NH',
     affiliateLink: 'https://www.amazon.com/dp/B0CRWGX5NH?tag=tiagoolivei07-20&linkCode=ll2&linkId=b72017a00c3d1f501c948aa9e042ef56',
     imageUrl: 'https://m.media-amazon.com/images/I/81b4hg2iyRL._AC_SL1500_.jpg',
