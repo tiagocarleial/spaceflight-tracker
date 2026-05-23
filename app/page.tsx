@@ -27,6 +27,9 @@ export default async function HomePage() {
   let nextLaunches = mockLaunches.slice(0, 3);
   let totalLaunches = mockLaunches.length;
 
+  // Get featured Falcon 9 Starlink 17-37 launch
+  const featuredLaunch = mockLaunches.find(l => l.id === '43');
+
   try {
     // Fetch more launches to ensure we get enough "Go" status ones
     const data = await fetchUpcomingLaunches({ limit: 10 });
@@ -105,8 +108,41 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Amazon Affiliate Banner */}
-      <AmazonAffiliateBanner />
+      {/* Featured Launch + Product Section */}
+      {featuredLaunch && (
+        <section className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
+            {/* Featured Launch - Falcon 9 Starlink 17-37 */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <i className="fa-solid fa-star text-yellow-400"></i>
+                Featured Launch
+              </h3>
+              <LaunchCard launch={featuredLaunch} />
+            </div>
+
+            {/* Featured Product - Falcon 9 Model */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <i className="fa-solid fa-cart-shopping text-blue-400"></i>
+                Get Your Falcon 9 Model
+              </h3>
+              <AmazonAffiliateBanner
+                product={{
+                  name: 'SpaceX Falcon 9 Diecast Rocket Model',
+                  asin: 'B0D2N2RQZ7',
+                  affiliateLink: 'https://www.amazon.com/yuanpulalala-Starship-Diecast-Simulation-Desktop/dp/B0D2N2RQZ7?crid=2XFFYM9296MYJ&dib=eyJ2IjoiMSJ9.cDEMWp7yu1pPCbnhD2EOccilM1_bbp3JEJ90e2BrZWzALVett4dFF_WsA6-oJ-M8hDsMS0lBOBlfl5twD7hzDAcLn9Vyp-mJOsI6_TtkHoL6BS1aHkuzuFAstvTCSet8-18AEEGH4fTwfJr3U45QpxuqyyF9VI-VR8MxvQmidtwu5IBxCscQaqsF2e1ZvmoUQeOwsEP_WU2CZGxP9RWD-SohsDLfpc2MYedpBhH937a1RW00vVHkkm2B1C0W75RLd7PgcZ_uoVyeQ4oShSEc8o8bHc_sRooNWRAde6lbMUE.ME21gtbhayv9Ox_UOJwAfx7A_F0PXdpF8bxTTHrJTO0&dib_tag=se&keywords=yuanpulalala%2BSpaceX%2BFalcon%2B9&qid=1779557887&sprefix=yuanpulalala%2Bspacex%2Bfalcon%2B9%2Caps%2C286&sr=8-1&th=1&linkCode=ll2&tag=tiagoolivei07-20&linkId=f5644eaacf90f7a4106124f4b1ded4d8&language=en_US&ref_=as_li_ss_tl',
+                  imageUrl: 'https://m.media-amazon.com/images/I/61HUoB-jz4L._AC_SL1200_.jpg',
+                  description: 'Authentic 1:400 scale diecast metal replica with detailed boosters, simulation launch pad and display stand',
+                  badge: 'Diecast Replica',
+                  pieces: 'Metal Model',
+                  age: 'Collectible',
+                }}
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Next Launches Highlight */}
       <section className="container mx-auto px-4 py-8">

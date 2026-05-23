@@ -50,6 +50,16 @@ export const amazonProducts: Product[] = [
     pieces: '864 Pieces',
     age: 'Ages 16+',
   },
+  {
+    name: 'SpaceX Falcon 9 Diecast Rocket Model',
+    asin: 'B0D2N2RQZ7',
+    affiliateLink: 'https://www.amazon.com/yuanpulalala-Starship-Diecast-Simulation-Desktop/dp/B0D2N2RQZ7?crid=2XFFYM9296MYJ&dib=eyJ2IjoiMSJ9.cDEMWp7yu1pPCbnhD2EOccilM1_bbp3JEJ90e2BrZWzALVett4dFF_WsA6-oJ-M8hDsMS0lBOBlfl5twD7hzDAcLn9Vyp-mJOsI6_TtkHoL6BS1aHkuzuFAstvTCSet8-18AEEGH4fTwfJr3U45QpxuqyyF9VI-VR8MxvQmidtwu5IBxCscQaqsF2e1ZvmoUQeOwsEP_WU2CZGxP9RWD-SohsDLfpc2MYedpBhH937a1RW00vVHkkm2B1C0W75RLd7PgcZ_uoVyeQ4oShSEc8o8bHc_sRooNWRAde6lbMUE.ME21gtbhayv9Ox_UOJwAfx7A_F0PXdpF8bxTTHrJTO0&dib_tag=se&keywords=yuanpulalala%2BSpaceX%2BFalcon%2B9&qid=1779557887&sprefix=yuanpulalala%2Bspacex%2Bfalcon%2B9%2Caps%2C286&sr=8-1&th=1&linkCode=ll2&tag=tiagoolivei07-20&linkId=f5644eaacf90f7a4106124f4b1ded4d8&language=en_US&ref_=as_li_ss_tl',
+    imageUrl: 'https://m.media-amazon.com/images/I/61HUoB-jz4L._AC_SL1200_.jpg',
+    description: 'Authentic 1:400 scale diecast metal replica with detailed boosters, simulation launch pad and display stand',
+    badge: 'Diecast Replica',
+    pieces: 'Metal Model',
+    age: 'Collectible',
+  },
 ];
 
 /**
