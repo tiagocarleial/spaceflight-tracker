@@ -575,9 +575,9 @@ export const mockLaunches: Launch[] = [
     rocketId: 'falcon9',
     operator: 'SpaceX',
     location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
-    launchDate: '2026-05-26T14:00:00.000Z',
+    launchDate: '2026-05-24T14:00:00.000Z',
     status: 'Go',
-    description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband internet network.',
+    description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
     recovery: 'ASDS - Of Course I Still Love You',
     livestream: 'https://www.youtube.com/watch?v=hAbo8i2iky0'
   },
