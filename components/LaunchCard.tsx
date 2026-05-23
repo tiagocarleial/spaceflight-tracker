@@ -62,6 +62,7 @@ const STARLINK_1742_YOUTUBE_ID = 'RM2r6SzRJCI';
 const STARLINK_1031_YOUTUBE_ID = '0z38uvKyoi0';
 const STARSHIP_FLIGHT12_YOUTUBE_ID = 'mhJRzQsLZGg';
 const ELECTRON_STRIX9_YOUTUBE_ID = 'oyrrCpLFU88';
+const SHENZHOU_23_YOUTUBE_ID = 'qyrqe_vl0Vs';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -226,6 +227,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isPSLV = launch.rocket.includes('PSLV');
   const isNewGlenn = launch.rocket.includes('New Glenn');
   const isNewGlennBlueBird2 = isNewGlenn && launch.name.toLowerCase().includes('bluebird block 2');
+  const isLongMarch2F = launch.rocket.includes('Long March 2F');
+  const isShenzhou23 = isLongMarch2F && launch.name.toLowerCase().includes('shenzhou 23');
   const isLongMarch2C = launch.rocket.includes('Long March 2C');
   const isLongMarch3BE = launch.rocket.includes('Long March 3B/E');
   const isLongMarch6A = launch.rocket.includes('Long March 6A');
@@ -270,7 +273,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin || isViaSat3F3 || isAtlasVAmazonLA06 || isStarlink1736 || isAriane64AmazonLE02 || isStarlink1038 || isCAS5002 || isStarlink1729 || isDragonCRS2SpX34 || isStarlink1737 || isSMILE || isStarlink1742 || isStarlink1031 || isStarshipFlight12 || isElectronStriX9;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin || isViaSat3F3 || isAtlasVAmazonLA06 || isStarlink1736 || isAriane64AmazonLE02 || isStarlink1038 || isCAS5002 || isStarlink1729 || isDragonCRS2SpX34 || isStarlink1737 || isSMILE || isStarlink1742 || isStarlink1031 || isStarshipFlight12 || isElectronStriX9 || isShenzhou23;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -833,6 +836,14 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isElectronStriX9 && (
               <button
                 onClick={() => setVideoModalId(ELECTRON_STRIX9_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isShenzhou23 && (
+              <button
+                onClick={() => setVideoModalId(SHENZHOU_23_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now
