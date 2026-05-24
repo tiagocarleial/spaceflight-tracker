@@ -645,5 +645,18 @@ export const mockLaunches: Launch[] = [
     description: 'Rocket Lab will launch the ninth StriX synthetic aperture radar satellite aboard the Electron rocket for Synspective, providing high-resolution Earth observation capabilities.',
     recovery: 'Ocean Splashdown',
     livestream: 'https://www.youtube.com/watch?v=W2nTAM4mng0'
+  },
+  {
+    id: '49',
+    name: 'Shenzhou 23',
+    rocket: 'Long March 2F/G',
+    rocketId: 'longmarch2fg',
+    operator: 'China Aerospace Science and Technology Corporation',
+    location: 'Launch Area 91 (SLS-1 / 921), Jiuquan Satellite Launch Center, People\'s Republic of China',
+    launchDate: '2026-05-24T15:08:00.000Z',
+    status: 'Go',
+    description: 'Shenzhou 23 will be the 23rd flight of the Shenzhou program.',
+    recovery: 'Crew Capsule: Parachute Landing',
+    livestream: 'https://www.youtube.com/watch?v=qyrqe_vl0Vs'
   }
 ];
