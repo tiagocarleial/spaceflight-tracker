@@ -27,8 +27,8 @@ export default async function HomePage() {
   let nextLaunches = mockLaunches.slice(0, 3);
   let totalLaunches = mockLaunches.length;
 
-  // Get featured Falcon 9 Starlink 17-37 launch from nextLaunches
-  let featuredLaunch = mockLaunches.find(l => l.name.includes('Starlink Group 17-37'));
+  // Get featured Falcon 9 Starlink 10-47 launch from nextLaunches
+  let featuredLaunch = mockLaunches.find(l => l.name.includes('Starlink Group 10-47'));
 
   try {
     // Fetch more launches to ensure we get enough "Go" status ones
@@ -59,7 +59,7 @@ export default async function HomePage() {
     totalLaunches = data.count;
 
     // Try to get featured launch from API data
-    const apiFeaturedLaunch = data.launches.find(l => l.name.includes('Starlink Group 17-37'));
+    const apiFeaturedLaunch = data.launches.find(l => l.name.includes('Starlink Group 10-47'));
     if (apiFeaturedLaunch) {
       featuredLaunch = apiFeaturedLaunch;
     }
