@@ -31,8 +31,13 @@ export default async function HomePage() {
   let nextLaunches = futureLaunches.slice(0, 3);
   let totalLaunches = futureLaunches.length;
 
-  // Get featured Falcon 9 Starlink 10-47 launch from nextLaunches
-  let featuredLaunch = futureLaunches.find(l => l.name.includes('Starlink Group 10-47'));
+  // Get featured Falcon 9 Starlink 17-37 launch
+  // Show it even if it already launched, but only for 5 hours after (T+5h)
+  const fiveHoursAgo = new Date(now.getTime() - 5 * 60 * 60 * 1000);
+  const featuredCandidates = mockLaunches.filter(l =>
+    l.name.includes('Starlink Group 17-37') && new Date(l.launchDate) > fiveHoursAgo
+  );
+  let featuredLaunch = featuredCandidates[0];
 
   try {
     // Fetch more launches to ensure we get enough "Go" status ones
@@ -66,9 +71,12 @@ export default async function HomePage() {
     totalLaunches = data.count;
 
     // Try to get featured launch from API data
-    const apiFeaturedLaunch = apiFutureLaunches.find(l => l.name.includes('Starlink Group 10-47'));
-    if (apiFeaturedLaunch) {
-      featuredLaunch = apiFeaturedLaunch;
+    // Allow launches up to 5 hours in the past (T+5h)
+    const apiFeaturedCandidates = data.launches.filter(l =>
+      l.name.includes('Starlink Group 17-37') && new Date(l.launchDate) > fiveHoursAgo
+    );
+    if (apiFeaturedCandidates.length > 0) {
+      featuredLaunch = apiFeaturedCandidates[0];
     }
   } catch (error) {
     console.error('Failed to fetch launches for homepage:', error);
@@ -130,6 +138,11 @@ export default async function HomePage() {
               <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                 <i className="fa-solid fa-star text-yellow-400"></i>
                 Featured Launch
+                {new Date(featuredLaunch.launchDate) < now && (
+                  <span className="text-xs bg-red-600 px-2 py-1 rounded text-white font-normal">
+                    🔴 LIVE
+                  </span>
+                )}
               </h3>
               <LaunchCard launch={featuredLaunch} />
             </div>
