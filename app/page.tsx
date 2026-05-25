@@ -23,19 +23,26 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  // Filter for future launches only
+  const now = new Date();
+  const futureLaunches = mockLaunches.filter(l => new Date(l.launchDate) > now);
+
   // Fetch next 3 upcoming launches for highlights
-  let nextLaunches = mockLaunches.slice(0, 3);
-  let totalLaunches = mockLaunches.length;
+  let nextLaunches = futureLaunches.slice(0, 3);
+  let totalLaunches = futureLaunches.length;
 
   // Get featured Falcon 9 Starlink 10-47 launch from nextLaunches
-  let featuredLaunch = mockLaunches.find(l => l.name.includes('Starlink Group 10-47'));
+  let featuredLaunch = futureLaunches.find(l => l.name.includes('Starlink Group 10-47'));
 
   try {
     // Fetch more launches to ensure we get enough "Go" status ones
     const data = await fetchUpcomingLaunches({ limit: 10 });
 
+    // Filter for future launches only from API data
+    const apiFutureLaunches = data.launches.filter(l => new Date(l.launchDate) > now);
+
     // Sort launches: "Go" status first, then others
-    const sortedLaunches = data.launches.sort((a, b) => {
+    const sortedLaunches = apiFutureLaunches.sort((a, b) => {
       // Define priority order (lower number = higher priority)
       const statusPriority: Record<string, number> = {
         'Go': 1,
@@ -59,7 +66,7 @@ export default async function HomePage() {
     totalLaunches = data.count;
 
     // Try to get featured launch from API data
-    const apiFeaturedLaunch = data.launches.find(l => l.name.includes('Starlink Group 10-47'));
+    const apiFeaturedLaunch = apiFutureLaunches.find(l => l.name.includes('Starlink Group 10-47'));
     if (apiFeaturedLaunch) {
       featuredLaunch = apiFeaturedLaunch;
     }

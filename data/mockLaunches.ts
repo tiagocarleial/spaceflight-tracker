@@ -658,5 +658,18 @@ export const mockLaunches: Launch[] = [
     description: 'Shenzhou 23 will be the 23rd flight of the Shenzhou program.',
     recovery: 'Crew Capsule: Parachute Landing',
     livestream: 'https://www.youtube.com/watch?v=qyrqe_vl0Vs'
+  },
+  {
+    id: '50',
+    name: 'Starlink Group 10-47',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-05-25T11:48:00.000Z',
+    status: 'Go',
+    description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=37ftjYVlmvo'
   }
 ];
