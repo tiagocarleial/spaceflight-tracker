@@ -39,6 +39,12 @@ export default async function HomePage() {
   );
   let featuredLaunch = featuredCandidates[0];
 
+  // Get featured Long March 7A launch
+  const featuredLongMarchCandidates = mockLaunches.filter(l =>
+    l.name.includes('Long March 7A') && new Date(l.launchDate) > fiveHoursAgo
+  );
+  let featuredLongMarch = featuredLongMarchCandidates[0];
+
   try {
     // Fetch more launches to ensure we get enough "Go" status ones
     const data = await fetchUpcomingLaunches({ limit: 10 });
@@ -77,6 +83,14 @@ export default async function HomePage() {
     );
     if (apiFeaturedCandidates.length > 0) {
       featuredLaunch = apiFeaturedCandidates[0];
+    }
+
+    // Try to get featured Long March 7A launch from API data
+    const apiFeaturedLongMarchCandidates = data.launches.filter(l =>
+      l.name.includes('Long March 7A') && new Date(l.launchDate) > fiveHoursAgo
+    );
+    if (apiFeaturedLongMarchCandidates.length > 0) {
+      featuredLongMarch = apiFeaturedLongMarchCandidates[0];
     }
   } catch (error) {
     console.error('Failed to fetch launches for homepage:', error);
@@ -130,26 +144,52 @@ export default async function HomePage() {
       </section>
 
       {/* Featured Launch + Product Section */}
-      {featuredLaunch && (
+      {(featuredLongMarch || featuredLaunch) && (
         <section className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
-            {/* Featured Launch - Falcon 9 Starlink 17-37 */}
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <div className="mb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-8 bg-yellow-500 rounded-full"></div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
                 <i className="fa-solid fa-star text-yellow-400"></i>
-                Featured Launch
-                {new Date(featuredLaunch.launchDate) < now && (
-                  <span className="text-xs bg-red-600 px-2 py-1 rounded text-white font-normal">
-                    🔴 LIVE
-                  </span>
-                )}
-              </h3>
-              <LaunchCard launch={featuredLaunch} />
+                Featured Launches
+              </h2>
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {/* Featured Launch 1 - Long March 7A */}
+            {featuredLongMarch && (
+              <div>
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  Long March 7A
+                  {new Date(featuredLongMarch.launchDate) < now && (
+                    <span className="text-xs bg-red-600 px-2 py-1 rounded text-white font-normal">
+                      🔴 LIVE
+                    </span>
+                  )}
+                </h3>
+                <LaunchCard launch={featuredLongMarch} />
+              </div>
+            )}
+
+            {/* Featured Launch 2 - Falcon 9 Starlink 17-37 */}
+            {featuredLaunch && (
+              <div>
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  Falcon 9 Starlink 17-37
+                  {new Date(featuredLaunch.launchDate) < now && (
+                    <span className="text-xs bg-red-600 px-2 py-1 rounded text-white font-normal">
+                      🔴 LIVE
+                    </span>
+                  )}
+                </h3>
+                <LaunchCard launch={featuredLaunch} />
+              </div>
+            )}
 
             {/* Featured Product - Falcon 9 Model */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <i className="fa-solid fa-cart-shopping text-blue-400"></i>
                 Get Your Falcon 9 Model
               </h3>

@@ -671,5 +671,18 @@ export const mockLaunches: Launch[] = [
     description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
     recovery: 'ASDS - Just Read the Instructions',
     livestream: 'https://www.youtube.com/watch?v=37ftjYVlmvo'
+  },
+  {
+    id: '51',
+    name: 'Long March 7A | Unknown Payload',
+    rocket: 'Long March 7A',
+    rocketId: 'longmarch7a',
+    operator: 'China Aerospace Science and Technology Corporation',
+    location: '201, Wenchang Space Launch Site, People\'s Republic of China',
+    launchDate: '2026-05-26T16:15:00.000Z',
+    status: 'Go',
+    description: 'Long March 7A launch carrying an unknown payload into orbit.',
+    recovery: 'N/A',
+    livestream: 'https://www.youtube.com/watch?v=Gjv1ZuUejEA'
   }
 ];
