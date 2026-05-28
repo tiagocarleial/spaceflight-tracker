@@ -170,10 +170,10 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {/* Featured Launch 1 - Long March 7A */}
             {featuredLongMarch && (
-              <div>
+              <div className="w-full">
                 <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                   Long March 7A
                   {new Date(featuredLongMarch.launchDate) < now && (
@@ -188,7 +188,7 @@ export default async function HomePage() {
 
             {/* Featured Launch 2 - Falcon 9 Starlink 10-53 */}
             {featuredStarlink1053 && (
-              <div>
+              <div className="w-full">
                 <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                   Falcon 9 Starlink 10-53
                   {new Date(featuredStarlink1053.launchDate) < now && (
@@ -202,7 +202,7 @@ export default async function HomePage() {
             )}
 
             {/* Featured Product - Falcon 9 Model */}
-            <div>
+            <div className="w-full md:col-span-2 lg:col-span-1">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <i className="fa-solid fa-cart-shopping text-blue-400"></i>
                 Get Your Falcon 9 Model
