@@ -684,5 +684,18 @@ export const mockLaunches: Launch[] = [
     description: 'Long March 7A launch carrying an unknown payload into orbit.',
     recovery: 'N/A',
     livestream: 'https://www.youtube.com/watch?v=Gjv1ZuUejEA'
+  },
+  {
+    id: '52',
+    name: 'Starlink Group 10-53',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-05-29T11:52:00.000Z',
+    status: 'Go',
+    description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=HVcST0On3lk'
   }
 ];
