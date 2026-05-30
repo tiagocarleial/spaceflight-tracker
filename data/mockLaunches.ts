@@ -697,5 +697,41 @@ export const mockLaunches: Launch[] = [
     description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
     recovery: 'ASDS - Just Read the Instructions',
     livestream: 'https://www.youtube.com/watch?v=HVcST0On3lk'
+  },
+  {
+    id: '53',
+    name: 'Starlink Group 10-43',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-06-03T08:02:00.000Z',
+    status: 'Go',
+    description: 'A batch of 29 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
+    recovery: 'ASDS - Just Read the Instructions'
+  },
+  {
+    id: '54',
+    name: 'Starlink Group 17-47',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-06-03T14:00:00.000Z',
+    status: 'Go',
+    description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
+    recovery: 'ASDS - Of Course I Still Love You'
+  },
+  {
+    id: '55',
+    name: 'Long March 6A | Unknown Payload',
+    rocket: 'Long March 6A',
+    rocketId: 'longmarch6a',
+    operator: 'China Aerospace Science and Technology Corporation',
+    location: 'Launch Complex 9A, Taiyuan Satellite Launch Center, People\'s Republic of China',
+    launchDate: '2026-06-04T11:41:00.000Z',
+    status: 'TBD',
+    description: 'Details TBD, probably SpaceSail Polar Orbit LEO communication satellites.',
+    recovery: 'N/A'
   }
 ];
