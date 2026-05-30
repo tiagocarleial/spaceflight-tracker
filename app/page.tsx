@@ -52,34 +52,12 @@ export default async function HomePage() {
   let featuredStarlink1053 = featuredStarlink1053Candidates[0];
 
   try {
-    // Fetch more launches to ensure we get enough "Go" status ones
+    // Fetch upcoming launches
     const data = await fetchUpcomingLaunches({ limit: 10 });
 
-    // Filter for future launches only from API data
+    // Filter for future launches only from API data and take the next 3 chronologically
     const apiFutureLaunches = data.launches.filter(l => new Date(l.launchDate) > now);
-
-    // Sort launches: "Go" status first, then others
-    const sortedLaunches = apiFutureLaunches.sort((a, b) => {
-      // Define priority order (lower number = higher priority)
-      const statusPriority: Record<string, number> = {
-        'Go': 1,
-        'TBD': 2,
-        'Hold': 3,
-        'Success': 4,
-        'Failure': 5,
-      };
-
-      const priorityA = statusPriority[a.status] || 999;
-      const priorityB = statusPriority[b.status] || 999;
-
-      // If status priority is the same, maintain original order (by date)
-      if (priorityA === priorityB) return 0;
-
-      return priorityA - priorityB;
-    });
-
-    // Take the first 3 after sorting
-    nextLaunches = sortedLaunches.slice(0, 3);
+    nextLaunches = apiFutureLaunches.slice(0, 3);
     totalLaunches = data.count;
 
     // Try to get featured launch from API data
