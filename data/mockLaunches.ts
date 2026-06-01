@@ -59,7 +59,7 @@ export const mockLaunches: Launch[] = [
     rocketId: 'falcon9',
     operator: 'SpaceX',
     location: 'Cape Canaveral SFS, Florida, USA',
-    launchDate: new Date(Date.now() + 30 * 60 * 1000).toISOString(), // 30 minutes from now
+    launchDate: '2026-05-15T10:30:00.000Z', // Past launch - May 15, 2026
     status: 'Go',
     description: 'SpaceX will launch another batch of Starlink satellites to expand their global broadband network.',
     recovery: 'ASDS - Just Read the Instructions',
@@ -157,7 +157,7 @@ export const mockLaunches: Launch[] = [
     rocketId: 'kairos',
     operator: 'Space One',
     location: 'Kii Space Port, Kushimoto, Japan',
-    launchDate: new Date(Date.now() + 60 * 60 * 1000).toISOString(), // 1 hour from now
+    launchDate: '2026-05-20T08:00:00.000Z', // Past launch - May 20, 2026
     status: 'Go',
     description: 'Third launch attempt of the Kairos solid-fuel rocket carrying a small satellite payload. Space One aims to demonstrate reliable commercial launch services for small satellites.',
     recovery: 'N/A',
