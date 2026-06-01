@@ -53,6 +53,12 @@ export default async function HomePage() {
   );
   let featuredStarlink1053 = featuredStarlink1053Candidates[0];
 
+  // Get featured Starlink 10-43 launch
+  const featuredStarlink1043Candidates = mockLaunches.filter(l =>
+    l.name.includes('Starlink Group 10-43') && new Date(l.launchDate) > fiveHoursAgo
+  );
+  let featuredStarlink1043 = featuredStarlink1043Candidates[0];
+
   try {
     // Fetch upcoming launches
     const data = await fetchUpcomingLaunches({ limit: 10 });
@@ -87,6 +93,14 @@ export default async function HomePage() {
     );
     if (apiFeaturedStarlink1053Candidates.length > 0) {
       featuredStarlink1053 = apiFeaturedStarlink1053Candidates[0];
+    }
+
+    // Try to get featured Starlink 10-43 launch from API data
+    const apiFeaturedStarlink1043Candidates = data.launches.filter(l =>
+      l.name.includes('Starlink Group 10-43') && new Date(l.launchDate) > fiveHoursAgo
+    );
+    if (apiFeaturedStarlink1043Candidates.length > 0) {
+      featuredStarlink1043 = apiFeaturedStarlink1043Candidates[0];
     }
   } catch (error) {
     console.error('Failed to fetch launches for homepage:', error);
@@ -140,7 +154,7 @@ export default async function HomePage() {
       </section>
 
       {/* Featured Launch + Product Section */}
-      {(featuredLongMarch || featuredStarlink1053) && (
+      {(featuredLongMarch || featuredStarlink1053 || featuredStarlink1043) && (
         <section className="container mx-auto px-4 py-8">
           <div className="mb-5">
             <div className="flex items-center gap-3">
@@ -180,6 +194,21 @@ export default async function HomePage() {
                   )}
                 </h3>
                 <LaunchCard launch={featuredStarlink1053} />
+              </div>
+            )}
+
+            {/* Featured Launch 3 - Falcon 9 Starlink 10-43 */}
+            {featuredStarlink1043 && (
+              <div className="w-full">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  Falcon 9 Starlink 10-43
+                  {new Date(featuredStarlink1043.launchDate) < now && (
+                    <span className="text-xs bg-red-600 px-2 py-1 rounded text-white font-normal">
+                      🔴 LIVE
+                    </span>
+                  )}
+                </h3>
+                <LaunchCard launch={featuredStarlink1043} />
               </div>
             )}
 
