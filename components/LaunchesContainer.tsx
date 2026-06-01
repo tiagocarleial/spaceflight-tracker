@@ -32,7 +32,7 @@ function filterRecentLaunches(launches: Launch[]): Launch[] {
   });
 }
 
-// Sort launches: T+ (launched) first, then by status priority
+// Sort launches: T+ (launched) first, then by status priority, then by date
 function sortLaunchesByStatus(launches: Launch[]): Launch[] {
   const statusPriority: Record<string, number> = {
     'Go': 1,
@@ -56,10 +56,16 @@ function sortLaunchesByStatus(launches: Launch[]): Launch[] {
       return new Date(b.launchDate).getTime() - new Date(a.launchDate).getTime();
     }
 
-    // If neither launched, sort by status priority
+    // If neither launched, sort by status priority first
     const priorityA = statusPriority[a.status] || 999;
     const priorityB = statusPriority[b.status] || 999;
-    return priorityA - priorityB;
+
+    if (priorityA !== priorityB) {
+      return priorityA - priorityB;
+    }
+
+    // If same status, sort by launch date (earliest first)
+    return new Date(a.launchDate).getTime() - new Date(b.launchDate).getTime();
   });
 }
 

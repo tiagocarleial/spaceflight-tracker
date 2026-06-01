@@ -66,6 +66,8 @@ const SHENZHOU_23_YOUTUBE_ID = 'qyrqe_vl0Vs';
 const STARLINK_1047_YOUTUBE_ID = '37ftjYVlmvo';
 const LONGMARCH_7A_YOUTUBE_ID = 'Gjv1ZuUejEA';
 const STARLINK_1053_YOUTUBE_ID = 'HVcST0On3lk';
+const STARLINK_1747_YOUTUBE_ID = 'syTkJjUE1A8';
+const STARLINK_1043_YOUTUBE_ID = 'PqWn8b-KP2Y';
 
 
 export default function LaunchCard({ launch }: LaunchCardProps) {
@@ -218,6 +220,8 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
   const isStarlink1742 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-42');
   const isStarlink1031 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-31');
   const isStarlink1053 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-53');
+  const isStarlink1747 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 17-47');
+  const isStarlink1043 = isFalcon9 && launch.name.toLowerCase().includes('starlink group 10-43');
   const isGPSIIISV10 = isFalcon9 && launch.name.toLowerCase().includes('gps iii sv10');
   const isHASTE = launch.name.toLowerCase().includes('haste');
   const isFIREFLY = launch.name.toLowerCase().includes('stairway to seven');
@@ -280,7 +284,7 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
 
   // Check if this launch has a Watch Now button
   const hasWatchNow = isAriane6 || isCrew12 || isStarlink1713 || isStarlink6103 || isStarlink1036 || isStarlink1041 ||
-                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1047 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin || isViaSat3F3 || isAtlasVAmazonLA06 || isStarlink1736 || isAriane64AmazonLE02 || isStarlink1038 || isCAS5002 || isStarlink1729 || isDragonCRS2SpX34 || isStarlink1737 || isSMILE || isStarlink1742 || isStarlink1031 || isStarshipFlight12 || isElectronStriX9 || isShenzhou23 || isLongMarch7AUnknown || isStarlink1053;
+                      isStarlink6104 || isStarlink1725 || isStarlink1726 || isHASTE || isStarlink6108 || isFIREFLY || isKairosFlight3 || isElectronBlackSky || isStarlink1718 || isStarlink1731 || isStarlink1048 || isStarlink1047 || isStarlink1046 || isStarlink1724 || isStarlink1033 || isElectronStriX8 || isStarlink1715 || isProgressMS33 || isStarlink1062 || isStarlink1717 || isElectronDaughter || isSpectrumOnward || isAtlasVAmazonLeo || isStarlink1044 || isMeridianM21L || isArtemisII || isStarlink1735 || isMinotaurIVSTP || isStarlink1727 || isNewGlennBlueBird2 || isStarlink1722 || isGPSIIISV10 || isStarlink1714 || isElectronKakushin || isViaSat3F3 || isAtlasVAmazonLA06 || isStarlink1736 || isAriane64AmazonLE02 || isStarlink1038 || isCAS5002 || isStarlink1729 || isDragonCRS2SpX34 || isStarlink1737 || isSMILE || isStarlink1742 || isStarlink1031 || isStarshipFlight12 || isElectronStriX9 || isShenzhou23 || isLongMarch7AUnknown || isStarlink1053 || isStarlink1747 || isStarlink1043;
 
   const getRocketImage = () => {
     if (isFalcon9) return '/images/falcon9.png';
@@ -876,6 +880,22 @@ export default function LaunchCard({ launch }: LaunchCardProps) {
             {isStarlink1053 && (
               <button
                 onClick={() => setVideoModalId(STARLINK_1053_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1747 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1747_YOUTUBE_ID)}
+                className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
+              >
+                ▶ Watch Now
+              </button>
+            )}
+            {isStarlink1043 && (
+              <button
+                onClick={() => setVideoModalId(STARLINK_1043_YOUTUBE_ID)}
                 className="flex-1 bg-red-700 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded transition-colors"
               >
                 ▶ Watch Now

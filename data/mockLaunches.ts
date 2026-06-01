@@ -708,7 +708,8 @@ export const mockLaunches: Launch[] = [
     launchDate: '2026-06-03T08:02:00.000Z',
     status: 'Go',
     description: 'A batch of 29 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
-    recovery: 'ASDS - Just Read the Instructions'
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=PqWn8b-KP2Y'
   },
   {
     id: '54',
@@ -720,7 +721,8 @@ export const mockLaunches: Launch[] = [
     launchDate: '2026-06-03T14:00:00.000Z',
     status: 'Go',
     description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
-    recovery: 'ASDS - Of Course I Still Love You'
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=syTkJjUE1A8'
   },
   {
     id: '55',

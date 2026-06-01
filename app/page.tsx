@@ -25,7 +25,9 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   // Filter for future launches only
   const now = new Date();
-  const futureLaunches = mockLaunches.filter(l => new Date(l.launchDate) > now);
+  const futureLaunches = mockLaunches
+    .filter(l => new Date(l.launchDate) > now)
+    .sort((a, b) => new Date(a.launchDate).getTime() - new Date(b.launchDate).getTime());
 
   // Fetch next 3 upcoming launches for highlights
   let nextLaunches = futureLaunches.slice(0, 3);
@@ -56,7 +58,9 @@ export default async function HomePage() {
     const data = await fetchUpcomingLaunches({ limit: 10 });
 
     // Filter for future launches only from API data and take the next 3 chronologically
-    const apiFutureLaunches = data.launches.filter(l => new Date(l.launchDate) > now);
+    const apiFutureLaunches = data.launches
+      .filter(l => new Date(l.launchDate) > now)
+      .sort((a, b) => new Date(a.launchDate).getTime() - new Date(b.launchDate).getTime());
     nextLaunches = apiFutureLaunches.slice(0, 3);
     totalLaunches = data.count;
 
