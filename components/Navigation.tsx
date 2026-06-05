@@ -24,7 +24,6 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/asteroids', label: 'Asteroids', icon: 'fa-meteor', id: 'asteroids' },
   { href: '/events', label: 'Events', icon: 'fa-star', id: 'events' },
   { href: '/earthquakes', label: 'Earthquakes', icon: 'fa-earth-americas', id: 'earthquakes' },
-  { href: '/blog', label: 'Blog', icon: 'fa-newspaper', id: 'blog' },
 ];
 
 const LEARN_ITEMS = [

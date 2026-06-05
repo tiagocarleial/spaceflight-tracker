@@ -1,12 +1,3 @@
 {
-  "crons": [
-    {
-      "path": "/api/fetch-articles",
-      "schedule": "0 8 * * *"
-    },
-    {
-      "path": "/api/auto-publish",
-      "schedule": "0 11 * * *"
-    }
-  ]
+  "crons": []
 }

@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import EarthquakeMapClient from '@/components/EarthquakeMapClient';
 import EarthquakeFooter from '@/components/EarthquakeFooter';
-import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
-import { getShuffledProducts } from '@/data/amazonProducts';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -27,8 +25,6 @@ export const metadata: Metadata = {
 };
 
 export default function EarthquakesPage() {
-  // Shuffle Amazon products for random banner order
-  const shuffledProducts = getShuffledProducts();
 
   return (
     <div className="relative w-full">
@@ -36,8 +32,23 @@ export default function EarthquakesPage() {
         {/* Fixed Navigation Header */}
         <Navigation currentPage="earthquakes" variant="compact" />
 
+        {/* Intro lead — keeps editorial content above the fold */}
+        <section className="bg-gray-900 pt-[76px] pb-4 px-4 shrink-0">
+          <div className="container mx-auto max-w-7xl">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-1 h-8 bg-blue-500 rounded-full"></div>
+              <h1 className="text-2xl md:text-3xl font-bold text-white">Live Earthquake Monitor</h1>
+            </div>
+            <p className="text-gray-400 max-w-3xl text-sm md:text-base">
+              Real-time global seismic activity from the U.S. Geological Survey (USGS), plotted on the
+              interactive map below as events are reported. Scroll down to learn how earthquakes form,
+              how their magnitude is measured, and why prediction remains so difficult.
+            </p>
+          </div>
+        </section>
+
         {/* Map - takes available space on desktop, limited on mobile */}
-        <div className="flex-1 md:flex-1 w-full pt-[60px] min-h-0">
+        <div className="flex-1 md:flex-1 w-full min-h-0">
           <EarthquakeMapClient />
         </div>
 
@@ -47,8 +58,6 @@ export default function EarthquakesPage() {
 
       {/* Educational Content Section - Below the Map */}
       <div className="bg-gray-900">
-        {/* Amazon Banner 1 */}
-        <AmazonAffiliateBanner product={shuffledProducts[0]} />
 
         <main className="container mx-auto px-4 py-12">
           <section className="mb-12 max-w-7xl mx-auto">
@@ -180,8 +189,6 @@ export default function EarthquakesPage() {
           </section>
         </main>
 
-        {/* Amazon Banner 2 */}
-        <AmazonAffiliateBanner product={shuffledProducts[1]} />
 
         <main className="container mx-auto px-4 py-12">
           <section className="mb-12 max-w-7xl mx-auto">
@@ -226,8 +233,6 @@ export default function EarthquakesPage() {
           </section>
         </main>
 
-        {/* Amazon Banner 3 */}
-        <AmazonAffiliateBanner product={shuffledProducts[2]} />
 
         <main className="container mx-auto px-4 py-12">
           <section className="mb-12 max-w-7xl mx-auto">
@@ -293,8 +298,6 @@ export default function EarthquakesPage() {
           </section>
         </main>
 
-        {/* Amazon Banner 4 */}
-        <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
         {/* Footer */}
         <footer className="border-t border-gray-800 bg-gray-900">

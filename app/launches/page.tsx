@@ -2,8 +2,6 @@ import LaunchesContainer from '@/components/LaunchesContainer';
 import { fetchUpcomingLaunches, fetchLaunchProviders } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
-import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
-import { getShuffledProducts } from '@/data/amazonProducts';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
@@ -28,8 +26,6 @@ export const metadata: Metadata = {
 };
 
 export default async function LaunchesPage() {
-  // Shuffle Amazon products for random banner order
-  const shuffledProducts = getShuffledProducts();
 
   // Try to fetch real data, fallback to mock data if API fails
   let launches = mockLaunches;
@@ -228,8 +224,6 @@ export default async function LaunchesPage() {
           </div>
         </section>
 
-        {/* Amazon Banner 1 */}
-        <AmazonAffiliateBanner product={shuffledProducts[0]} />
 
         {/* Data Source Indicator */}
         {!useRealData && (
@@ -262,8 +256,6 @@ export default async function LaunchesPage() {
           />
         </section>
 
-        {/* Amazon Banner 2 */}
-        <AmazonAffiliateBanner product={shuffledProducts[1]} />
 
         {/* Educational Content Below Launches */}
         <section className="mb-12 max-w-6xl mx-auto">
@@ -373,8 +365,6 @@ export default async function LaunchesPage() {
           </div>
         </section>
 
-        {/* Amazon Banner 3 */}
-        <AmazonAffiliateBanner product={shuffledProducts[2]} />
 
         <section className="mb-12 max-w-6xl mx-auto">
           {/* Why Watch Launches */}
@@ -400,8 +390,6 @@ export default async function LaunchesPage() {
         </section>
       </main>
 
-      {/* Amazon Banner 4 */}
-      <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

@@ -7,9 +7,9 @@ import { Article } from '@/types/article';
 
 const CATEGORY_LABELS: Record<string, string> = {
   space: 'Space',
-  astronomy: 'Astronomia',
-  'natural-disasters': 'Desastres Naturais',
-  archaeology: 'Arqueologia',
+  astronomy: 'Astronomy',
+  'natural-disasters': 'Natural Disasters',
+  archaeology: 'Archaeology',
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -75,13 +75,13 @@ export default function AdminDashboard() {
       const res = await fetch('/api/blog/fetch-feeds', { method: 'POST' });
       const data = await res.json();
       if (res.ok) {
-        setFetchResult(`✓ ${data.inserted} novos artigos importados (${data.total_fetched} encontrados nos feeds)`);
+        setFetchResult(`✓ ${data.inserted} new articles imported (${data.total_fetched} found in the feeds)`);
         loadArticles();
       } else {
-        setFetchResult(`Erro: ${data.error}`);
+        setFetchResult(`Error: ${data.error}`);
       }
     } catch {
-      setFetchResult('Erro ao buscar feeds.');
+      setFetchResult('Error fetching feeds.');
     } finally {
       setFetching(false);
     }
@@ -101,7 +101,7 @@ export default function AdminDashboard() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Deletar este artigo?')) return;
+    if (!confirm('Delete this article?')) return;
     const res = await fetch(`/api/admin/articles/${id}`, { method: 'DELETE' });
     if (res.ok) {
       setArticles(prev => prev.filter(a => a.id !== id));
@@ -151,10 +151,10 @@ export default function AdminDashboard() {
         );
         setEditingArticle(null);
       } else {
-        setSaveError('Erro ao salvar. Tente novamente.');
+        setSaveError('Error saving. Please try again.');
       }
     } catch {
-      setSaveError('Erro de conexão.');
+      setSaveError('Connection error.');
     } finally {
       setSaving(false);
     }
@@ -179,10 +179,10 @@ export default function AdminDashboard() {
       if (res.ok && data.title) {
         setEditForm(prev => ({ ...prev, title: data.title }));
       } else {
-        setSaveError(data.error || 'Erro ao reescrever título com IA.');
+        setSaveError(data.error || 'Error rewriting title with AI.');
       }
     } catch {
-      setSaveError('Erro ao chamar a IA.');
+      setSaveError('Error calling the AI.');
     } finally {
       setRewritingTitle(false);
     }
@@ -208,10 +208,10 @@ export default function AdminDashboard() {
       if (res.ok && data.description) {
         setEditForm(prev => ({ ...prev, description: data.description }));
       } else {
-        setSaveError(data.error || 'Erro ao reescrever com IA.');
+        setSaveError(data.error || 'Error rewriting with AI.');
       }
     } catch {
-      setSaveError('Erro ao chamar a IA.');
+      setSaveError('Error calling the AI.');
     } finally {
       setRewriting(false);
     }
@@ -236,10 +236,10 @@ export default function AdminDashboard() {
       if (res.ok && data.image_url) {
         setEditForm(prev => ({ ...prev, image_url: data.image_url }));
       } else {
-        setSaveError(data.error || 'Erro ao gerar imagem com IA.');
+        setSaveError(data.error || 'Error generating image with AI.');
       }
     } catch {
-      setSaveError('Erro ao chamar a IA.');
+      setSaveError('Error calling the AI.');
     } finally {
       setGeneratingImage(false);
     }
@@ -273,10 +273,10 @@ export default function AdminDashboard() {
         );
         setEditingArticle(null);
       } else {
-        setSaveError('Erro ao salvar. Tente novamente.');
+        setSaveError('Error saving. Please try again.');
       }
     } catch {
-      setSaveError('Erro de conexão.');
+      setSaveError('Connection error.');
     } finally {
       setSaving(false);
     }
@@ -302,10 +302,10 @@ export default function AdminDashboard() {
       if (res.ok && data.content) {
         setEditForm(prev => ({ ...prev, content: data.content }));
       } else {
-        setSaveError(data.error || 'Erro ao gerar conteúdo com IA.');
+        setSaveError(data.error || 'Error generating content with AI.');
       }
     } catch {
-      setSaveError('Erro ao chamar a IA.');
+      setSaveError('Error calling the AI.');
     } finally {
       setRewritingContent(false);
     }
@@ -333,13 +333,13 @@ export default function AdminDashboard() {
             </div>
             <div className="flex items-center gap-3">
               <Link href="/blog" target="_blank" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Ver Blog →
+                View Blog →
               </Link>
               <button
                 onClick={handleLogout}
                 className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-colors"
               >
-                Sair
+                Log out
               </button>
             </div>
           </div>
@@ -351,21 +351,21 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
             <p className="text-3xl font-bold text-white">{articles.length}</p>
-            <p className="text-gray-400 text-sm mt-1">Total de artigos</p>
+            <p className="text-gray-400 text-sm mt-1">Total articles</p>
           </div>
           <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
             <p className="text-3xl font-bold text-green-400">{publishedCount}</p>
-            <p className="text-gray-400 text-sm mt-1">Publicados</p>
+            <p className="text-gray-400 text-sm mt-1">Published</p>
           </div>
           <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
             <p className="text-3xl font-bold text-yellow-400">{pendingCount}</p>
-            <p className="text-gray-400 text-sm mt-1">Pendentes</p>
+            <p className="text-gray-400 text-sm mt-1">Pending</p>
           </div>
           <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
             <p className="text-3xl font-bold text-blue-400">
               {articles.filter(a => a.is_manual).length}
             </p>
-            <p className="text-gray-400 text-sm mt-1">Posts manuais</p>
+            <p className="text-gray-400 text-sm mt-1">Manual posts</p>
           </div>
         </div>
 
@@ -379,19 +379,19 @@ export default function AdminDashboard() {
             {fetching ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white"></div>
-                Buscando feeds...
+                Fetching feeds...
               </>
             ) : (
               <>
                 <i className="fa-solid fa-rotate text-sm"></i>
-                Buscar Notícias dos Feeds
+                Fetch News from Feeds
               </>
             )}
           </button>
           <Link href="/admin/new">
             <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
               <i className="fa-solid fa-plus text-sm"></i>
-              Novo Post Manual
+              New Manual Post
             </button>
           </Link>
         </div>
@@ -413,7 +413,7 @@ export default function AdminDashboard() {
                   filter === f ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
-                {f === 'all' ? 'Todos' : f === 'published' ? 'Publicados' : 'Pendentes'}
+                {f === 'all' ? 'All' : f === 'published' ? 'Published' : 'Pending'}
               </button>
             ))}
           </div>
@@ -427,7 +427,7 @@ export default function AdminDashboard() {
                   categoryFilter === c ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
-                {c === 'all' ? 'Todas categorias' : CATEGORY_LABELS[c]}
+                {c === 'all' ? 'All categories' : CATEGORY_LABELS[c]}
               </button>
             ))}
           </div>
@@ -440,8 +440,8 @@ export default function AdminDashboard() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400">Nenhum artigo encontrado.</p>
-            <p className="text-gray-500 text-sm mt-2">Clique em "Buscar Notícias dos Feeds" para importar artigos.</p>
+            <p className="text-gray-400">No articles found.</p>
+            <p className="text-gray-500 text-sm mt-2">Click "Fetch News from Feeds" to import articles.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -476,7 +476,7 @@ export default function AdminDashboard() {
                         ? 'bg-green-500/10 text-green-400 border border-green-500/20'
                         : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
                     }`}>
-                      {article.is_published ? 'Publicado' : 'Pendente'}
+                      {article.is_published ? 'Published' : 'Pending'}
                     </span>
                   </div>
                   <h3 className="text-white font-medium text-sm leading-snug line-clamp-2 mb-1">
@@ -487,8 +487,8 @@ export default function AdminDashboard() {
                   )}
                   <p className="text-gray-600 text-xs">
                     {article.published_at
-                      ? new Date(article.published_at).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
-                      : 'Sem data'}
+                      ? new Date(article.published_at).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })
+                      : 'No date'}
                   </p>
                 </div>
 
@@ -500,7 +500,7 @@ export default function AdminDashboard() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 text-gray-400 hover:text-blue-400 transition-colors"
-                      title="Ver original"
+                      title="View original"
                     >
                       <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>
@@ -508,7 +508,7 @@ export default function AdminDashboard() {
                   <button
                     onClick={() => handleOpenEdit(article)}
                     className="p-2 text-gray-400 hover:text-purple-400 transition-colors"
-                    title="Editar"
+                    title="Edit"
                   >
                     <i className="fa-solid fa-pen text-xs"></i>
                   </button>
@@ -520,12 +520,12 @@ export default function AdminDashboard() {
                         : 'bg-green-600/20 hover:bg-green-600/30 text-green-400 border border-green-600/30'
                     }`}
                   >
-                    {article.is_published ? 'Despublicar' : 'Publicar'}
+                    {article.is_published ? 'Unpublish' : 'Publish'}
                   </button>
                   <button
                     onClick={() => handleDelete(article.id)}
                     className="p-2 text-gray-500 hover:text-red-400 transition-colors"
-                    title="Deletar"
+                    title="Delete"
                   >
                     <i className="fa-solid fa-trash text-xs"></i>
                   </button>
@@ -544,7 +544,7 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between p-5 border-b border-gray-700">
               <div className="flex items-center gap-2">
                 <i className="fa-solid fa-pen text-purple-400"></i>
-                <span className="text-white font-semibold">Editar Artigo</span>
+                <span className="text-white font-semibold">Edit Article</span>
               </div>
               <button
                 onClick={() => setEditingArticle(null)}
@@ -573,7 +573,7 @@ export default function AdminDashboard() {
               {/* Title */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-medium text-gray-300">Título</label>
+                  <label className="text-sm font-medium text-gray-300">Title</label>
                   <button
                     onClick={handleAIRewriteTitle}
                     disabled={rewritingTitle}
@@ -582,12 +582,12 @@ export default function AdminDashboard() {
                     {rewritingTitle ? (
                       <>
                         <div className="animate-spin rounded-full h-3 w-3 border-t-2 border-b-2 border-purple-400"></div>
-                        Reescrevendo...
+                        Rewriting...
                       </>
                     ) : (
                       <>
                         <i className="fa-solid fa-wand-magic-sparkles text-xs"></i>
-                        Reescrever com IA
+                        Rewrite with AI
                       </>
                     )}
                   </button>
@@ -603,7 +603,7 @@ export default function AdminDashboard() {
               {/* Image URL */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-medium text-gray-300">URL da Imagem</label>
+                  <label className="text-sm font-medium text-gray-300">Image URL</label>
                   <button
                     onClick={handleAIGenerateImage}
                     disabled={generatingImage}
@@ -612,12 +612,12 @@ export default function AdminDashboard() {
                     {generatingImage ? (
                       <>
                         <div className="animate-spin rounded-full h-3 w-3 border-t-2 border-b-2 border-orange-400"></div>
-                        Gerando...
+                        Generating...
                       </>
                     ) : (
                       <>
                         <i className="fa-solid fa-image text-xs"></i>
-                        Gerar com IA
+                        Generate with AI
                       </>
                     )}
                   </button>
@@ -644,7 +644,7 @@ export default function AdminDashboard() {
               {/* Description */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-medium text-gray-300">Resumo / Descrição</label>
+                  <label className="text-sm font-medium text-gray-300">Summary / Description</label>
                   <button
                     onClick={handleAIRewrite}
                     disabled={rewriting}
@@ -653,12 +653,12 @@ export default function AdminDashboard() {
                     {rewriting ? (
                       <>
                         <div className="animate-spin rounded-full h-3 w-3 border-t-2 border-b-2 border-purple-400"></div>
-                        Reescrevendo...
+                        Rewriting...
                       </>
                     ) : (
                       <>
                         <i className="fa-solid fa-wand-magic-sparkles text-xs"></i>
-                        Reescrever com IA
+                        Rewrite with AI
                       </>
                     )}
                   </button>
@@ -668,15 +668,15 @@ export default function AdminDashboard() {
                   onChange={e => setEditForm(prev => ({ ...prev, description: e.target.value }))}
                   rows={4}
                   className="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none text-sm"
-                  placeholder="Resumo do artigo..."
+                  placeholder="Article summary..."
                 />
-                <p className="text-gray-600 text-xs mt-1">{editForm.description.length} caracteres</p>
+                <p className="text-gray-600 text-xs mt-1">{editForm.description.length} characters</p>
               </div>
 
               {/* Content */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-sm font-medium text-gray-300">Descrição completa <span className="text-gray-500 font-normal">(mín. 4 parágrafos)</span></label>
+                  <label className="text-sm font-medium text-gray-300">Full content <span className="text-gray-500 font-normal">(min. 4 paragraphs)</span></label>
                   <button
                     onClick={handleAIGenerateContent}
                     disabled={rewritingContent}
@@ -685,12 +685,12 @@ export default function AdminDashboard() {
                     {rewritingContent ? (
                       <>
                         <div className="animate-spin rounded-full h-3 w-3 border-t-2 border-b-2 border-green-400"></div>
-                        Gerando...
+                        Generating...
                       </>
                     ) : (
                       <>
                         <i className="fa-solid fa-wand-magic-sparkles text-xs"></i>
-                        Gerar com IA
+                        Generate with AI
                       </>
                     )}
                   </button>
@@ -700,9 +700,9 @@ export default function AdminDashboard() {
                   onChange={e => setEditForm(prev => ({ ...prev, content: e.target.value }))}
                   rows={10}
                   className="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-y text-sm"
-                  placeholder="Conteúdo completo do artigo (mínimo 4 parágrafos)..."
+                  placeholder="Full article content (at least 4 paragraphs)..."
                 />
-                <p className="text-gray-600 text-xs mt-1">{editForm.content.length} caracteres</p>
+                <p className="text-gray-600 text-xs mt-1">{editForm.content.length} characters</p>
               </div>
 
               {saveError && (
@@ -717,7 +717,7 @@ export default function AdminDashboard() {
                 disabled={saving}
                 className="flex-1 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors text-sm"
               >
-                {saving ? 'Salvando...' : 'Salvar alterações'}
+                {saving ? 'Saving...' : 'Save changes'}
               </button>
               <button
                 onClick={handleSaveAndPublish}
@@ -728,13 +728,13 @@ export default function AdminDashboard() {
                     : 'bg-green-600 hover:bg-green-700'
                 }`}
               >
-                {saving ? 'Salvando...' : editingArticle?.is_published ? 'Salvar e Despublicar' : 'Salvar e Publicar'}
+                {saving ? 'Saving...' : editingArticle?.is_published ? 'Save and Unpublish' : 'Save and Publish'}
               </button>
               <button
                 onClick={() => setEditingArticle(null)}
                 className="px-5 py-2.5 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-lg font-medium transition-colors text-sm"
               >
-                Cancelar
+                Cancel
               </button>
             </div>
           </div>

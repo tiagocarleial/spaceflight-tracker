@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Link from 'next/link';
 import AsteroidCard from '@/components/AsteroidCard';
-import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
-import { getShuffledProducts } from '@/data/amazonProducts';
 import { getNearEarthAsteroids } from '@/lib/nasa-api';
 
 export const metadata: Metadata = {
@@ -27,8 +25,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AsteroidsPage() {
-  // Shuffle Amazon products for random banner order
-  const shuffledProducts = getShuffledProducts();
 
   const asteroids = await getNearEarthAsteroids(7);
 
@@ -98,8 +94,6 @@ export default async function AsteroidsPage() {
           </div>
         </div>
 
-        {/* Amazon Banner 1 */}
-        <AmazonAffiliateBanner product={shuffledProducts[0]} />
 
         {/* Educational Content - Asteroid Classification */}
         <section className="mb-8 max-w-7xl mx-auto">
@@ -178,8 +172,6 @@ export default async function AsteroidsPage() {
           </div>
         </section>
 
-        {/* Amazon Banner 2 */}
-        <AmazonAffiliateBanner product={shuffledProducts[1]} />
 
         <section className="mb-8 max-w-7xl mx-auto">
           {/* Planetary Defense Section */}
@@ -265,8 +257,6 @@ export default async function AsteroidsPage() {
           </div>
         </section>
 
-        {/* Amazon Banner 3 */}
-        <AmazonAffiliateBanner product={shuffledProducts[2]} />
 
         {/* Asteroids Grid */}
         {asteroids.length > 0 ? (
@@ -304,8 +294,6 @@ export default async function AsteroidsPage() {
         </div>
       </main>
 
-      {/* Amazon Banner 4 */}
-      <AmazonAffiliateBanner product={shuffledProducts[3]} />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

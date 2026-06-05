@@ -5,15 +5,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Link from 'next/link';
 import BlogCard from '@/components/BlogCard';
-import AdUnit from '@/components/AdUnit';
 import { Article } from '@/types/article';
 
 const CATEGORY_FILTERS = [
-  { value: 'all', label: 'Todos' },
+  { value: 'all', label: 'All' },
   { value: 'space', label: 'Space' },
-  { value: 'astronomy', label: 'Astronomia' },
-  { value: 'natural-disasters', label: 'Desastres Naturais' },
-  { value: 'archaeology', label: 'Arqueologia' },
+  { value: 'astronomy', label: 'Astronomy' },
+  { value: 'natural-disasters', label: 'Natural Disasters' },
+  { value: 'archaeology', label: 'Archaeology' },
 ] as const;
 
 function BlogContent() {
@@ -122,7 +121,7 @@ function BlogContent() {
             <h1 className="text-2xl font-bold text-white">Space & Nature News</h1>
           </div>
           <p className="text-gray-400 text-sm">
-            Notícias de espaço, astronomia, arqueologia e desastres naturais
+            News on space, astronomy, archaeology, and natural disasters
           </p>
         </div>
 
@@ -143,14 +142,11 @@ function BlogContent() {
           ))}
         </div>
 
-        {/* Ad Unit - Top of Blog */}
-        <AdUnit slot="1122334455" format="horizontal" />
-
         {/* Loading */}
         {loading && (
           <div className="text-center py-16">
             <div className="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
-            <p className="text-gray-400 mt-4">Carregando notícias...</p>
+            <p className="text-gray-400 mt-4">Loading news...</p>
           </div>
         )}
 
@@ -158,9 +154,9 @@ function BlogContent() {
         {!loading && articles.length === 0 && (
           <div className="text-center py-16">
             <i className="fa-solid fa-newspaper text-gray-600 text-5xl mb-4 block"></i>
-            <p className="text-gray-400 text-lg">Nenhum artigo publicado ainda.</p>
+            <p className="text-gray-400 text-lg">No articles published yet.</p>
             <p className="text-gray-500 text-sm mt-2">
-              Use o painel admin para importar notícias dos feeds.
+              Use the admin panel to import news from the feeds.
             </p>
           </div>
         )}
@@ -185,7 +181,7 @@ function BlogContent() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
-                  Anterior
+                  Previous
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -215,7 +211,7 @@ function BlogContent() {
                   disabled={!hasMore}
                   className="px-4 py-2 bg-gray-800 hover:bg-gray-700 disabled:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2"
                 >
-                  Próxima
+                  Next
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -249,7 +245,7 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 py-8">
           <div className="text-center py-16">
             <div className="inline-block animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
-            <p className="text-gray-400 mt-4">Carregando...</p>
+            <p className="text-gray-400 mt-4">Loading...</p>
           </div>
         </div>
       </div>

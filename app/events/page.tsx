@@ -4,15 +4,11 @@ import { useState, useMemo } from 'react';
 import Navigation from '@/components/Navigation';
 import { getAstronomyEvents } from '@/lib/astronomy-events-api';
 import AstronomyEventCard from '@/components/AstronomyEventCard';
-import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
-import { getShuffledProducts } from '@/data/amazonProducts';
 
 export default function EventsPage() {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [showPastEvents, setShowPastEvents] = useState(false);
 
-  // Shuffle Amazon products for random banner order
-  const shuffledProducts = getShuffledProducts();
 
   const allEvents = getAstronomyEvents();
 
@@ -68,8 +64,6 @@ export default function EventsPage() {
         </div>
       </div>
 
-      {/* Amazon Banner 1 */}
-      <AmazonAffiliateBanner product={shuffledProducts[0]} />
 
       {/* Filters */}
       <div className="sticky top-16 z-30 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 py-4">
@@ -161,8 +155,6 @@ export default function EventsPage() {
         </div>
       </div>
 
-      {/* Amazon Banner 2 */}
-      <AmazonAffiliateBanner product={shuffledProducts[1]} />
 
       {/* Events Grid */}
       <div className="container mx-auto px-4 py-8">
@@ -185,8 +177,6 @@ export default function EventsPage() {
         )}
       </div>
 
-      {/* Amazon Banner 3 */}
-      <AmazonAffiliateBanner product={shuffledProducts[2]} />
 
       {/* Footer Info */}
       <div className="container mx-auto px-4 pb-8">
@@ -209,8 +199,6 @@ export default function EventsPage() {
         </div>
       </div>
 
-      {/* Amazon Banner 4 */}
-      <AmazonAffiliateBanner product={shuffledProducts[3]} />
     </div>
   );
 }

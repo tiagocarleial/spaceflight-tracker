@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
   if (!process.env.GROQ_API_KEY) {
     return NextResponse.json(
-      { error: 'GROQ_API_KEY não configurada no .env.local' },
+      { error: 'GROQ_API_KEY not configured in .env.local' },
       { status: 500 }
     );
   }
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   const { title, description, source_name, source_url, type = 'description' } = await request.json();
 
   if (!title) {
-    return NextResponse.json({ error: 'title é obrigatório' }, { status: 400 });
+    return NextResponse.json({ error: 'title is required' }, { status: 400 });
   }
 
   try {
@@ -86,7 +86,7 @@ Original summary: ${description || '(no summary available)'}`;
   } catch (error) {
     console.error('Groq API error:', error);
     return NextResponse.json(
-      { error: 'Erro ao chamar a API do Groq. Verifique sua chave.' },
+      { error: 'Error calling the Groq API. Please check your key.' },
       { status: 500 }
     );
   }

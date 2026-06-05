@@ -50,10 +50,10 @@ export default function AdminNewPost() {
       if (res.ok) {
         router.push('/admin/dashboard');
       } else {
-        setError(data.error || 'Erro ao criar post.');
+        setError(data.error || 'Error creating post.');
       }
     } catch {
-      setError('Erro ao conectar. Tente novamente.');
+      setError('Connection error. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -69,7 +69,7 @@ export default function AdminNewPost() {
               <Link href="/admin/dashboard" className="text-gray-400 hover:text-white transition-colors">
                 <i className="fa-solid fa-arrow-left text-sm"></i>
               </Link>
-              <span className="text-white font-bold text-lg">Novo Post</span>
+              <span className="text-white font-bold text-lg">New Post</span>
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function AdminNewPost() {
           {/* Title */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Título <span className="text-red-400">*</span>
+              Title <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
@@ -88,7 +88,7 @@ export default function AdminNewPost() {
               value={form.title}
               onChange={handleChange}
               required
-              placeholder="Título do post..."
+              placeholder="Post title..."
               className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
             />
           </div>
@@ -96,14 +96,14 @@ export default function AdminNewPost() {
           {/* Description */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Descrição curta
+              Short description
             </label>
             <textarea
               name="description"
               value={form.description}
               onChange={handleChange}
               rows={2}
-              placeholder="Resumo exibido no card do blog..."
+              placeholder="Summary shown on the blog card..."
               className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
             />
           </div>
@@ -111,14 +111,14 @@ export default function AdminNewPost() {
           {/* Content */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Conteúdo completo
+              Full content
             </label>
             <textarea
               name="content"
               value={form.content}
               onChange={handleChange}
               rows={10}
-              placeholder="Escreva o conteúdo completo do post aqui..."
+              placeholder="Write the full post content here..."
               className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-y"
             />
           </div>
@@ -126,7 +126,7 @@ export default function AdminNewPost() {
           {/* Image URL */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              URL da imagem de capa
+              Cover image URL
             </label>
             <input
               type="url"
@@ -141,7 +141,7 @@ export default function AdminNewPost() {
           {/* Source URL */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Link externo (opcional)
+              External link (optional)
             </label>
             <input
               type="url"
@@ -156,7 +156,7 @@ export default function AdminNewPost() {
           {/* Category */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Categoria <span className="text-red-400">*</span>
+              Category <span className="text-red-400">*</span>
             </label>
             <select
               name="category"
@@ -166,9 +166,9 @@ export default function AdminNewPost() {
               className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
             >
               <option value="space">Space</option>
-              <option value="astronomy">Astronomia</option>
-              <option value="natural-disasters">Desastres Naturais</option>
-              <option value="archaeology">Arqueologia</option>
+              <option value="astronomy">Astronomy</option>
+              <option value="natural-disasters">Natural Disasters</option>
+              <option value="archaeology">Archaeology</option>
             </select>
           </div>
 
@@ -183,7 +183,7 @@ export default function AdminNewPost() {
               className="w-4 h-4 rounded bg-gray-700 border-gray-600 text-blue-500 focus:ring-blue-500"
             />
             <label htmlFor="is_published" className="text-sm text-gray-300 cursor-pointer">
-              Publicar imediatamente
+              Publish immediately
             </label>
           </div>
 
@@ -198,14 +198,14 @@ export default function AdminNewPost() {
               disabled={loading}
               className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
             >
-              {loading ? 'Salvando...' : 'Salvar Post'}
+              {loading ? 'Saving...' : 'Save Post'}
             </button>
             <Link href="/admin/dashboard" className="flex-1">
               <button
                 type="button"
                 className="w-full py-3 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg font-medium transition-colors"
               >
-                Cancelar
+                Cancel
               </button>
             </Link>
           </div>

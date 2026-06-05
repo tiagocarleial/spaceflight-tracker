@@ -3,8 +3,6 @@ import { fetchUpcomingLaunches } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
-import AdUnit from '@/components/AdUnit';
-import AmazonAffiliateBanner from '@/components/AmazonAffiliateBanner';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -153,7 +151,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured Launch + Product Section */}
+      {/* Featured Launches Section */}
       {(featuredLongMarch || featuredStarlink1053 || featuredStarlink1043) && (
         <section className="container mx-auto px-4 py-8">
           <div className="mb-5">
@@ -211,26 +209,6 @@ export default async function HomePage() {
                 <LaunchCard launch={featuredStarlink1043} />
               </div>
             )}
-
-            {/* Featured Product - Falcon 9 Model */}
-            <div className="w-full md:col-span-2 lg:col-span-1">
-              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                <i className="fa-solid fa-cart-shopping text-blue-400"></i>
-                Get Your Falcon 9 Model
-              </h3>
-              <AmazonAffiliateBanner
-                product={{
-                  name: 'SpaceX Falcon 9 Diecast Rocket Model',
-                  asin: 'B0D2N2RQZ7',
-                  affiliateLink: 'https://www.amazon.com/yuanpulalala-Starship-Diecast-Simulation-Desktop/dp/B0D2N2RQZ7?crid=2XFFYM9296MYJ&dib=eyJ2IjoiMSJ9.cDEMWp7yu1pPCbnhD2EOccilM1_bbp3JEJ90e2BrZWzALVett4dFF_WsA6-oJ-M8hDsMS0lBOBlfl5twD7hzDAcLn9Vyp-mJOsI6_TtkHoL6BS1aHkuzuFAstvTCSet8-18AEEGH4fTwfJr3U45QpxuqyyF9VI-VR8MxvQmidtwu5IBxCscQaqsF2e1ZvmoUQeOwsEP_WU2CZGxP9RWD-SohsDLfpc2MYedpBhH937a1RW00vVHkkm2B1C0W75RLd7PgcZ_uoVyeQ4oShSEc8o8bHc_sRooNWRAde6lbMUE.ME21gtbhayv9Ox_UOJwAfx7A_F0PXdpF8bxTTHrJTO0&dib_tag=se&keywords=yuanpulalala%2BSpaceX%2BFalcon%2B9&qid=1779557887&sprefix=yuanpulalala%2Bspacex%2Bfalcon%2B9%2Caps%2C286&sr=8-1&th=1&linkCode=ll2&tag=tiagoolivei07-20&linkId=f5644eaacf90f7a4106124f4b1ded4d8&language=en_US&ref_=as_li_ss_tl',
-                  imageUrl: 'https://m.media-amazon.com/images/I/61HUoB-jz4L._AC_SL1200_.jpg',
-                  description: 'Authentic 1:400 scale diecast metal replica with detailed boosters, simulation launch pad and display stand',
-                  badge: 'Diecast Replica',
-                  pieces: 'Metal Model',
-                  age: 'Collectible',
-                }}
-              />
-            </div>
           </div>
         </section>
       )}
@@ -261,20 +239,6 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* Amazon Affiliate Banner 2 - Apollo Saturn V */}
-      <AmazonAffiliateBanner
-        product={{
-          name: 'LEGO Ideas NASA Apollo Saturn V',
-          asin: 'B08GNXNPR6',
-          affiliateLink: 'https://www.amazon.com/dp/B08GNXNPR6?tag=tiagoolivei07-20&linkCode=ll2&linkId=b46d910cf09c6f9330bbf2820360ef29',
-          imageUrl: 'https://m.media-amazon.com/images/I/81jtA27x30L._AC_SL1500_.jpg',
-          description: 'Iconic 1 meter tall rocket with 3 removable stages, lunar lander, and display stand',
-          badge: 'Historic Moon Mission',
-          pieces: '1,969 Pieces',
-          age: 'Ages 14+',
-        }}
-      />
 
       {/* What We Track Section */}
       <section className="bg-gray-800/30 border-y border-gray-800 py-12">
@@ -572,28 +536,14 @@ export default async function HomePage() {
                 View Upcoming Launches
               </button>
             </Link>
-            <Link href="/blog">
+            <Link href="/articles">
               <button className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white border border-gray-700 rounded-lg font-semibold transition-all transform hover:scale-105">
-                Read Space News
+                Read Space Articles
               </button>
             </Link>
           </div>
         </div>
       </section>
-
-      {/* Amazon Affiliate Banner 3 - Space Shuttle Building Set */}
-      <AmazonAffiliateBanner
-        product={{
-          name: 'Space Shuttle Building Kit with Rocket Booster',
-          asin: 'B0F32W3T1M',
-          affiliateLink: 'https://www.amazon.com/dp/B0F32W3T1M?tag=tiagoolivei07-20&linkCode=ll2&linkId=5e6bb356be52e604f0f030f577c65b56',
-          imageUrl: 'https://m.media-amazon.com/images/I/61klXS3jD2L._AC_SL1280_.jpg',
-          description: 'Detailed space shuttle with external fuel tank, solid rocket boosters, and display stand',
-          badge: 'Space Shuttle Launch',
-          pieces: '1,230 Pieces',
-          age: 'Ages 8+',
-        }}
-      />
 
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-gray-900 mt-16">

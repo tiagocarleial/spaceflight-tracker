@@ -24,10 +24,10 @@ export default function AdminLoginPage() {
       if (res.ok) {
         router.push('/admin/dashboard');
       } else {
-        setError('Senha incorreta.');
+        setError('Incorrect password.');
       }
     } catch {
-      setError('Erro ao conectar. Tente novamente.');
+      setError('Connection error. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
         <form onSubmit={handleSubmit} className="bg-gray-800 border border-gray-700 rounded-xl p-6">
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Senha de acesso
+              Access password
             </label>
             <input
               type="password"
@@ -66,7 +66,7 @@ export default function AdminLoginPage() {
             disabled={loading}
             className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors"
           >
-            {loading ? 'Entrando...' : 'Entrar'}
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
       </div>

@@ -31,16 +31,16 @@ export default function CalendarModal({ isOpen, onClose, launches, onSelectLaunc
 
   const today = new Date();
 
-  // Calcular os 3 meses (atual + próximos 2)
+  // Calculate the 3 months (current + next 2)
   const getMonthYear = (offset: number) => {
     const date = new Date(today.getFullYear(), today.getMonth() + offset, 1);
     return { year: date.getFullYear(), month: date.getMonth() };
   };
 
   const months = [
-    getMonthYear(0), // Mês atual
-    getMonthYear(1), // Próximo mês
-    getMonthYear(2), // Mês seguinte
+    getMonthYear(0), // Current month
+    getMonthYear(1), // Next month
+    getMonthYear(2), // Month after
   ];
 
   // Handler para seleção de lançamento
@@ -58,7 +58,7 @@ export default function CalendarModal({ isOpen, onClose, launches, onSelectLaunc
         className="bg-gray-800 rounded-lg p-6 max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()} // Não fechar ao clicar dentro
       >
-        {/* Header com título e botão X */}
+        {/* Header with title and X button */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-white">Launch Calendar</h2>
           <button

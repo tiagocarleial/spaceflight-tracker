@@ -7,6 +7,12 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export const maxDuration = 300; // 5 minutes timeout for processing multiple articles
 
+// Auto-publishing of AI-rewritten RSS content is disabled.
+// AI-generated articles built only from a feed title + snippet are low-value
+// content that violates Google AdSense / Search "scaled content" policies.
+// To intentionally re-enable, set AUTO_PUBLISH_ENABLED=true in the environment.
+const AUTO_PUBLISH_ENABLED = process.env.AUTO_PUBLISH_ENABLED === 'true';
+
 interface ProcessLog {
   article_id: string;
   title: string;
@@ -424,6 +430,13 @@ function selectArticlesByPriority(
 
 export async function POST(request: NextRequest) {
   try {
+    if (!AUTO_PUBLISH_ENABLED) {
+      return NextResponse.json(
+        { error: 'Auto-publish is disabled.', disabled: true },
+        { status: 403 }
+      );
+    }
+
     // Check for secret token (both query param and CRON_SECRET header)
     const { searchParams } = new URL(request.url);
     const token = searchParams.get('token');

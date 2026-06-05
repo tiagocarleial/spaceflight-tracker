@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { supabaseAdmin } from '@/lib/supabase';
-import AdUnit from '@/components/AdUnit';
 import { Metadata } from 'next';
 
 interface Props {
@@ -18,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .eq('is_published', true)
     .single();
 
-  if (!article) return { title: 'Artigo não encontrado' };
+  if (!article) return { title: 'Article not found' };
 
   return {
     title: article.title,
@@ -44,7 +43,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!article) notFound();
 
   const formattedDate = article.published_at
-    ? new Date(article.published_at).toLocaleDateString('pt-BR', {
+    ? new Date(article.published_at).toLocaleDateString('en-US', {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
@@ -53,9 +52,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   const CATEGORY_LABELS: Record<string, string> = {
     space: 'Space',
-    astronomy: 'Astronomia',
-    'natural-disasters': 'Desastres Naturais',
-    archaeology: 'Arqueologia',
+    astronomy: 'Astronomy',
+    'natural-disasters': 'Natural Disasters',
+    archaeology: 'Archaeology',
   };
 
   const CATEGORY_STYLES: Record<string, string> = {
@@ -83,7 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
             <Link href="/blog">
               <button className="px-3 py-2 md:px-4 md:py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
                 <i className="fa-solid fa-arrow-left text-xs"></i>
-                Voltar ao Blog
+                Back to Blog
               </button>
             </Link>
           </div>
@@ -124,9 +123,6 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
         )}
 
-        {/* Ad Unit 1 - After Description */}
-        <AdUnit slot="5544332211" format="horizontal" />
-
         {/* Content */}
         {article.content && (
           <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-4">
@@ -137,9 +133,6 @@ export default async function BlogPostPage({ params }: Props) {
             ))}
           </div>
         )}
-
-        {/* Ad Unit 2 - After Content */}
-        <AdUnit slot="6677889900" format="horizontal" />
 
       </main>
 

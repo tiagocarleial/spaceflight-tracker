@@ -17,16 +17,16 @@ export async function POST(request: NextRequest) {
   }
 
   if (!process.env.GROQ_API_KEY) {
-    return NextResponse.json({ error: 'GROQ_API_KEY não configurada' }, { status: 500 });
+    return NextResponse.json({ error: 'GROQ_API_KEY not configured' }, { status: 500 });
   }
   if (!process.env.HF_TOKEN) {
-    return NextResponse.json({ error: 'HF_TOKEN não configurado' }, { status: 500 });
+    return NextResponse.json({ error: 'HF_TOKEN not configured' }, { status: 500 });
   }
 
   const { title, description, content } = await request.json();
 
   if (!title) {
-    return NextResponse.json({ error: 'title é obrigatório' }, { status: 400 });
+    return NextResponse.json({ error: 'title is required' }, { status: 400 });
   }
 
   try {
@@ -73,7 +73,7 @@ Reply with ONLY the image prompt, no quotes, no explanations.`,
   } catch (error) {
     console.error('[AI generate-image]', error);
     return NextResponse.json(
-      { error: (error as Error).message || 'Erro ao gerar imagem' },
+      { error: (error as Error).message || 'Error generating image' },
       { status: 500 }
     );
   }

@@ -6,12 +6,21 @@ Allow: /rockets
 Allow: /iss
 Allow: /asteroids
 Allow: /events
+Allow: /earthquakes
+Allow: /tiangong
+Allow: /articles
+Allow: /guides
+Allow: /faq
+Allow: /glossary
 Allow: /launches/*
 Allow: /rockets/*
 
-# Disallow admin or private pages (if any in the future)
-# Disallow: /admin
-# Disallow: /api
+# Disallow admin, API and non-indexed sections
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /blog
+Disallow: /blog/
 
 # Sitemap location
 Sitemap: https://www.spaceflight-tracker.com/sitemap.xml

@@ -735,5 +735,31 @@ export const mockLaunches: Launch[] = [
     status: 'TBD',
     description: 'Details TBD, probably SpaceSail Polar Orbit LEO communication satellites.',
     recovery: 'N/A'
+  },
+  {
+    id: '56',
+    name: 'Starlink Group 17-43',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 4E, Vandenberg SFB, CA, USA',
+    launchDate: '2026-06-07T02:00:00.000Z',
+    status: 'Go',
+    description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
+    recovery: 'ASDS - Of Course I Still Love You',
+    livestream: 'https://www.youtube.com/watch?v=aT0ZZo9aNyM'
+  },
+  {
+    id: '57',
+    name: 'Starlink Group 10-35',
+    rocket: 'Falcon 9 Block 5',
+    rocketId: 'falcon9',
+    operator: 'SpaceX',
+    location: 'Space Launch Complex 40, Cape Canaveral SFS, FL, USA',
+    launchDate: '2026-06-08T10:07:00.000Z',
+    status: 'Go',
+    description: 'A batch of 24 satellites for the Starlink mega-constellation - SpaceX\'s project for space-based Internet communication system.',
+    recovery: 'ASDS - Just Read the Instructions',
+    livestream: 'https://www.youtube.com/watch?v=pGDQkw3Bevg'
   }
 ];

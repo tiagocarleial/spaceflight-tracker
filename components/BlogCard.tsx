@@ -13,9 +13,9 @@ const CATEGORY_STYLES: Record<string, string> = {
 
 const CATEGORY_LABELS: Record<string, string> = {
   space: 'Space',
-  astronomy: 'Astronomia',
-  'natural-disasters': 'Desastres Naturais',
-  archaeology: 'Arqueologia',
+  astronomy: 'Astronomy',
+  'natural-disasters': 'Natural Disasters',
+  archaeology: 'Archaeology',
 };
 
 const DEFAULT_IMAGES: Record<string, string> = {
@@ -30,7 +30,7 @@ export default function BlogCard({ article }: BlogCardProps) {
   const imageUrl = article.image_url || DEFAULT_IMAGES[article.category] || DEFAULT_IMAGES.space;
 
   const formattedDate = article.published_at
-    ? new Date(article.published_at).toLocaleDateString('pt-BR', {
+    ? new Date(article.published_at).toLocaleDateString('en-US', {
         day: '2-digit',
         month: 'short',
         year: 'numeric',
@@ -76,7 +76,7 @@ export default function BlogCard({ article }: BlogCardProps) {
           </p>
         )}
         <div className="mt-3 flex items-center gap-1 text-blue-400 text-xs font-medium">
-          <span>Ler artigo</span>
+          <span>Read article</span>
           <i className="fa-solid fa-arrow-right text-xs"></i>
         </div>
       </div>

@@ -54,12 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -90,26 +84,57 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
-    // Articles
     {
-      url: `${baseUrl}/articles/how-rockets-work`,
+      url: `${baseUrl}/guides`,
       lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/articles/understanding-iss`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/articles/near-earth-asteroids`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
     },
   ];
+
+  // Editorial articles
+  const articleSlugs = [
+    'how-rockets-work',
+    'understanding-iss',
+    'near-earth-asteroids',
+    'black-holes-detection-science',
+    'exoplanets-discovery',
+    'future-moon-bases',
+    'history-space-exploration',
+    'jupiter-and-its-moons',
+    'life-of-astronauts',
+    'mars-exploration',
+    'mars-rovers-exploration',
+    'reusable-rockets-revolution',
+    'satellite-constellations',
+    'space-debris-problem',
+    'space-telescopes',
+    'space-tourism',
+  ];
+
+  const articlePages = articleSlugs.map((slug) => ({
+    url: `${baseUrl}/articles/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  // How-to guides
+  const guideSlugs = [
+    'astronomy-apps',
+    'astrophotography-basics',
+    'meteor-showers',
+    'photograph-iss',
+    'spot-satellites',
+    'watch-launches',
+  ];
+
+  const guidePages = guideSlugs.map((slug) => ({
+    url: `${baseUrl}/guides/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
 
   // Rocket detail pages
   const rocketIds = [
@@ -156,5 +181,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...rocketPages];
+  return [...staticPages, ...articlePages, ...guidePages, ...rocketPages];
 }
