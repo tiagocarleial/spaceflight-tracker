@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 interface NavigationProps {
@@ -87,11 +88,14 @@ export default function Navigation({ currentPage, variant = 'standard', classNam
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="text-base md:text-xl font-bold text-white flex items-center gap-2">
-              <i className="fa-solid fa-rocket text-white"></i>
-              <span className="hidden sm:inline">Spaceflight Tracker</span>
-              <span className="sm:hidden">SpaceFlight</span>
-            </div>
+            <Image
+              src="/logo.jpg"
+              alt="Spaceflight Tracker"
+              width={120}
+              height={120}
+              className="rounded-full"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
