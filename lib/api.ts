@@ -190,6 +190,60 @@ export async function fetchUpcomingLaunches(params: FetchLaunchesParams = {}): P
   }
 }
 
+// Fetch recently launched missions (the /previous/ endpoint). Used to keep
+// just-launched missions visible on the homepage even if the API has already
+// moved them out of the /upcoming/ feed before our T+5h window elapses.
+export async function fetchRecentLaunches(params: FetchLaunchesParams = {}): Promise<{ launches: Launch[]; count: number }> {
+  const { limit = 10, offset = 0 } = params;
+
+  const queryParams = new URLSearchParams({
+    limit: limit.toString(),
+    offset: offset.toString(),
+  });
+
+  try {
+    console.log('Fetching recent launches from The Space Devs API...');
+    const url = `${API_BASE_URL}/launches/previous/?${queryParams.toString()}`;
+    console.log('Request URL:', url);
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+    const response = await fetch(url, {
+      next: { revalidate: 300 }, // Cache for 5 minutes
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'SpaceflightTracker/1.0',
+      },
+    });
+
+    clearTimeout(timeout);
+
+    if (!response.ok) {
+      console.error(`API request failed with status: ${response.status}`);
+      throw new Error(`API request failed: ${response.status}`);
+    }
+
+    const data: ApiLaunchResponse = await response.json();
+    console.log(`Successfully fetched ${data.results.length} recent launches from API`);
+
+    return {
+      launches: data.results.map(transformLaunch),
+      count: data.count,
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        console.error('Request timeout: The Space Devs API took too long to respond (30s timeout)');
+      } else {
+        console.error('Error fetching recent launches:', error.message);
+      }
+    }
+    throw error;
+  }
+}
+
 // Fetch list of launch service providers for filters
 export async function fetchLaunchProviders(): Promise<Array<{ id: number; name: string }>> {
   try {

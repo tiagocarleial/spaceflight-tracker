@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { fetchUpcomingLaunches } from '@/lib/api';
+import { fetchUpcomingLaunches, fetchRecentLaunches } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
@@ -35,10 +35,14 @@ export default async function HomePage() {
     // Non-critical — page renders fine without it
   }
 
-  // Filter for future launches only
   const now = new Date();
+  // Keep launches visible until 5 hours after liftoff (T+5h), even if their
+  // status changes (GO -> TBD, etc.) once the launch window has passed.
+  const fiveHoursAgo = new Date(now.getTime() - 5 * 60 * 60 * 1000);
+
+  // Filter for launches that are upcoming or launched less than 5 hours ago
   const futureLaunches = mockLaunches
-    .filter(l => new Date(l.launchDate) > now)
+    .filter(l => new Date(l.launchDate) > fiveHoursAgo)
     .sort((a, b) => new Date(a.launchDate).getTime() - new Date(b.launchDate).getTime());
 
   // Fetch next 3 upcoming launches for highlights
@@ -47,7 +51,6 @@ export default async function HomePage() {
 
   // Get featured Falcon 9 Starlink 17-37 launch
   // Show it even if it already launched, but only for 5 hours after (T+5h)
-  const fiveHoursAgo = new Date(now.getTime() - 5 * 60 * 60 * 1000);
   const featuredCandidates = mockLaunches.filter(l =>
     l.name.includes('Starlink Group 17-37') && new Date(l.launchDate) > fiveHoursAgo
   );
@@ -72,19 +75,33 @@ export default async function HomePage() {
   let featuredStarlink1043 = featuredStarlink1043Candidates[0];
 
   try {
-    // Fetch upcoming launches
-    const data = await fetchUpcomingLaunches({ limit: 10 });
+    // Fetch upcoming launches and recently-launched missions in parallel. The
+    // /previous/ feed guarantees we still have just-launched missions even if
+    // the API has already dropped them from /upcoming/ before T+5h.
+    const [data, recentData] = await Promise.all([
+      fetchUpcomingLaunches({ limit: 10 }),
+      fetchRecentLaunches({ limit: 10 }).catch(() => ({ launches: [], count: 0 })),
+    ]);
 
-    // Filter for future launches only from API data and take the next 3 chronologically
-    const apiFutureLaunches = data.launches
-      .filter(l => new Date(l.launchDate) > now)
+    // Merge both feeds and de-duplicate by launch id
+    const mergedById = new Map<string, (typeof data.launches)[number]>();
+    for (const l of [...recentData.launches, ...data.launches]) {
+      mergedById.set(l.id, l);
+    }
+
+    const allApiLaunches = Array.from(mergedById.values());
+
+    // Keep upcoming launches plus any that lifted off within the last 5 hours
+    // (T+5h), then take the next 3 chronologically
+    const apiFutureLaunches = allApiLaunches
+      .filter(l => new Date(l.launchDate) > fiveHoursAgo)
       .sort((a, b) => new Date(a.launchDate).getTime() - new Date(b.launchDate).getTime());
     nextLaunches = apiFutureLaunches.slice(0, 3);
     totalLaunches = data.count;
 
     // Try to get featured launch from API data
     // Allow launches up to 5 hours in the past (T+5h)
-    const apiFeaturedCandidates = data.launches.filter(l =>
+    const apiFeaturedCandidates = allApiLaunches.filter(l =>
       l.name.includes('Starlink Group 17-37') && new Date(l.launchDate) > fiveHoursAgo
     );
     if (apiFeaturedCandidates.length > 0) {
@@ -92,7 +109,7 @@ export default async function HomePage() {
     }
 
     // Try to get featured Long March 7A launch from API data
-    const apiFeaturedLongMarchCandidates = data.launches.filter(l =>
+    const apiFeaturedLongMarchCandidates = allApiLaunches.filter(l =>
       l.name.includes('Long March 7A') && new Date(l.launchDate) > fiveHoursAgo
     );
     if (apiFeaturedLongMarchCandidates.length > 0) {
@@ -100,7 +117,7 @@ export default async function HomePage() {
     }
 
     // Try to get featured Starlink 10-53 launch from API data
-    const apiFeaturedStarlink1053Candidates = data.launches.filter(l =>
+    const apiFeaturedStarlink1053Candidates = allApiLaunches.filter(l =>
       l.name.includes('Starlink Group 10-53') && new Date(l.launchDate) > fiveHoursAgo
     );
     if (apiFeaturedStarlink1053Candidates.length > 0) {
@@ -108,7 +125,7 @@ export default async function HomePage() {
     }
 
     // Try to get featured Starlink 10-43 launch from API data
-    const apiFeaturedStarlink1043Candidates = data.launches.filter(l =>
+    const apiFeaturedStarlink1043Candidates = allApiLaunches.filter(l =>
       l.name.includes('Starlink Group 10-43') && new Date(l.launchDate) > fiveHoursAgo
     );
     if (apiFeaturedStarlink1043Candidates.length > 0) {
