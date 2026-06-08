@@ -3,6 +3,8 @@ import { fetchUpcomingLaunches } from '@/lib/api';
 import { mockLaunches } from '@/data/mockLaunches';
 import Navigation from '@/components/Navigation';
 import LaunchCard from '@/components/LaunchCard';
+import EarthquakeBreakingNews from '@/components/EarthquakeBreakingNews';
+import { getEarthquakes } from '@/lib/earthquake-api';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -21,6 +23,18 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  // Fetch major earthquakes for breaking news banner (> 6.8)
+  let majorEarthquake = null;
+  try {
+    const earthquakes = await getEarthquakes();
+    const major = earthquakes
+      .filter(eq => eq.magnitude > 6.8)
+      .sort((a, b) => b.magnitude - a.magnitude);
+    majorEarthquake = major[0] ?? null;
+  } catch {
+    // Non-critical — page renders fine without it
+  }
+
   // Filter for future launches only
   const now = new Date();
   const futureLaunches = mockLaunches
@@ -150,6 +164,16 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Breaking News — major earthquake alert */}
+      {majorEarthquake && (
+        <EarthquakeBreakingNews
+          magnitude={majorEarthquake.magnitude}
+          place={majorEarthquake.place}
+          timeFormatted={majorEarthquake.timeFormatted}
+          tsunami={majorEarthquake.tsunami}
+        />
+      )}
 
       {/* Featured Launches Section */}
       {(featuredLongMarch || featuredStarlink1053 || featuredStarlink1043) && (
